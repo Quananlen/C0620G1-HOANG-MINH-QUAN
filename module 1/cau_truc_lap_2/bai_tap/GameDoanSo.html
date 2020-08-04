@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game đoán số</title>
+</head>
+<body>
+<input type="button" value="chơi" onclick="guess()">
+<script>
+    function guess() {
+        let number = parseInt(prompt('Nhập vào khoảng muốn đoán'));
+        let random = Math.floor(Math.random()*number);
+        let guess = parseInt(prompt('Nhập vào số muốn đoán'));
+        for (let i = 0; i < 2; i++) {
+            random === guess ? alert('Chúc mừng chiến thắng') : guess = parseInt(prompt('Sai, mời đoán lại'));
+        }
+    }
+</script>
+</body>
+</html>

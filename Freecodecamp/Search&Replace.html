@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function myReplace(str, before, after) {
+        let arr = str.split(' ');
+        if(/[A-Z]/.test(before)) after=after[0].toUpperCase()+after.substring(1);
+        console.log(after);
+        arr.splice(arr.indexOf(before),1,after);
+        str = arr.join(' ');
+        return str;
+    }
+    let a = myReplace("He is Sleeping on the couch", "Sleeping", "sitting");
+    console.log(a);
+</script>
+</body>
+</html>

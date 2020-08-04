@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory management app</title>
+</head>
+<body>
+<input type="text" id="newProduct"/>
+<input type="button" onclick="addProduct()" value="Thêm sản phẩm">
+<div id="display"></div>
+<script>
+    let product = ['Mercedes', 'Ferarri', 'Rolls Royce'];
+    let display = document.getElementById('display');
+    let newProduct = document.getElementById('newProduct');
+
+    function displayProduct() {
+        let table = '<table style="border: 1px solid;" cellspacing="0px">';
+        for (let i = 0; i < product.length; i++) {
+            table += '<tr>';
+            for (let j = 0; j < 4; j++) {
+                switch (j) {
+                    case 0:
+                        table += `<td style="border: 1px solid; text-align: center; width: 20px;" >${i}</td>`;
+                        break;
+                    case 1:
+                        table += `<td style="border: 1px solid; text-align: center; width: 100px" >${product[i]}</td>`;
+                        break;
+                    case 2:
+                        table += `<td style="border: 1px solid; text-align: center;" ><input type="button" value="Sửa" onclick="adjustProduct(${i})"></td>`;
+                        break;
+                    case 3:
+                        table += `<td style="border: 1px solid; text-align: center;" ><input type="button" value="Xoá" onclick="deleteProduct(${i})"></td>`
+                }
+            }
+            table += '</tr>';
+        }
+        table += '</table>';
+        display.innerHTML = table;
+    }
+
+    displayProduct();
+
+    function addProduct() {
+        if (!newProduct.value) {}
+        else product.push(newProduct.value);
+        displayProduct();
+    }
+
+    function adjustProduct(currentIndex) {
+        product[currentIndex] = prompt('Sửa thông tin sản phẩm');
+        console.log(product);
+        displayProduct();
+    }
+
+    function deleteProduct(currentIndex) {
+        product.splice(currentIndex, 1);
+        displayProduct();
+    }
+</script>
+</body>
+</html>

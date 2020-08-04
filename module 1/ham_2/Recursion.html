@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // in mảng
+    let result = document.getElementById('result').value;
+    function print(arr) {
+        if (arr.length > 0) {
+            result += arr[0] +' ';
+            return print(arr.slice(1, arr.length));
+        } else return result;
+    }
+    console.log(print([1,2,3]));
+    // UCLN
+    function gcd(a,b) {
+        if (b===0)
+            return a;
+        else
+            return gcd(b, a % b);
+    }
+    console.log(gcd(10,8));
+</script>
+</body>
+</html>

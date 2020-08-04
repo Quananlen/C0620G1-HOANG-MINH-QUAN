@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hien thi so nguyen to</title>
+</head>
+<body>
+<script>
+    let numbers = parseInt(prompt('nhập số'));
+    let count = 0;
+    let n = 2;
+    while (count < numbers) {
+        let check = 0;
+        for (let i = 1; i <= n; i++) {
+            if (n % i === 0) {
+                check++;
+            }
+        }
+        if (check < 3) {
+            document.write(n + " ");
+            count++;
+        }
+        n++;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 9</title>
+</head>
+<body>
+<script>
+    let str = prompt('input string');
+    console.log(toUpLower(str));
+    function reverse(str) {
+        let arr = str.split('');
+        arr.reverse();
+        return arr.join(' ');
+    }
+    function toUpper(str) {
+        return str.toUpperCase();
+    }
+    function toUpLower(str) {
+        let temp = str.toLowerCase();
+        let arr = temp.split('');
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i]===str[i]) arr[i] = arr[i].toUpperCase();
+        }
+        return arr.join('')
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 2</title>
+</head>
+<body>
+<script>
+    console.log(tryRemoveFromArray([1, 3, 4, 5, 1, 2, 5, 3, 4, 4], 5));
+
+    function tryRemoveFromArray(array, number) {
+        let contain = array.indexOf(number) !== -1;
+        while (contain) {
+            array.splice(array.indexOf(number), 1);
+            contain = array.indexOf(number) !== -1;
+        }
+        return array
+    }
+</script>
+</body>
+</html>

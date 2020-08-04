@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+</head>
+<body>
+<script>
+    let name = prompt('Tên khách hàng: ');
+    let id = prompt('Số CMND: ');
+    let dob = prompt('Ngày tháng năm sinh: ');
+    let email = prompt('Email: ');
+    let address = prompt('Địa chỉ: ');
+    let customer = prompt('Loại khách hàng (Diamond / Platinum / Gold / Silver / Member): ');
+    let customerSelector;
+    while (customer !== 'Diamond' && customer !== 'Platinum' && customer !== 'Gold' && customer !== 'Silver' && customer !== 'Member') {
+        customerSelector = parseInt(prompt('Mời chọn loại khách hàng: \n1. Diamond \n2. Platinum \n3. Gold \n4. Silver \n5. Member'));
+        switch (customerSelector) {
+            case 1:
+                customer = 'Diamond';
+                break;
+            case 2:
+                customer = 'Platinum';
+                break;
+            case 3:
+                customer = 'Gold';
+                break;
+            case 4:
+                customer = 'Silver';
+                break;
+            case 5:
+                customer = 'Member';
+                break;
+            default:
+                alert('FAILED');
+                customerSelector = 'failed';
+        }
+    }
+    let discount = prompt('Giảm giá: ');
+    let attachment = prompt('Số lượng đi kèm: ');
+    let rentDays = prompt('Số ngày thuê');
+    let service = prompt('Loại dịch vụ (Villa / House / Room): ');
+    const villa = 500;
+    const house = 300;
+    const room = 100;
+    let servicePrice = 0;
+    let serviceSelector;
+    while (service !== 'Villa' && service !== 'House' && service !== 'Room') {
+        serviceSelector = parseInt(prompt("Mời chọn loại dịch vụ: \n1. Villa \n2. House \n3. Room"));
+        switch (serviceSelector) {
+            case 1:
+                service = 'Villa';
+                servicePrice = villa;
+                break;
+            case 2:
+                service = 'House';
+                servicePrice = house;
+                break;
+            case 3:
+                service = 'Room';
+                servicePrice = room;
+                break;
+            default: {
+                alert('FAILED');
+                serviceSelector = 'failed';
+            }
+        }
+    }
+    let roomType = prompt('Loại phòng thuê (VIP / Business / Normal): ');
+    let roomTypeSelector;
+    while (roomType !== 'VIP' && roomType !== 'Business' && roomType !== 'Normal') {
+        roomTypeSelector = parseInt(prompt('Loại phòng thuê: \n1. VIP \n2. Business \n3. Normal'));
+        switch (roomTypeSelector) {
+            case 1:
+                roomType = 'VIP';
+                break;
+            case 2:
+                roomType = 'Business';
+                break;
+            case 3:
+                roomType = 'Normal';
+                break;
+            default:
+                alert('FAILED');
+                roomTypeSelector = 'failed';
+        }
+    }
+    let cost;
+    cost = servicePrice * rentDays * (1 - discount / 100);
+    let menu;
+    do {
+        menu = parseInt(prompt('Nhập lại tuỳ chọn: \n1. Hiển thị thông tin \n2. Chỉnh sửa thông tin \n3. Tính giá tiền \n4. Thoát'));
+        if (menu === 4) break;
+    } while (menu < 1 || menu > 4);
+    while (1 <= menu <= 3) {
+        switch (menu) {
+            case 1: {
+                alert(
+                    'Tên khách hàng: ' + name + '\n' +
+                    'Số CMND: ' + id + '\n' +
+                    'Ngày tháng năm sinh: ' + dob + '\n' +
+                    'Email: ' + email + '\n' +
+                    'Địa chỉ: ' + address + '\n' +
+                    'Loại khách hàng: ' + customer + '\n' +
+                    'Giảm giá: ' + discount + '\n' +
+                    'Số lượng đi kèm: ' + attachment + '\n' +
+                    'Số ngày thuê: ' + rentDays + '\n' +
+                    'Loại dịch vụ: ' + service + '\n' +
+                    'Loại phòng thuê: ' + roomType + '\n'
+                );
+                menu = parseInt(prompt('Nhập lại tuỳ chọn: \n1. Hiển thị thông tin \n2. Chỉnh sửa thông tin \n3. Tính giá tiền \n4. Thoát'));
+                break;
+            }
+            case 2:
+                let changeInfo;
+                do {
+                    changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                        '\n1. Tên khách hàng' +
+                        '\n2. Số CMND' +
+                        '\n3. Ngày tháng năm sinh' +
+                        '\n4. Email' +
+                        '\n5. Địa chỉ' +
+                        '\n6. Loại khách hàng' +
+                        '\n7. Giảm giá' +
+                        '\n8. Số lượng đi kèm' +
+                        '\n9. Số ngày thuê' +
+                        '\n10. Loại dịch vụ' +
+                        '\n11. Loại phòng thuê' +
+                        '\n0. Trở lại'));
+                    if (changeInfo === 0) {
+                        menu = parseInt(prompt('Nhập lại tuỳ chọn: \n1. Hiển thị thông tin \n2. Chỉnh sửa thông tin \n3. Tính giá tiền \n4. Thoát'));
+                    }
+                } while (changeInfo < 0 || changeInfo > 11);
+                while (1 <= changeInfo <= 11) {
+                    switch (changeInfo) {
+                        case 1:
+                            name = prompt('Tên khách hàng là: ');
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 2:
+                            id = prompt('Số CMND là: ');
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê +' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 3:
+                            dob = prompt('Ngày tháng năm sinh: ');
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 4:
+                            email = prompt('Email: ');
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 5:
+                            address = prompt('Địa chỉ: ');
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 6:
+                            do {
+                                customerSelector = parseInt(prompt('Loại khách hàng: \n1. Diamond \n2. Platinum \n3. Gold \n4. Silver \n5. Member'));
+                                switch (customer) {
+                                    case 1:
+                                        customer = 'Diamond';
+                                        break;
+                                    case 2:
+                                        customer = 'Platinum';
+                                        break;
+                                    case 3:
+                                        customer = 'Gold';
+                                        break;
+                                    case 4:
+                                        customer = 'Silver';
+                                        break;
+                                    case 5:
+                                        customer = 'Member';
+                                        break;
+                                    default:
+                                        customerSelector = 'failed';
+                                }
+                            } while (customerSelector < 1 || customerSelector > 5);
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 7:
+                            discount = prompt('Giảm giá: ');
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 8:
+                            attachment = prompt('Số lượng đi kèm: ');
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 9:
+                            rentDays = prompt('Số ngày thuê: ');
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 10:
+                            do {
+                                serviceSelector = parseInt(prompt("Mời chọn loại dịch vụ: \n1. Villa \n2. House \n3. Room"));
+                                switch (serviceSelector) {
+                                    case 1:
+                                        service = 'Villa';
+                                        servicePrice = villa;
+                                        break;
+                                    case 2:
+                                        service = 'House';
+                                        servicePrice = house;
+                                        break;
+                                    case 3:
+                                        service = 'Room';
+                                        servicePrice = room;
+                                        break;
+                                    default: {
+                                        serviceSelector = 'failed';
+                                    }
+                                }
+                            } while (serviceSelector < 1 || serviceSelector > 3);
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                        case 11:
+                            do {
+                                roomTypeSelector = parseInt(prompt('Loại phòng thuê: \n1. VIP \n2. Business \n3. Normal'));
+                                switch (roomTypeSelector) {
+                                    case 1:
+                                        roomType = 'VIP';
+                                        break;
+                                    case 2:
+                                        roomType = 'Business';
+                                        break;
+                                    case 3:
+                                        roomType = 'Normal';
+                                        break;
+                                    default:
+                                        roomTypeSelector = 'failed';
+                                }
+                            } while (roomTypeSelector < 1 || roomTypeSelector > 3);
+                            changeInfo = parseInt(prompt('Chọn thông tin muốn thay đổi: ' +
+                                '\n1. Tên khách hàng' +
+                                '\n2. Số CMND' +
+                                '\n3. Ngày tháng năm sinh' +
+                                '\n4. Email' +
+                                '\n5. Địa chỉ' +
+                                '\n6. Loại khách hàng' +
+                                '\n7. Giảm giá' +
+                                '\n8. Số lượng đi kèm' +
+                                '\n9. Số ngày thuê' +
+                                '\n10. Loại dịch vụ' +
+                                '\n11. Loại phòng thuê' +
+                                '\n0. Trở lại'));
+                            break;
+                    }
+                    menu = parseInt(prompt('Nhập lại tuỳ chọn: \n1. Hiển thị thông tin \n2. Chỉnh sửa thông tin \n3. Tính giá tiền \n4. Thoát'));
+                }
+
+                break;
+            case 3:
+                alert('Số tiền phải trả: ' + cost + '$');
+                menu = parseInt(prompt('Nhập lại tuỳ chọn: \n1. Hiển thị thông tin \n2. Chỉnh sửa thông tin \n3. Tính giá tiền \n4. Thoát'));
+                break;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>date month year</title>
+</head>
+<body>
+<script>
+    let month = parseInt(prompt('input month'));
+    let year = parseInt(prompt('input year'));
+    showDays(month,year);
+
+    function showDays(month, year) {
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                alert(`year ${year} have 31 days`);
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                alert(`year ${year} have 30 days`);
+                break;
+            case 2:
+                let leapYear1 = year % 400 === 0;
+                let leapYear2 = year % 4 === 0 && year % 100 !==0;
+                if (leapYear1) {
+                    alert(`year ${year} have 29 days`)
+                }
+                if (leapYear2) {
+                    alert(`year ${year} have 29 days`)
+                } else alert(`year ${year} have 28 days`)
+        }
+    }
+</script>
+</body>
+</html>

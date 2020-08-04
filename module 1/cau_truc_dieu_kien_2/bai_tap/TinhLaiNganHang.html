@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interest earned</title>
+</head>
+<body>
+<script>
+    let principal = parseInt(prompt('Nhập vào số tiền gửi (triệu VND): '));
+    let roi = parseFloat(prompt('Nhập vào lãi suất ngân hàng: '));
+    let time = parseInt(prompt('Nhập vào số năm muốn gửi: '));
+    let account = principal * Math.pow((1 + roi), time);
+    alert(`Số tiền gốc sau ${t} tháng là ${account} triệu VND`);
+</script>
+</body>
+</html>

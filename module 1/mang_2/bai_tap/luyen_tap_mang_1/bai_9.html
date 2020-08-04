@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bài 9</title>
+</head>
+<body>
+<script>
+    let arr1 = [];
+    for (let i = 0; i < 10; i++) {
+        let num = Math.floor(Math.random()*20);
+        arr1.push(num);
+    }
+    let arr2 = [];
+    for (let i = 0; i < 10; i++) {
+        let num = Math.floor(Math.random()*20);
+        arr2.push(num);
+    }
+    let arr3 = arr2.concat(arr1);
+    document.write(arr1 + '<br>' + arr2 + '<br>' + arr3);
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Your Hobby</title>
+    <style>
+        h1 {
+            background-color: red;
+            color: white;
+        }
+        .label {
+            color: red;
+        }
+        p {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <form action="YourHobby.html" method="get">
+        <h1>Sở thích của bạn</h1>
+        <p>Họ và tên <input type = "text" name="yourname"/></p>
+        <p>Email <input type = "text" name="email" style="margin-left: 24px"/></p>
+        <p>Sở thích
+            <ul style="list-style-type: none; display: inline-flex">
+                <li>
+                    <ul style="list-style-type: none">
+                        <li><label class="label"><input type = "checkbox" name="hobby"/>Thể thao</label></li>
+                        <li><label class="label"><input type = "checkbox" name="hobby"/>Lướt web</label></li>
+                        <li><label class="label"><input type = "checkbox" name="hobby"/>Du lịch</label></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul style="list-style-type: none">
+                        <li><label class="label"><input type = "checkbox" name="hobby"/>Âm nhạc</label></li>
+                        <li><label class="label"><input type = "checkbox" name="hobby"/>Chơi game</label></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul style="list-style-type: none">
+                        <li><label class="label"><input type = "checkbox" name="hobby"/>Đọc sách</label></li>
+                        <li><label class="label"><input type = "checkbox" name="hobby"/>Điện ảnh</label></li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <input type="submit" value="Gửi thông tin"/>
+        <input type="reset" value="Nhập lại"/>
+    </form>
+</body>
+</html>

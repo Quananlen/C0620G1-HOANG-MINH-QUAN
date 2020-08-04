@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>phone class</title>
+</head>
+<body>
+<label>Nokia</label><input type="text" id="nokia"><input type="button" value="Send" onclick="nokia.message('nokia');nokia.send(iphone);iphone.viewInbox('iphoneDisplay')"><br>
+<label>Nokia inbox</label><textarea id="nokiaDisplay"></textarea><br>
+<label>Iphone</label><input type="text" id="iphone"><input type="button" value="Send" onclick="iphone.message('iphone');iphone.send(nokia);nokia.viewInbox('nokiaDisplay')"><br>
+<labe>iphone inbox</labe><textarea id="iphoneDisplay"></textarea>
+<script>
+    class Mobile {
+        constructor(name) {
+            this.name = name;
+            this.battery = 100;
+            this.texting = '';
+            this.inbox = [];
+            this.outbox = [];
+            this.onOff = true;
+        }
+
+        onOffCheck() {
+            this.battery--;
+            return this.onOff;
+        }
+
+        turnOnOff() {
+            this.onOff ? this.onOff = false : this.onOff = true;
+            this.battery--;
+        }
+
+        charge() {
+            if (this.onOff) {
+                this.battery = 100;
+            }
+        }
+
+        message(id) {
+            if (this.onOff) {
+                this.battery--;
+                this.texting = document.getElementById(`${id}`).value;
+                return this.texting;
+            }
+        }
+
+        receive() {
+            if (this.onOff) {
+                this.battery--;
+
+            }
+        }
+
+        send(phone) {
+            if (this.onOff) {
+                this.battery--;
+                this.outbox.push(this.texting);
+                phone.inbox.push(this.texting);
+            }
+        }
+
+        viewInbox(id) {
+            if (this.onOff) {
+                this.battery--;
+                document.getElementById(`${id}`).value = this.inbox;
+                return this.inbox;
+            }
+        }
+
+        viewOutbox() {
+            if (this.onOff) {
+                this.battery--;
+                return this.outbox;
+            }
+        }
+    }
+
+    let nokia = new Mobile('Nokia');
+    let iphone = new Mobile('Iphone');
+    // nokia.message();
+    // nokia.send(iphone);
+    // alert(iphone.inbox);
+</script>
+</body>
+</html>

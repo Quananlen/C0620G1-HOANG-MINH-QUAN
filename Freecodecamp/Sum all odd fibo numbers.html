@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sum all odd fibo num</title>
+</head>
+<body>
+<script>
+    function sumFibs(num) {
+        let fibo1 = 1;
+        let fibo2 = 1;
+        let result = 0;
+        while (fibo1 <= num) {
+            if (fibo1%2===1) result+=fibo1;
+            fibo2 += fibo1;
+            fibo1 = fibo2 - fibo1;
+        }
+        return result;
+    }
+    console.log(sumFibs(75025))
+</script>
+</body>
+</html>

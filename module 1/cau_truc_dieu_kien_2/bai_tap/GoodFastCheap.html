@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Good Fast Cheap</title>
+    <link rel="stylesheet" href="GoodFastCheapCSS.css">
+</head>
+<body>
+<label class="switch"><div class="label4switch">GOOD</div>
+    <input type="checkbox" id="good" onclick="goodFunc()">
+    <span class="slider round"></span>
+</label><br><br>
+<label class="switch"><div class="label4switch">FAST</div>
+    <input type="checkbox" id="fast" onclick="fastFunc()">
+    <span class="slider round"></span>
+</label><br><br>
+<label class="switch"><div class="label4switch">CHEAP</div>
+    <input type="checkbox" id="cheap" onclick="cheapFunc()">
+    <span class="slider round"></span>
+</label>
+<script>
+    let good = document.getElementById('good');
+    let fast = document.getElementById('fast');
+    let cheap = document.getElementById('cheap');
+    function goodFunc() {
+        if (good.checked && fast.checked && cheap.checked) fast.checked = false;
+    }
+    function fastFunc() {
+        if (good.checked && fast.checked && cheap.checked) cheap.checked = false;
+    }
+    function cheapFunc() {
+        if (good.checked && fast.checked && cheap.checked) good.checked = false;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 3</title>
+</head>
+<body>
+<script>
+    console.log(isFibonacci(2));
+
+    function isFibonacci(number) {
+        let listFibo = [];
+        let fibo1 = 0;
+        let fibo2 = 1;
+        while (fibo1 <= number) {
+            listFibo.push(fibo1);
+            fibo2 += fibo1;
+            fibo1 = fibo2 - fibo1;
+        }
+        let isFibo = listFibo.indexOf(number) !== -1;
+        return isFibo;
+    }
+</script>
+</body>
+</html>

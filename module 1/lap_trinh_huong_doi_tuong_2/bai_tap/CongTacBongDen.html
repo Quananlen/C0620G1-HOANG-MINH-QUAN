@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lamp Switch</title>
+</head>
+<body>
+<script>
+    class Lamp {
+        constructor() {
+            this.status = 'off';
+        }
+    }
+
+    class Switch {
+        constructor(lamp) {
+            this.turnOn = function () {
+                lamp.status = 'on';
+            };
+            this.turnOff = function () {
+                lamp.status = 'off';
+            }
+        }
+    }
+    let lamp = new Lamp();
+    let lampSwitch = new Switch(lamp);
+    console.log(lamp.status);
+    lampSwitch.turnOn(lamp);
+    console.log(lamp.status);
+    lampSwitch.turnOff(lamp);
+    console.log(lamp.status);
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic tac toe</title>
+</head>
+<body>
+<label for="x">Toạ độ ngang</label><input type="text" id="x">
+<label for="y">Toạ độ dọc</label><input type="text" id="y">
+<!--<input type="radio" id="player1" name="player"><label for="player1">Player 1</label>-->
+<!--<input type="radio" id="player2" name="player"><label for="player2">Player 2</label>-->
+<input type="button" value="Go" id="go" onclick="tick()"><br>
+<div id="result"></div>
+<script>
+    let table = [[], [], []];
+    let result = '';
+    for (let i = 0; i < table.length; i++) {
+        for (let j = 0; j < table.length; j++) {
+            table[i].push('.');
+        }
+    }
+
+    // hàm in
+    function show() {
+        result = '';
+        for (let i = 0; i < table.length; i++) {
+            result += table[i].join('&nbsp&nbsp&nbsp&nbsp');
+            result += '<br>';
+        }
+        return result;
+    }
+
+    document.getElementById('result').innerHTML = show();
+    let temp = 0;
+
+    // hàm đánh dấu
+    function tick() {
+        let x = document.getElementById('x').value - 1;
+        let y = document.getElementById('y').value - 1;
+        if (temp === 0) {
+            table[x][y] = 'X';
+            temp = 1;
+        } else {
+            table[x][y] = 'O';
+            temp = 0;
+        }
+        document.getElementById('result').innerHTML = show();
+        setTimeout('check()', 3000);
+    }
+
+    // hàm check
+    function check() {
+        // check ngang
+        for (let i = 0; i < table.length; i++) {
+            if (table[i][0] === 'X' && table[i][1] === 'X' && table[i][2] === 'X') {
+                alert('player 1 win');
+                break;
+            }
+            if (table[i][0] === 'O' && table[i][1] === 'O' && table[i][2] === 'O') {
+                alert('player 2 win');
+                break;
+            }
+        }
+        // check dọc
+        for (let i = 0; i < table.length; i++) {
+            if (table[0][i] === 'X' && table[1][i] === 'X' && table[2][i] === 'X') {
+                alert('player 1 win');
+                break;
+            }
+            if (table[0][i] === 'O' && table[1][i] === 'O' && table[2][i] === 'O') {
+                alert('player 2 win');
+                break;
+            }
+        }
+        // check chéo
+        if (table[0][0] === 'X' && table[1][1] === 'X' && table[2][2] === 'X') alert('player 1 win');
+        if (table[0][2] === 'X' && table[1][1] === 'X' && table[2][0] === 'X') alert('player 1 win');
+        if (table[0][0] === 'X' && table[1][1] === 'X' && table[2][2] === 'O') alert('player 2 win');
+        if (table[0][2] === 'X' && table[1][1] === 'X' && table[2][0] === 'O') alert('player 2 win');
+    }
+
+</script>
+</body>
+</html>

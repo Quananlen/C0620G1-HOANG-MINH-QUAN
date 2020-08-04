@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register Form</title>
+</head>
+<body>
+    <form action="DangKiHocVien.html" method="get">
+        <h1>Đăng kí học viên</h1>
+        <p>Họ và tên<input style="margin-left: 20px" type="text" name="Name"/></p>
+        <p>Ngày sinh<input style="margin-left: 18px" type="date" name="DoB"></p>
+        <label>Giới tính<input style="margin-left: 25px" type="radio" name="gender">Nam</input><input type="radio" name="gender">Nữ</input></label>
+        <p>Địa chỉ<textarea style="margin-left: 33px" name="textarea" cols="50" rows="4"></textarea></p>
+        <label>Lớp</label><select style="margin-left: 53px" name="class">
+            <option value="c06">C0620G1</option>
+            <option value="c05">C0520G1</option>
+            <option value="c04">C0420G1</option>
+        </select>
+        <p>Email<input style="margin-left: 42px" type="email" name="email"/></p>
+        <p>Điện thoại<input style="margin-left: 13px" type="number" name="phone"/></p>
+        <input type="submit" value="Đăng kí"/><input type="reset" value="Nhập lại"/>
+    </form>
+</body>
+</html>

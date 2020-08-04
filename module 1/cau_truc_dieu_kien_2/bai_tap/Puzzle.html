@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle</title>
+    <style>
+        .img {
+            border: solid 1px;
+            height: 128px;
+            width: 256px;
+            margin: 2px;
+        }
+        #one {
+           background: url("images/bg1-1.jpg");
+        }
+        #two {
+            background: url("images/bg1-2.jpg");
+        }
+        #three {
+            background: url("images/bg1-3.jpg");
+        }
+        #four {
+            background: url("images/bg1-4.jpg");
+        }
+    </style>
+</head>
+<body>
+<div class="img" id="one" onclick="next1()"></div>
+<div class="img" id="two" onclick="next2()"></div>
+<div class="img" id="three" onclick="next3()"></div>
+<div class="img" id="four" onclick="next4()"></div>
+<p id="result"></p>
+<script>
+    let img1 = document.getElementById('one');
+    let i = 0;
+    let img2 = document.getElementById('two');
+    let j = 0;
+    let img3 = document.getElementById('three');
+    let k = 0;
+    let img4 = document.getElementById('four');
+    let l = 0;
+   function next1() {
+        switch (i) {
+            case 0:
+                img1.style.background = "url('images/bg2-1.jpg')";
+                i++;
+                break;
+            case 1:
+                img1.style.background = "url('images/bg3-1.jpg')";
+                i++;
+                break;
+            case 2:
+                img1.style.background = "url('images/bg1-1.jpg')";
+                i-=2;
+                break
+        }
+   }
+    function next2() {
+        switch (j) {
+            case 0:
+                img2.style.background = "url('images/bg2-2.jpg')";
+                j++;
+                break;
+            case 1:
+                img2.style.background = "url('images/bg3-2.jpg')";
+                j++;
+                break;
+            case 2:
+                img2.style.background = "url('images/bg1-2.jpg')";
+                j-=2;
+                break
+        }
+    }
+
+    function next3() {
+        switch (k) {
+            case 0:
+                img3.style.background = "url('images/bg2-3.jpg')";
+                k++;
+                break;
+            case 1:
+                img3.style.background = "url('images/bg3-3.jpg')";
+                k++;
+                break;
+            case 2:
+                img3.style.background = "url('images/bg1-3.jpg')";
+                k-=2;
+                break
+        }
+    }
+
+    function next4() {
+        switch (l) {
+            case 0:
+                img4.style.background = "url('images/bg2-4.jpg')";
+                l++;
+                break;
+            case 1:
+                img4.style.background = "url('images/bg3-4.jpg')";
+                l++;
+                break;
+            case 2:
+                img4.style.background = "url('images/bg1-4.jpg')";
+                l-=2;
+                break
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency converter</title>
+    <style>
+        th {
+            text-align: center;
+            padding: 5px 20px;
+        }
+        .select {
+            margin-left: 20px;
+            width: 100px;
+        }
+    </style>
+    <script src="curconv.js"></script>
+</head>
+<body>
+<form action="">
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>From Currency</th>
+            <th>To Currency</th>
+        </tr>
+        <tr>
+            <td><input type="number" id="amount"></td>
+            <td>
+                <select class="select" name="from" id="from">
+                    <option value="vnd" id="fromvn">VND</option>
+                    <option value="usd" id="fromusd">USD</option>
+                    <option value="eur" id="fromeur">Euro</option>
+                    <option value="yen" id="fromyen">Yen</option>
+                </select>
+            </td>
+            <td>
+                <select class="select" name="to" id="to">
+                    <option value="vnd" id="tovn">VND</option>
+                    <option value="usd" id="tousd">USD</option>
+                    <option value="eur" id="toeur">Euro</option>
+                    <option value="yen" id="toyen">Yen</option>
+                </select>
+            </td>
+            <td>
+                <input type="button" id="convert" value="Convert" onclick="converter()">
+            </td>
+        </tr>
+    </table>
+</form>
+<p id="result">Result: </p>
+</body>
+</html>

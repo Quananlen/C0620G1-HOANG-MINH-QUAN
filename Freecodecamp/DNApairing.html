@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dna</title>
+</head>
+<body>
+<script>
+    function pairElement(str) {
+        let arr = [];
+        for (let i = 0; i < str.length; i++) {
+            arr.push([]);
+            arr[i].push(str[i]);
+            switch (str[i]) {
+                case 'A':
+                    arr[i].push('T');
+                    break;
+                case 'T':
+                    arr[i].push('A');
+                    break;
+                case 'C':
+                    arr[i].push('G');
+                    break;
+                case'G':
+                    arr[i].push('C');
+            }
+        }
+        return arr;
+    }
+
+    let result = pairElement("ATCGA");
+    console.log(result);
+</script>
+</body>
+</html>

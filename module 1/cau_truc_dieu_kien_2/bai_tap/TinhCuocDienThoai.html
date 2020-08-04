@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính cước điện thoại</title>
+</head>
+<body>
+<script>
+    let time = parseInt(prompt('Nhập thời lượng cuộc gọi (phút): '));
+    let fee;
+    let feeFor50 = 600;
+    let feeFor200 = 400;
+    let feeAfter200 = 200;
+    let fixCost = 25000;
+    time <= 50 ? fee = fixCost + time*feeFor50 :
+        time <= 200 ? fee = fixCost + 50*feeFor50 + (time-50)*feeFor200 :
+            fee = fixCost + 50*feeFor50 + (time-50)*feeFor200 + (time-200)*feeAfter200;
+    alert('Tiền cước là: ' + fee);
+</script>
+</body>
+</html>

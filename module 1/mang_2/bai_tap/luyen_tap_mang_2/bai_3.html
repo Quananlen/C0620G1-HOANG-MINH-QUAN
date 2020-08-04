@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bài 3</title>
+</head>
+<body>
+<script>
+    let arr = [];
+    let arrLength = parseInt(prompt('nhập độ dài mảng: '));
+    for (let i = 0; i < arrLength; i++) {
+        let num = prompt('nhập kí tự');
+        arr.push(num);
+    }
+    let count = 0;
+    for (let item of arr) {
+        if (!isNaN(item)) count++
+    }
+    document.write(arr + '<br>');
+    document.write(`số kí tự số là ${count}`);
+</script>
+</body>
+</html>

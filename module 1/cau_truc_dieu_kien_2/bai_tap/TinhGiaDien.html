@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electricity</title>
+</head>
+<body>
+<script>
+    let kWh = parseInt(prompt('Nhập vào số điện sử dụng: '));
+    let price;
+    kWh <= 50 ? price = kWh * 1549 :
+        kWh <= 100 ? price = 50 * 1549 + (kWh - 50) * 1600 :
+            kWh <= 200 ? price = 50 * 1549 + 50 * 1600 + (kWh - 100) * 1858 :
+                kWh <= 300 ? price = 50 * 1549 + 50 * 1600 + 100 * 1858 + (kWh - 200) * 2340 :
+                    kWh <= 400 ? price = 50 * 1549 + 50 * 1600 + 100 * 1858 + 100 * 2340 + (kWh - 300) * 2615 :
+                        price = 50 * 1549 + 50 * 1600 + 100 * 1858 + 100 * 2340 + 100 * 2615 + (kWh - 400) * 2701;
+    alert('Tiền điện là: ' + price);
+</script>
+</body>
+</html>

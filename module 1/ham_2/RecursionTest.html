@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function gcd(a,b) {
+        if (b===0)
+            return a;
+        else
+            return gcd(b, a % b);
+    }
+    console.log(gcd());
+</script>
+</body>
+</html>

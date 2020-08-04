@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vong lap long nhau</title>
+</head>
+<body>
+<script>
+    let tab;
+    tab = "<table border='1' cellspacing='0' cellpadding='3'>";
+    for (let i = 2; i <= 10; i++) {
+        tab += "<tr>";
+        for (let j = 2; j <= 10; j++) {
+            tab = tab + "<td>" + `${i} x ${j} = ` + i * j + "</td>";
+        }
+        tab += "</tr>";
+    }
+    tab = tab + "</table>";
+    document.write(tab);
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 1</title>
+</head>
+<body>
+<script>
+    console.log(findMax([5,10,7,8,20,6,15,3]));
+
+    function findMax(array) {
+        let max = array[0];
+        let arrLen = array.length;
+        for (let i = 1; i < arrLen; i++) {
+            if (max < array[i]) {
+                max = array[i];
+            }
+        }
+        return max
+    }
+</script>
+</body>
+</html>

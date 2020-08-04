@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Income Tax</title>
+</head>
+<body>
+<script>
+    let wage = parseInt(prompt('Nhập tiền lương theo tháng (triệu VND): '));
+    let income = wage * 12;
+    let tax;
+    income <= 60 ? tax = income * 0.05 :
+        income <= 120 ? tax = 60 * 0.05 + (income - 60) * 0.1 :
+            income <= 216 ? tax = 60 * 0.05 + 60 * 0.1 + (income - 120) * 0.15 :
+                income <= 384 ? tax = 60 * 0.05 + 60 * 0.1 + 96 * 0.15 + (income - 216) * 0.2 :
+                    income <= 624 ? tax = 60 * 0.05 + 60 * 0.1 + 96 * 0.15 + 216 * 0.2 + (income - 384) * 0.25 :
+                        income <= 960 ? tax = 60 * 0.05 + 60 * 0.1 + 96 * 0.15 + 216 * 0.2 + 240 * 0.25 + (income - 624) * 0.3 :
+                            tax = 60 * 0.05 + 60 * 0.1 + 96 * 0.15 + 216 * 0.2 + 240 * 0.25 + 336 * 0.3 + (income - 960) * 0.35;
+    alert(`Số thuế phải nộp là: ${tax} triệu VND`);
+</script>
+</body>
+</html>

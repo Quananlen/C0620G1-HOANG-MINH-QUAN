@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sum minus factorial</title>
+</head>
+<body>
+<script>
+    let num = parseInt(prompt('input n'));
+    sumMinusFact(num);
+    // S=15-1+1/2-1/3!+....+(-1)n  1/n!
+    function sumMinusFact(num) {
+        let sum = 15;
+        let deno = 1;
+        for (let i = 1; i <= num; i++) {
+            deno *= i;
+            if (i % 2 === 0) {
+                sum += 1/(deno);
+            } else sum -= 1/(deno);
+        }
+        alert(sum);
+    }
+</script>
+</body>
+</html>

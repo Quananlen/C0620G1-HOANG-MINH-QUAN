@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature class</title>
+</head>
+<body>
+<script>
+    class Temperature {
+        constructor(degreeC) {
+            this.degreeC = degreeC;
+        }
+
+        toF() {
+            return this.degreeC * 1.8 + 32;
+        }
+
+        toK() {
+            return this.degreeC + 273;
+        }
+    }
+
+    let myTemp = new Temperature(25);
+    console.log(myTemp);
+    alert(`Độ C là: ${myTemp.degreeC}, độ F là: ${myTemp.toF()}, độ K là: ${myTemp.toK()}`);
+</script>
+</body>
+</html>

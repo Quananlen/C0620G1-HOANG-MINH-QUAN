@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = parseInt(prompt('input a'));
+    let b = parseInt(prompt('input b'));
+    ucln(a,b);
+    function ucln(a,b) {
+        let i;
+        a > b ? i = b : i = a;
+        while (i >= 1) {
+            if (a % i === 0 && b % i === 0) {
+                alert(`UCLN là ${i}`);
+                break
+            }
+            i--;
+        }
+        alert(`BCNN là ${a*b/i}`)
+    }
+
+</script>
+</body>
+</html>

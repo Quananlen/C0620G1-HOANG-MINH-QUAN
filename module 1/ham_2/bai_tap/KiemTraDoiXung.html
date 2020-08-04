@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palindrom check</title>
+</head>
+<body>
+<script>
+    let str = prompt('nhập chuỗi');
+    let count = 0;
+    let arr = str.split('');
+
+    // cách lặp
+    function isPalindrom() {
+        for (let i = 0; i < Math.floor(str.length / 2); i++) {
+            if (str.charAt(i) === str.charAt(str.length - 1 - i)) count++;
+            else break;
+        }
+        if (count === Math.floor(str.length / 2)) alert('đối xứng'); else alert('bất đối xứng');
+    }
+
+    // isPalindrom();
+
+    // cách đệ quy
+    function isPalindrom2(i) {
+        let tempArr = arr.slice(i, arr.length - i);
+        if (tempArr[i] === tempArr[tempArr.length - 1 - i]) count++;
+        if (i <= arr.length / 2 - 2) return isPalindrom2(i + 1);
+        count === ~~(str.length / 2) ? alert('đối xứng') : alert('bất đối xứng');
+    }
+
+    // isPalindrom2(0);
+
+    // đê quy 2
+    function isPalindrom3(str) {
+        if (Math.floor(str.length / 2) >= 1) {
+            if (str.charAt(0) === str.charAt(str.length - 1)){
+                return isPalindrom3(str.slice(1, str.length - 1));}
+            else alert('bất đối xứng');
+        } else alert('đối xứng');
+    }
+    isPalindrom3(str);
+
+</script>
+</body>
+</html>

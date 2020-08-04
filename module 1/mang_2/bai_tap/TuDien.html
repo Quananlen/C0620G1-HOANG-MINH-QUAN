@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple dictionary</title>
+</head>
+<body>
+<input type="text" id="lookup"><input type="button" onclick="lookup()" value="Tìm kiếm">
+<script>
+    let eng = ['apple', 'cat', 'dog', 'house'];
+    let vn = ['táo', 'mèo', 'chó', 'nhà'];
+
+    function lookup() {
+        let lookup = document.getElementById('lookup').value;
+        for (let i = 0; i < eng.length; i++) {
+            if (lookup === eng[i]) {
+                alert(vn[i]);
+                break;
+            }
+            if (i === eng.length - 1) alert('ko tìm thấy');
+        }
+    }
+</script>
+</body>
+</html>

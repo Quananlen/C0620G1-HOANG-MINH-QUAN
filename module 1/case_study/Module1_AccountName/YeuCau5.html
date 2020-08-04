@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5</title>
+</head>
+<body>
+<script>
+    let arrListCustomer = [];
+    let arrID = [];
+    let arrBirthday = [];
+    let arrEmail = [];
+    let arrAddress = [];
+    let customerTypes = ['Diamond', 'Platinum', 'Gold', 'Silver', 'Member'];
+    let arrCustomerType = [];
+    let arrDiscount = [];
+    let arrAttachment = [];
+    let arrRentDays = [];
+    let service = ['Villa', 'House', 'Room'];
+    let arrService = [];
+    let roomType = ['VIP', 'Business', 'Normal'];
+    let arrRoomType = [];
+
+    function displayMainMenu() {
+        let customerIndex = 0;
+        do {
+            menu = parseInt(prompt('1. Add New Customer \n' +
+                '2. Display Information Customer \n' +
+                '3. Edit Information Customer \n' +
+                '4. Delete Customer \n' +
+                '0. Exit'));
+            if (menu === 0) break;
+            switch (menu) {
+                case 1:
+                    addNewCustomer();
+                    displayMainMenu();
+                    break;
+                case 2:
+                    do {
+                        customerIndex = parseInt(prompt(`Select customer to display
+                        ${displayCustomerList()}
+                        0. Back`)) - 1;
+                        if (customerIndex === -1) displayMainMenu();
+                        if (0 <= customerIndex && customerIndex <= arrListCustomer.length - 1) {
+                            displayCustomerInfo(customerIndex);
+                            displayMainMenu();
+                        }
+                    } while (customerIndex < 0 || customerIndex > arrListCustomer.length - 1 || isNaN(customerIndex));
+                    break;
+                case 3:
+                    do {
+                        editCustomer();
+                    } while (customerIndex < 0 || customerIndex > arrListCustomer.length - 1 || isNaN(customerIndex));
+                    displayCustomerInfo(customerIndex);
+                    displayMainMenu();
+                    break;
+                case 4:
+                    do {
+                        customerIndex = parseInt(prompt(`Select customer to delete
+                        ${displayCustomerList()}
+                        0. Back`)) - 1;
+                        if (customerIndex === -1) displayMainMenu();
+                        if (0 <= customerIndex && customerIndex <= arrListCustomer.length - 1) {
+                            deleteCustomer(customerIndex);
+                            displayMainMenu();
+                        }
+                    } while (customerIndex < 0 || customerIndex > arrListCustomer.length - 1 || isNaN(customerIndex));
+                    break;
+            }
+        } while (menu < 1 || menu > 4 || isNaN(menu));
+    }
+
+    function addNewCustomer() {
+        arrListCustomer.push(prompt('Add new customer: '));
+        arrID.push(parseInt(prompt('Add customer ID')));
+        arrBirthday.push(prompt('Add customer birthday'));
+        arrEmail.push(prompt('Add customer email'));
+        arrAddress.push(prompt('Add customer address'));
+        let customerTypeIndex = 0;
+        do {
+            customerTypeIndex = parseInt(prompt('Select customer type \n' +
+                '1. Diamond \n' +
+                '2. Platinum \n' +
+                '3. Gold \n' +
+                '4. Silver \n' +
+                '5. Member')) - 1;
+            if (0 <= customerTypeIndex && customerTypeIndex <= 4)
+                arrCustomerType.push(customerTypes[customerTypeIndex]);
+        } while (customerTypeIndex < 0 || customerTypeIndex > 4 || isNaN(customerTypeIndex));
+        arrDiscount.push(parseInt(prompt('Add discount')));
+        arrAttachment.push(parseInt(prompt('Add number of attachment')));
+        arrRentDays.push(parseInt(prompt('Add rent days')));
+        let serviceIndex = 0;
+        do {
+            serviceIndex = parseInt(prompt('Select service type \n' +
+                '1. Villa \n' +
+                '2. House \n' +
+                '3. Room')) - 1;
+            if (0 <= serviceIndex && serviceIndex <= 2)
+                arrService.push(service[serviceIndex]);
+        } while (serviceIndex < 0 || serviceIndex > 2 || isNaN(serviceIndex));
+        let roomIndex = 0;
+        do {
+            roomIndex = parseInt(prompt('Select room type \n' +
+                '1. VIP \n' +
+                '2. Business \n' +
+                '3. Normal')) - 1;
+            if (0 <= roomIndex && roomIndex <= 2)
+                arrRoomType.push(roomType[roomIndex]);
+        } while (roomIndex < 0 || roomIndex > 2 || isNaN(roomIndex));
+    }
+
+    function displayCustomerList() {
+        let result = '';
+        for (let i = 0; i < arrListCustomer.length; i++) {
+            result += `${i + 1}. ${arrListCustomer[i]}\n            `;
+        }
+        return result;
+    }
+
+    function displayCustomerInfo(customerIndex) {
+        alert(`Customer information
+            Name: ${arrListCustomer[customerIndex]}
+            ID: ${arrID[customerIndex]}
+            Birthday: ${arrBirthday[customerIndex]}
+            Email: ${arrEmail[customerIndex]}
+            Address: ${arrAddress[customerIndex]}
+            Type: ${arrCustomerType[customerIndex]}
+            Discount: ${arrDiscount[customerIndex]}%
+            Attachment: ${arrAttachment[customerIndex]}
+            Rent days: ${arrRentDays[customerIndex]}
+            Service type: ${arrService[customerIndex]}
+            Room type: ${arrRoomType[customerIndex]}`);
+    }
+
+    function deleteCustomer(i) {
+        let check = confirm('Are you sure');
+        if (check) {
+            arrListCustomer.splice(i, 1);
+            arrID.splice(i, 1);
+            arrBirthday.splice(i, 1);
+            arrEmail.splice(i, 1);
+            arrAddress.splice(i, 1);
+            arrCustomerType.splice(i, 1);
+            arrDiscount.splice(i, 1);
+            arrAttachment.splice(i, 1);
+            arrRentDays.splice(i, 1);
+            arrService.splice(i, 1);
+            arrRoomType.splice(i, 1);
+        }
+    }
+
+    function editCustomer() {
+        let customerIndex = 0;
+        do {
+            customerIndex = parseInt(prompt(`Select customer to edit
+            ${displayCustomerList()}
+            0. Back`)) - 1;
+            if (customerIndex === -1) displayMainMenu();
+        } while (customerIndex < 0 || customerIndex >= arrListCustomer.length || isNaN(customerIndex));
+        let infoIndex = 0;
+        do {
+            infoIndex = parseInt(prompt(`Customer information
+                1. Name: ${arrListCustomer[customerIndex]}
+                2. ID: ${arrID[customerIndex]}
+                3. Birthday: ${arrBirthday[customerIndex]}
+                4. Email: ${arrEmail[customerIndex]}
+                5. Address: ${arrAddress[customerIndex]}
+                6. Type: ${arrCustomerType[customerIndex]}
+                7. Discount: ${arrDiscount[customerIndex]}%
+                8. Attachment: ${arrAttachment[customerIndex]}
+                9. Rent days: ${arrRentDays[customerIndex]}
+                10. Service type: ${arrService[customerIndex]}
+                11. Room type: ${arrRoomType[customerIndex]}
+                0. Back`)) - 1;
+            if (infoIndex === -1) editCustomer();
+            switch (infoIndex) {
+                case 0:
+                    arrListCustomer[customerIndex] = prompt('Edit name');
+                    break;
+                case 1:
+                    arrID[customerIndex] = prompt('Edit ID');
+                    break;
+                case 2:
+                    arrBirthday[customerIndex] = prompt('Edit Birthday');
+                    break;
+                case 3:
+                    arrEmail[customerIndex] = prompt('Edit Email');
+                    break;
+                case 4:
+                    arrAddress[customerIndex] = prompt('Edit Address');
+                    break;
+                case 5:
+                    let customerTypeIndex = 0;
+                    do {
+                        customerTypeIndex = parseInt(prompt('Select customer type \n' +
+                            '1. Diamond \n' +
+                            '2. Platinum \n' +
+                            '3. Gold \n' +
+                            '4. Silver \n' +
+                            '5. Member')) - 1;
+                        if (0 <= customerTypeIndex && customerTypeIndex <= 4)
+                            arrCustomerType[customerIndex] = customerTypes[customerTypeIndex];
+                    } while (customerTypeIndex < 0 || customerTypeIndex > 4 || isNaN(customerTypeIndex));
+                    break;
+                case 6:
+                    arrDiscount[customerIndex] = prompt('Edit Discount');
+                    break;
+                case 7:
+                    arrAttachment[customerIndex] = prompt('Edit Attachment');
+                    break;
+                case 8:
+                    arrRentDays[customerIndex] = prompt('Edit rent days');
+                    break;
+                case 9:
+                    let serviceIndex = 0;
+                    do {
+                        serviceIndex = parseInt(prompt('Select service type \n' +
+                            '1. Villa \n' +
+                            '2. House \n' +
+                            '3. Room')) - 1;
+                        if (0 <= serviceIndex && serviceIndex <= 2)
+                            arrService[customerIndex] = service[serviceIndex];
+                    } while (serviceIndex < 0 || serviceIndex > 2 || isNaN(serviceIndex));
+                    break;
+                case 10:
+                    let roomIndex = 0;
+                    do {
+                        roomIndex = parseInt(prompt('Select room type \n' +
+                            '1. VIP \n' +
+                            '2. Business \n' +
+                            '3. Normal')) - 1;
+                        if (0 <= roomIndex && roomIndex <= 2)
+                            arrRoomType[customerIndex] = roomType[roomIndex];
+                    } while (roomIndex < 0 || roomIndex > 2 || isNaN(roomIndex));
+                    break;
+            }
+        } while (infoIndex < 0 || infoIndex > 10 || isNaN(infoIndex));
+    }
+
+    displayMainMenu();
+</script>
+</body>
+</html>

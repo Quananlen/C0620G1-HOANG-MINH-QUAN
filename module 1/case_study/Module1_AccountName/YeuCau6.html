@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Req 6</title>
+</head>
+<body>
+<script>
+    let listCustomer = [];
+    let arrEmployee = [];
+
+    class Customer {
+        constructor() {
+            this.name = '';
+            this.id = '';
+            this.birthday = '';
+            this.email = '';
+            this.address = '';
+            this.customer = '';
+            this.discount = 0;
+            this.attachment = 0;
+            this.rentDays = 0;
+            this.service = '';
+            this.servicePrice = 0;
+            this.room = '';
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        setName() {
+            let name = prompt('Add new Customer');
+            name = name.toLowerCase()
+                .trim()
+                .replace(/\s+/g, " ");
+            let arr = name.split(' ');
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
+            }
+            name = arr.join(' ');
+            this.name = name;
+        }
+
+        getID() {
+            return this.id;
+        }
+
+        setID() {
+            let id, checkID;
+            do {
+                id = prompt('Add customer ID');
+                checkID = new RegExp('^\\d+$');
+            } while (!checkID.test(id));
+            this.id = id;
+        }
+
+        getBirthday() {
+            return this.birthday;
+        }
+
+        setBirthday() {
+            let dob, checkDoB;
+            do {
+                dob = prompt('Add customer Birthday');
+                checkDoB = new RegExp('^\\d{2}\\/\\d{2}\\/\\d{4}$');
+            } while (!checkDoB.test(dob));
+            this.birthday = dob;
+        }
+
+        getEmail() {
+            return this.email;
+        }
+
+        setEmail() {
+            let email;
+            let checkEmail = new RegExp('^\\w+@\\w+\\.com$');
+            do {
+                email = prompt('Add customer Email');
+            } while (!checkEmail.test(email));
+            this.email = email;
+        }
+
+        getAddress() {
+            return this.address;
+        }
+
+        setAddress() {
+            this.address = prompt('Add customer Address');
+        }
+
+        getCustomer() {
+            return this.customer;
+        }
+
+        setCustomer() {
+            let customerTypes = ['Diamond', 'Platinum', 'Gold', 'Silver', 'Member'];
+            let customerTypeIndex = 0;
+            do {
+                customerTypeIndex = parseInt(prompt('Select customer type \n' +
+                    '1. Diamond \n' +
+                    '2. Platinum \n' +
+                    '3. Gold \n' +
+                    '4. Silver \n' +
+                    '5. Member')) - 1;
+                if (0 <= customerTypeIndex && customerTypeIndex <= 4)
+                    this.customer = customerTypes[customerTypeIndex];
+            } while (customerTypeIndex < 0 || customerTypeIndex > 4 || isNaN(customerTypeIndex));
+        }
+
+        getDiscount() {
+            return this.discount;
+        }
+
+        setDiscount() {
+            let discount, checkDiscount;
+            do {
+                discount = parseInt(prompt('Add Discount'));
+                checkDiscount = new RegExp('^\\d+$');
+            } while (!checkDiscount.test(discount));
+            this.discount = discount;
+        }
+
+        getAttachment() {
+            return this.attachment;
+        }
+
+        setAttachment() {
+            let att, checkAtt;
+            do {
+                att = parseInt(prompt('Add attachment'));
+                checkAtt = new RegExp('^\\d+$');
+            } while (!checkAtt.test(att));
+            this.attachment = att;
+        }
+
+        getRentDays() {
+            return this.rentDays;
+        }
+
+        setRentDays() {
+            let day, checkDay;
+            do {
+                day = parseInt(prompt('Add rent days'));
+                checkDay = new RegExp('^\\d+$');
+            } while (!checkDay.test(day));
+            this.rentDays = day;
+        }
+
+        getService() {
+            return this.service;
+        }
+
+        setService() {
+            let service = ['Villa', 'House', 'Room'];
+            let serviceIndex = 0;
+            do {
+                serviceIndex = parseInt(prompt('Select service type \n' +
+                    '1. Villa \n' +
+                    '2. House \n' +
+                    '3. Room')) - 1;
+                if (0 <= serviceIndex && serviceIndex <= 2) {
+                    this.service = service[serviceIndex];
+                    switch (serviceIndex) {
+                        case 0:
+                            this.servicePrice = 500;
+                            break;
+                        case 1:
+                            this.servicePrice = 300;
+                            break;
+                        case 2:
+                            this.servicePrice = 100;
+                    }
+                }
+            } while (serviceIndex < 0 || serviceIndex > 2 || isNaN(serviceIndex));
+        }
+
+        getRoom() {
+            return this.room;
+        }
+
+        setRoom() {
+            let room = ['VIP', 'Business', 'Normal'];
+            let roomIndex = 0;
+            do {
+                roomIndex = parseInt(prompt('Select room type \n' +
+                    '1. VIP \n' +
+                    '2. Business \n' +
+                    '3. Normal')) - 1;
+                if (0 <= roomIndex && roomIndex <= 2)
+                    this.room = room[roomIndex];
+            } while (roomIndex < 0 || roomIndex > 2 || isNaN(roomIndex));
+        }
+
+        cost() {
+            return this.servicePrice * this.rentDays * (1 - this.discount / 100);
+        }
+
+        display() {
+            alert(this.getInfo());
+        }
+
+        edit() {
+            let infoIndex = 0;
+            do {
+                infoIndex = parseInt(prompt(`Select info to edit
+                ${this.getInfo()}
+                0. Back`)) - 1;
+                if (infoIndex === -1) displayMainMenu();
+                switch (infoIndex) {
+                    case 0:
+                        this.setName();
+                        break;
+                    case 1:
+                        this.setID();
+                        break;
+                    case 2:
+                        this.setBirthday();
+                        break;
+                    case 3:
+                        this.setEmail();
+                        break;
+                    case 4:
+                        this.setAddress();
+                        break;
+                    case 5:
+                        this.setCustomer();
+                        break;
+                    case 6:
+                        this.setDiscount();
+                        break;
+                    case 7:
+                        this.setAttachment();
+                        break;
+                    case 8:
+                        this.setRentDays();
+                        break;
+                    case 9:
+                        this.setService();
+                        break;
+                    case 10:
+                        this.setRoom();
+                        break;
+                }
+            } while (infoIndex < 0 || infoIndex > 10 || isNaN(infoIndex));
+        }
+
+        getInfo() {
+            return `1. Name: ${this.getName()}
+            2. ID: ${this.getID()}
+            3. Birthday: ${this.getBirthday()}
+            4. Email: ${this.getEmail()}
+            5. Address: ${this.getAddress()}
+            6. Customer type: ${this.getCustomer()}
+            7. Discount: ${this.getDiscount()}
+            8. Attachment: ${this.getAttachment()}
+            9. Rent days: ${this.getRentDays()}
+            10. Service type: ${this.getService()}
+            11. Room type: ${this.getRoom()}`
+        }
+    }
+
+    class Menu {
+        constructor() {
+            this.customerIndex = 0;
+            this.menu = 0;
+        }
+
+        displayMainMenu() {
+            do {
+                this.menu = parseInt(prompt('1. Add New Customer \n' +
+                    '2. Display Information Customer \n' +
+                    '3. Display total pay of customer \n' +
+                    '4. Edit Information Customer \n' +
+                    '5. Delete Customer \n' +
+                    '6. Add New Employee \n' +
+                    '0. Exit'));
+                if (this.menu === 0) break;
+                switch (this.menu) {
+                    case 1:
+                        this.addNewCustomer();
+                        this.displayMainMenu();
+                        break;
+                    case 2:
+                        this.displayCustomerSelect();
+                        break;
+                    case 3:
+                        this.displayCustomerCost();
+                        this.displayMainMenu();
+                        break;
+                    case 4:
+                        this.displayCustomerEdit();
+                        this.displayMainMenu();
+                        break;
+                    case 5:
+                        this.displayCustomerDelete();
+                        break;
+                    case 6:
+                        this.addNewEmployee();
+                        this.displayMainMenu();
+                        break;
+                }
+            } while (this.menu < 0 || this.menu > 6 || isNaN(this.menu));
+        }
+
+        addNewCustomer() {
+            let customer = new Customer();
+            customer.setName();
+            customer.setID();
+            customer.setBirthday();
+            customer.setEmail();
+            customer.setAddress();
+            customer.setCustomer();
+            customer.setDiscount();
+            customer.setAttachment();
+            customer.setRentDays();
+            customer.setService();
+            customer.setRoom();
+            listCustomer.push(customer);
+        }
+
+        displayCustomerSelect() {
+            do {
+                this.customerIndex = parseInt(prompt(`Select customer to display
+                        ${this.displayCustomerList()}
+                        0. Back`)) - 1;
+                if (this.customerIndex === -1) this.displayMainMenu();
+                if (0 <= this.customerIndex && this.customerIndex <= listCustomer.length - 1) {
+                    listCustomer[this.customerIndex].display();
+                    this.displayMainMenu();
+                }
+            } while (this.customerIndex < -1 || this.customerIndex > listCustomer.length - 1 || isNaN(this.customerIndex));
+        }
+
+        displayCustomerEdit() {
+            do {
+                this.customerIndex = parseInt(prompt(`Select customer to edit
+                        ${this.displayCustomerList()}
+                        0. Back`)) - 1;
+                if (this.customerIndex === -1) this.displayMainMenu();
+                if (0 <= this.customerIndex && this.customerIndex <= listCustomer.length - 1) {
+                    listCustomer[this.customerIndex].edit();
+                }
+            } while (this.customerIndex < -1 || this.customerIndex > listCustomer.length - 1 || isNaN(this.customerIndex));
+            listCustomer[this.customerIndex].display();
+        }
+
+        displayCustomerCost() {
+            do {
+                this.customerIndex = parseInt(prompt(`Select customer to display payment
+                        ${this.displayCustomerList()}
+                        0. Back`)) - 1;
+                if (this.customerIndex === -1) this.displayMainMenu();
+                if (0 <= this.customerIndex && this.customerIndex <= listCustomer.length - 1) {
+                    alert(`The cost of customer ${listCustomer[this.customerIndex].getName()} is ${listCustomer[this.customerIndex].cost()}`);
+                }
+            } while (this.customerIndex < -1 || this.customerIndex > listCustomer.length - 1 || isNaN(this.customerIndex));
+        }
+
+        displayCustomerDelete() {
+            do {
+                this.customerIndex = parseInt(prompt(`Select customer to delete
+                        ${this.displayCustomerList()}
+                        0. Back`)) - 1;
+                if (this.customerIndex === -1) this.displayMainMenu();
+                if (0 <= this.customerIndex && this.customerIndex <= listCustomer.length - 1) {
+                    listCustomer.splice(this.customerIndex, 1);
+                    this.displayMainMenu();
+                }
+            } while (this.customerIndex < -1 || this.customerIndex > listCustomer.length - 1 || isNaN(this.customerIndex));
+        }
+
+        displayCustomerList() {
+            let result = '';
+            for (let i = 0; i < listCustomer.length; i++) {
+                result += `${i + 1}. ${listCustomer[i].getName()}\n`;
+            }
+            return result;
+        }
+
+        addNewEmployee() {
+            let employee = new Employee();
+            employee.setName();
+            employee.setID();
+            employee.setBirthday();
+            employee.setEmail();
+            employee.setAddress();
+            employee.setCustomer();
+            employee.setDiscount();
+            employee.setAttachment();
+            employee.setRentDays();
+            employee.setService();
+            employee.setRoom();
+            employee.setPosition();
+            arrEmployee.push(employee);
+        }
+    }
+
+    class Employee {
+        constructor() {
+            this.name = '';
+            this.id = '';
+            this.birthday = '';
+            this.email = '';
+            this.address = '';
+            this.customer = '';
+            this.discount = 0;
+            this.attachment = 0;
+            this.rentDays = 0;
+            this.service = '';
+            this.servicePrice = 0;
+            this.room = '';
+            this.position = '';
+            this.positionDiscount = 0;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        setName() {
+            let name = prompt('Add new Employee');
+            name = name.toLowerCase()
+                .trim()
+                .replace(/\s+/g, " ");
+            let arr = name.split(' ');
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
+            }
+            name = arr.join(' ');
+            this.name = name;
+        }
+
+        getID() {
+            return this.id;
+        }
+
+        setID() {
+            this.id = prompt('Add employee ID');
+        }
+
+        getBirthday() {
+            return this.birthday;
+        }
+
+        setBirthday() {
+            let dob, checkDoB;
+            do {
+                dob = prompt('Add employee Birthday');
+                checkDoB = new RegExp('^\\d+\\/\\d+\\/\\d{4}$');
+            } while (!checkDoB.test(dob));
+            this.birthday = dob;
+        }
+
+        getEmail() {
+            return this.email;
+        }
+
+        setEmail() {
+            let email;
+            let checkEmail = new RegExp('^\\w+@\\w+\\.\\w+$');
+            do {
+                email = prompt('Add employee Email');
+            } while (!checkEmail.test(email));
+            this.email = email;
+        }
+
+        getAddress() {
+            return this.address;
+        }
+
+        setAddress() {
+            this.address = prompt('Add employee Address');
+        }
+
+        getCustomer() {
+            return this.customer;
+        }
+
+        setCustomer() {
+            let customerTypes = ['Diamond', 'Platinum', 'Gold', 'Silver', 'Member'];
+            let customerTypeIndex = 0;
+            do {
+                customerTypeIndex = parseInt(prompt('Select employee type \n' +
+                    '1. Diamond \n' +
+                    '2. Platinum \n' +
+                    '3. Gold \n' +
+                    '4. Silver \n' +
+                    '5. Member')) - 1;
+                if (0 <= customerTypeIndex && customerTypeIndex <= 4)
+                    this.customer = customerTypes[customerTypeIndex];
+            } while (customerTypeIndex < 0 || customerTypeIndex > 4 || isNaN(customerTypeIndex));
+        }
+
+        getDiscount() {
+            return this.discount;
+        }
+
+        setDiscount() {
+            this.discount = parseInt(prompt('Add discount'));
+        }
+
+        getAttachment() {
+            return this.attachment;
+        }
+
+        setAttachment() {
+            this.attachment = parseInt(prompt('Add attachment'));
+        }
+
+        getRentDays() {
+            return this.rentDays;
+        }
+
+        setRentDays() {
+            this.rentDays = parseInt(prompt('Add rent days'));
+        }
+
+        getService() {
+            return this.service;
+        }
+
+        setService() {
+            let service = ['Villa', 'House', 'Room'];
+            let serviceIndex = 0;
+            do {
+                serviceIndex = parseInt(prompt('Select service type \n' +
+                    '1. Villa \n' +
+                    '2. House \n' +
+                    '3. Room')) - 1;
+                if (0 <= serviceIndex && serviceIndex <= 2) {
+                    this.service = service[serviceIndex];
+                    switch (serviceIndex) {
+                        case 0:
+                            this.servicePrice = 500;
+                            break;
+                        case 1:
+                            this.servicePrice = 300;
+                            break;
+                        case 2:
+                            this.servicePrice = 100;
+                    }
+                }
+            } while (serviceIndex < 0 || serviceIndex > 2 || isNaN(serviceIndex));
+        }
+
+        getRoom() {
+            return this.room;
+        }
+
+        setRoom() {
+            let room = ['VIP', 'Business', 'Normal'];
+            let roomIndex = 0;
+            do {
+                roomIndex = parseInt(prompt('Select room type \n' +
+                    '1. VIP \n' +
+                    '2. Business \n' +
+                    '3. Normal')) - 1;
+                if (0 <= roomIndex && roomIndex <= 2)
+                    this.room = room[roomIndex];
+            } while (roomIndex < 0 || roomIndex > 2 || isNaN(roomIndex));
+        }
+
+        getPosition() {
+            return this.position;
+        }
+
+        setPosition() {
+            let position = ['Manager', 'Sale', 'Marketing'];
+            let positionIndex = 0;
+            do {
+                positionIndex = parseInt(prompt('Select position \n' +
+                    '1. Manager \n' +
+                    '2. Sale \n' +
+                    '3. Marketing')) - 1;
+                if (0 <= positionIndex && positionIndex <= 2) {
+                    this.position = position[positionIndex];
+                    switch (positionIndex) {
+                        case 0:
+                            this.positionDiscount = 500;
+                            break;
+                        case 1:
+                            this.positionDiscount = 300;
+                            break;
+                        case 2:
+                            this.positionDiscount = 200;
+                            break;
+                    }
+                }
+            } while (positionIndex < 0 || positionIndex > 2 || isNaN(positionIndex));
+
+        }
+
+        cost() {
+            return this.servicePrice * this.rentDays * (1 - this.discount / 100) - this.positionDiscount;
+        }
+
+    }
+
+    let menu = new Menu();
+    menu.displayMainMenu();
+
+
+</script>
+</body>
+</html>

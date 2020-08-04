@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rectangle class</title>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+<script>
+    class Rectangle {
+        constructor(a, b) {
+            this.a = a;
+            this.b = b;
+        }
+
+        perimeter() {
+            return (this.a + this.b) * 2;
+        }
+
+        area() {
+            return this.a * this.b;
+        }
+    }
+
+    let myRec = new Rectangle(50, 100);
+
+    function drawRectangle(a, b) {
+        let c = document.getElementById('myCanvas');
+        let ctx = c.getContext('2d');
+        ctx.beginPath();
+        ctx.rect(10, 10, a, b);
+        ctx.stroke();
+    }
+
+    console.log(myRec);
+    drawRectangle(myRec.a, myRec.b);
+    alert(`Chu vi là ${myRec.perimeter()}, Diện tích là ${myRec.area()}`)
+</script>
+</body>
+</html>

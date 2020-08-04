@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>In tam giac vuong</title>
+</head>
+<body>
+<script>
+    // vuông dưới trái
+    for (let i = 1; i < 6; i++) {
+        for (let j = 0; j < i; j++) {
+            document.write('*');
+        }
+        document.write('<br>');
+    }
+    document.write('<br>');
+    // vuông trên trái
+    for (let i = 5; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
+            document.write('*');
+        }
+        document.write('<br>');
+    }
+    document.write('<br>');
+    // vuông dưới phải
+    for (let i = 1; i < 6; i++) {
+        for (let k = 5 - i; k > 0; k--) {
+            document.write('&nbsp&nbsp');
+        }
+        for (let j = 0; j < i; j++) {
+            document.write('*');
+        }
+        document.write('<br>');
+    }
+    document.write('<br>');
+    // vuông trên phải
+    for (let i = 5; i > 0; i--) {
+        for (let k = 5 - i; k > 0; k--) {
+            document.write('&nbsp&nbsp');
+        }
+        for (let j = 0; j < i; j++) {
+            document.write('*');
+        }
+        document.write('<br>');
+    }
+</script>
+</body>
+</html>

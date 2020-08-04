@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Racing game</title>
+    <style>
+        canvas {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body onkeydown="car.turn()">
+<canvas id="myCanvas" width="500px" height="500px"></canvas>
+<img id='car' src="car.PNG" alt="car">
+<script>
+    class Template {
+        constructor() {
+            this.xRec = 300;
+            this.yRec = 200;
+            this.x = 230;
+            this.y = 350;
+        }
+
+        turn() {
+            let keyPress = event.keyCode;
+            switch (keyPress) {
+                case 37:
+                    this.x -= 20;
+                    break;
+                case 39:
+                    this.x += 20;
+                    break;
+                case 17:
+                    this.y -= 5;
+            }
+        }
+
+        drawCar() {
+            let c = document.getElementById('myCanvas');
+            let ctx = c.getContext('2d');
+            let img = document.getElementById('car');
+            ctx.clearRect(0, 0, 500, 500);
+            ctx.drawImage(img, this.x, this.y);
+            this.y--;
+        }
+
+        drawRec() {
+            let c = document.getElementById('myCanvas');
+            let ctx = c.getContext('2d');
+            ctx.beginPath();
+            ctx.rect(this.xRec, this.yRec, 30, 30);
+            ctx.stroke();
+        }
+
+        lose() {
+            if (250 < this.x && this.x < 350 && 180 < this.y && this.y < 230) setTimeout(`alert('lose')`,500);
+        }
+    }
+
+    let car = new Template();
+    setInterval('car.drawCar();car.drawRec();car.lose()', 100);
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Commission</title>
+</head>
+<body>
+<script>
+    let revenue = parseInt(prompt('Nhập vào doanh số (triệu VND): '));
+    let commision;
+    revenue <= 100 ? commision = revenue * 0.05 :
+        revenue <= 300 ? commision = revenue * 0.1 :
+            commision = revenue * 0.15;
+    alert(commision + ' triệu VND');
+</script>
+</body>
+</html>

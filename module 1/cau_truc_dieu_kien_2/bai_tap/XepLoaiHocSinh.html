@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xếp loại học sinh</title>
+</head>
+<body>
+<script>
+    let baiKtra = parseInt(prompt('Nhập điểm bài kiểm tra: '));
+    let baiGiuaKi = parseInt(prompt('Nhập điểm bài giữa kì: '));
+    let baiCuoiKi = parseInt(prompt('Nhập điểm bài cuối kì: '));
+    let average = (baiKtra + baiGiuaKi + baiCuoiKi) / 3;
+    average >= 9 ? alert('Xếp loại A') :
+        average >= 7 ? alert('Xếp loại B') :
+            average >= 5 ? alert('Xếp loại c') :
+                alert('Xếp loại F');
+</script>
+</body>
+</html>

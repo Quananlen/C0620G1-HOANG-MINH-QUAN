@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+<body>
+<script>
+    let name = prompt('Tên khách hàng: ');
+    let id = prompt('Số CMND: ');
+    let dob = prompt('Ngày tháng năm sinh: ');
+    let email = prompt('Email: ');
+    let address = prompt('Địa chỉ: ');
+    let customer = prompt('Loại khách hàng (Diamond / Platinum / Gold / Silver / Member): ');
+    let discount = prompt('Giảm giá: ');
+    let attachment = prompt('Số lượng đi kèm: ');
+    let rentDays = prompt('Số ngày thuê');
+    let service = prompt('Loại dịch vụ (Villa / House / Room): ');
+    let roomType = prompt('Loại phòng thuê (VIP / Business / Normal): ');
+    let cost;
+    let servicePrice = 0;
+    const villa = 500;
+    const house = 300;
+    const room = 100;
+    while (servicePrice === 0) {
+    switch (service) {
+        case 'Villa':
+            servicePrice = villa;
+            break;
+        case 'House':
+            servicePrice = house;
+            break;
+        case 'Room':
+            servicePrice = room;
+            break;
+        default:
+            service = prompt('Mời nhập lại loại dịch vụ (Villa / House / Room): ')
+    }}
+    cost = servicePrice * rentDays * (1 - discount/100)
+    alert(
+        'Tên khách hàng: ' + name + '\n' +
+        'Số CMND: ' + id + '\n' +
+        'Ngày tháng năm sinh: ' + dob + '\n' +
+        'Email: ' + email + '\n' +
+        'Địa chỉ: ' + address + '\n' +
+        'Loại khách hàng: ' + customer + '\n' +
+        'Giảm giá: ' + discount + '\n' +
+        'Số lượng đi kèm: ' + attachment + '\n' +
+        'Số ngày thuê: ' + rentDays + '\n' +
+        'Loại dịch vụ: ' + service + '\n' +
+        'Loại phòng thuê: ' + roomType + '\n' +
+        'Số tiền phải trả: ' + cost + '$'
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check triangle</title>
+</head>
+<body>
+<script>
+    let a = parseInt(prompt('Nhập cạnh tam giác đầu tiên: '));
+    let b = parseInt(prompt('Nhập cạnh tam giác thứ hai: '));
+    let c = parseInt(prompt('Nhập cạnh tam giác thứ ba: '));
+    let check1st = a + b > c;
+    let check2nd = a + c > b;
+    let check3rd = b + c > a;
+    if (check1st && check2nd && check3rd) {
+        alert(`${a}, ${b}, ${c} là 3 cạnh của tam giác`);
+    } else alert(`${a}, ${b}, ${c} ko phải là 3 cạnh của tam giác`);
+</script>
+</body>
+</html>

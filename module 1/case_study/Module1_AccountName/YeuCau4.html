@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory management app</title>
+</head>
+<body>
+<input type="text" id="newCustomer"/>
+<input type="button" onclick="addCustomer()" value="Thêm sản phẩm">
+<div id="display"></div>
+<script>
+    let arrNameCustomers = ['Shayne Ward', 'Arsenal Magus', 'Hoàng Minh Quân'];
+    let display = document.getElementById('display');
+    let newCustomer = document.getElementById('newCustomer');
+
+    function displayCustomer() {
+        arrNameCustomers.sort();
+        let table = '<table style="border: 1px solid;" cellspacing="0px">';
+        for (let i = 0; i < arrNameCustomers.length; i++) {
+            table += '<tr>';
+            for (let j = 0; j < 4; j++) {
+                switch (j) {
+                    case 0:
+                        table += `<td style="border: 1px solid; text-align: center; width: 20px;" >${i}</td>`;
+                        break;
+                    case 1:
+                        table += `<td style="border: 1px solid; text-align: center; width: 200px" >${arrNameCustomers[i]}</td>`;
+                        break;
+                    case 2:
+                        table += `<td style="border: 1px solid; text-align: center;" ><input type="button" value="Sửa" onclick="adjustCustomer(${i})"></td>`;
+                        break;
+                    case 3:
+                        table += `<td style="border: 1px solid; text-align: center;" ><input type="button" value="Xoá" onclick="deleteCustomer(${i})"></td>`
+                }
+            }
+            table += '</tr>';
+        }
+        table += '</table>';
+        display.innerHTML = table;
+    }
+
+    displayCustomer();
+
+    function addCustomer() {
+        if (!newCustomer.value) {}
+        else arrNameCustomers.push(newCustomer.value);
+        displayCustomer();
+    }
+
+    function adjustCustomer(currentIndex) {
+        arrNameCustomers[currentIndex] = prompt('Sửa thông tin sản phẩm');
+        console.log(arrNameCustomers);
+        displayCustomer();
+    }
+
+    function deleteCustomer(currentIndex) {
+        arrNameCustomers.splice(currentIndex, 1);
+        displayCustomer();
+    }
+</script>
+</body>
+</html>

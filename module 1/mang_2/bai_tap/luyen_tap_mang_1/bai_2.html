@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bài 2</title>
+</head>
+<body>
+<script>
+    let arr = [];
+    for (let i = 0; i < 10; i++) {
+        let num = Math.floor(Math.random()*100);
+        arr.push(num);
+    }
+    let max = arr[0];
+    let index = 1;
+    for (let i = 1; i < arr.length; i++) {
+        if (max < arr[i]) {
+            max = arr[i];
+            index = i+1;
+        }
+    }
+    document.write(arr);
+    document.write('<br>')
+    document.write('phần tử lớn nhất là: ' +max + '<br>' + 'vị trí của nó là ' + index)
+</script>
+</body>
+</html>

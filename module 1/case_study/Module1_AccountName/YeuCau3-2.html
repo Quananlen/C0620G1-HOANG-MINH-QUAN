@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Req 3 - task 2</title>
+</head>
+<body>
+<script>
+    let name = prompt('Tên khách hàng: ');
+    name = name.toLowerCase();
+    name = name.trim();
+    name = name.replace(/\s+/g, " ");
+    let nameArr = name.split(" ");
+    let nameArr2 = [];
+    for (let i = 0; i < nameArr.length; i++) {
+        let temp = nameArr[i].split("");
+        nameArr2.push(temp);
+        if (nameArr2[i][0] != null) nameArr2[i][0] = nameArr2[i][0].toUpperCase();
+    }
+    console.log(nameArr2);
+    let newName = "";
+    for (let i = 0; i < nameArr2.length; i++) {
+        for (let j = 0; j < nameArr2[i].length; j++) {
+            newName += nameArr2[i][j];
+        }
+        newName += '&nbsp';
+    }
+    document.write(newName);
+</script>
+</body>
+</html>

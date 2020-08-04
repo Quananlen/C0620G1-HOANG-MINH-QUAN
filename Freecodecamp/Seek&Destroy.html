@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function destroyer(arr) {
+        for(let i = 1; i < arguments.length; i++){
+            console.log(arr);
+            while (arr.indexOf(arguments[i])!==-1){
+                arr.splice(arr.indexOf(arguments[i]),1)
+            }
+        }
+        return arr;
+    }
+    console.log(destroyer([1,2,4,5,3],1,2));
+</script>
+</body>
+</html>

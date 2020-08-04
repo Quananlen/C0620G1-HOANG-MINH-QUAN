@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fizz buzz</title>
+</head>
+<body>
+<script>
+    let result = "";
+    for (let i = 1; i <= 100; i++) {
+        if (i % 3 !== 0 && i % 5 !==0) result += i + " ";
+        if (i % 3 === 0) {
+            if (i % 5 === 0) {
+                result += 'FizzBuzz ';
+            } else result += 'Fizz ';
+        }
+        if (i % 5 === 0) {
+            if (i % 3 === 0) {
+                continue;
+            } else result += 'Buzz ';
+        }
+    }
+    document.write(result);
+</script>
+</body>
+</html>

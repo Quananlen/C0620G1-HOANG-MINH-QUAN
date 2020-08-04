@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bài 3</title>
+</head>
+<body>
+<script>
+    let arr = [];
+    for (let i = 0; i < 10; i++) {
+        let num = Math.floor(Math.random()*100);
+        arr.push(num);
+    }
+    let max = 0;
+    let average = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (max < arr[i]) {
+            max = arr[i];
+        }
+        average += arr[i];
+    }
+    average /= arr.length;
+    document.write(arr);
+    document.write('<br>');
+    document.write('phần tử lớn nhất là: ' +max + '<br>' + 'giá trị trung bình là ' + average);
+</script>
+</body>
+</html>

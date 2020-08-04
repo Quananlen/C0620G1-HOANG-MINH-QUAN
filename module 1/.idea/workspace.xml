@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8972f46f-523a-4904-97d8-207ba4c5195f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1dqYzk3ewxQeBMWfRTEgv9oh6ZS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/HTMLForm&amp;Table/BaiTap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\C0620G1-HoangMinhQuan\module 1\HTMLForm&amp;Table\BaiTap" />
+      <recent name="E:\C0620G1-HoangMinhQuan\module 1\HTMLForm&amp;Table\ThucHanh" />
+      <recent name="E:\C0620G1-HoangMinhQuan\module 1\Git&amp;HTML\BaiTap" />
+      <recent name="E:\C0620G1-HoangMinhQuan\module 1\Git&amp;HTML\ThucHanh" />
+      <recent name="E:\GitProject\source" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.DangKiHocVien.html">
+    <configuration name="DangKiHocVien.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/module 1/HTMLForm&amp;Table/BaiTap/DangKiHocVien.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="FormTimKiemGoogle.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/module 1/HTMLForm&amp;Table/ThucHanh/FormTimKiemGoogle.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="TaoTrangCVCaNhan.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/module 1/Git&amp;HTML/BaiTap/TaoTrangCVCaNhan.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="YourHobby.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/module 1/HTMLForm&amp;Table/BaiTap/YourHobby.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="simpleform.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/module 1/HTMLForm&amp;Table/ThucHanh/simpleform.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.DangKiHocVien.html" />
+        <item itemvalue="JavaScript Debug.YourHobby.html" />
+        <item itemvalue="JavaScript Debug.simpleform.html" />
+        <item itemvalue="JavaScript Debug.FormTimKiemGoogle.html" />
+        <item itemvalue="JavaScript Debug.TaoTrangCVCaNhan.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8972f46f-523a-4904-97d8-207ba4c5195f" name="Default Changelist" comment="" />
+      <created>1593154354425</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593154354425</updated>
+      <workItem from="1593154357238" duration="163000" />
+      <workItem from="1593154541495" duration="35000" />
+      <workItem from="1593164424410" duration="1270000" />
+      <workItem from="1593501537396" duration="3958000" />
+      <workItem from="1593566983798" duration="17743000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="471" y="106" key="FileChooserDialogImpl" timestamp="1593568536784">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="471" y="106" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1593568536784" />
+  </component>
+</project>

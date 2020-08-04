@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bài 5</title>
+</head>
+<body onload="zodiac(prompt('nhập tên chòm sao'))">
+<script>
+    let arr1 = ['Polaris', 'Aldebaran', 'Deneb', 'Vega', 'Altair', 'Dubhe', 'Regulus'];
+    let arr2 = ['Ursa Minor', 'Taurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major', 'Leo'];
+
+    function zodiac(str) {
+        arr1.indexOf(str) > -1 ? alert(arr2[arr1.indexOf(str)]) : alert('ko có chòm sao');
+    }
+
+</script>
+</body>
+</html>

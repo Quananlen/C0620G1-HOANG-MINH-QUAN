@@ -1,11 +1,12 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class MaxIn2dArray {
+public class SumDiagonal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input length of matrix");
         int length = scanner.nextInt();
         int[][] array = new int[length][length];
+        int sum = 0;
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
                 System.out.println("input for row " + (i+1) + " and column " + (j+1));
@@ -13,17 +14,15 @@ public class MaxIn2dArray {
                 array[i][j] = value;
             }
         }
-//        int[][] arr = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}};
-        int max = findMax(array);
-        System.out.println("the max value is " + max);
-    }
-    public static int findMax(int[][] arr) {
-        int max = arr[0][0];
-        for (int[] i : arr) {
-            for (int j : i) {
-                if (j > max) max = j;
+        for (int[] row : array) {
+            for (int j : row) {
+                System.out.print(j + " ");
             }
+            System.out.println();
         }
-        return max;
+        for (int i = 0; i < length; i++) {
+            sum += array[i][i];
+        }
+        System.out.println("sum of main diagonal is " + sum);
     }
 }

@@ -10,16 +10,16 @@ public class DeleteFromArray {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input value to delete");
         int value = scanner.nextInt();
-        boolean isNotBelong = false;
+        boolean isBelong = false;
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == value) {
-                isNotBelong = true;
+                isBelong = true;
                 index = i;
                 break;
             }
         }
-        if (!isNotBelong) {
+        if (!isBelong) {
             System.out.println("There is no value in array");
         } else {
             for (int i = index; i < arr.length-1; i++) {

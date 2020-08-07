@@ -1,4 +1,4 @@
-package bai_tap;
+package bai_tap.Point2D;
 
 public class Point3D extends Point2D {
     private float z;

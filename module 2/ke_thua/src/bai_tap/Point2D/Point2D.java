@@ -1,15 +1,15 @@
-package bai_tap;
+package bai_tap.Point2D;
 
-public class Point {
+public class Point2D {
     private float x;
     private float y;
 
-    public Point() {
-    }
-
-    public Point(float x, float y) {
+    public Point2D(float x, float y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Point2D() {
     }
 
     public float getX() {
@@ -39,7 +39,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point{" +
+        return "Point2D{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';

@@ -1,4 +1,4 @@
-package bai_tap;
+package bai_tap.Point2D;
 
 public class MainPoint2D {
     public static void main(String[] args) {

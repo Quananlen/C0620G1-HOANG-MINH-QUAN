@@ -1,4 +1,4 @@
-package bai_tap;
+package bai_tap.MoveablePoint;
 
 public class MainPoint {
     public static void main(String[] args) {

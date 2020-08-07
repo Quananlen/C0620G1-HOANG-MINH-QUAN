@@ -10,12 +10,12 @@ public class QuadraticEquation {
         double b = scanner.nextDouble();
         System.out.println("c =");
         double c = scanner.nextDouble();
-        QuadraticEquation equation1 = new QuadraticEquation(a,b,c);
+        QuadraticEquation equation1 = new QuadraticEquation(a, b, c);
         double delta = equation1.getDiscriminant();
-        if (delta>0) {
+        if (delta > 0) {
             System.out.println("root 1 = " + equation1.getRoot1());
             System.out.println("root 2 = " + equation1.getRoot2());
-        } else if (delta==0) {
+        } else if (delta == 0) {
             System.out.println("root = " + equation1.getRoot1());
         } else System.out.println("The equation has no roots");
     }
@@ -23,27 +23,34 @@ public class QuadraticEquation {
     double a;
     double b;
     double c;
+
     QuadraticEquation(double a, double b, double c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
-    double getA(){
+
+    double getA() {
         return this.a;
     }
-    double getB(){
+
+    double getB() {
         return this.b;
     }
-    double getC(){
+
+    double getC() {
         return this.c;
     }
+
     double getDiscriminant() {
-        return this.b*this.b-4*this.a*this.c;
+        return this.b * this.b - 4 * this.a * this.c;
     }
-    double getRoot1(){
-        return (-this.b+Math.pow(this.getDiscriminant(),0.5))/(this.a*2);
+
+    double getRoot1() {
+        return (-this.b + Math.pow(this.getDiscriminant(), 0.5)) / (this.a * 2);
     }
-    double getRoot2(){
-            return (-this.b-Math.pow(this.getDiscriminant(),0.5))/(this.a*2);
+
+    double getRoot2() {
+        return (-this.b - Math.pow(this.getDiscriminant(), 0.5)) / (this.a * 2);
     }
 }

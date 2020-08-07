@@ -19,5 +19,6 @@ public class Main {
             System.out.println("Triangle perimeter " + triangle.getPerimeter());
             System.out.println("Triangle area " + triangle.getArea());
         } else System.out.println("Not a triangle");
+
     }
 }

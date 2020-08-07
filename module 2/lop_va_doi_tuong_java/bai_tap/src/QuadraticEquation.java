@@ -41,13 +41,9 @@ public class QuadraticEquation {
         return this.b*this.b-4*this.a*this.c;
     }
     double getRoot1(){
-        if (this.getDiscriminant()>=0)
         return (-this.b+Math.pow(this.getDiscriminant(),0.5))/(this.a*2);
-        else return 0;
     }
     double getRoot2(){
-        if (this.getDiscriminant()>=0)
             return (-this.b-Math.pow(this.getDiscriminant(),0.5))/(this.a*2);
-        else return 0;
     }
 }

@@ -3,10 +3,6 @@ package thuc_hanh.Comparator;
 public class Square extends Shape {
     private double side = 0;
 
-    @Override
-    public String getLabel() {
-        return "Square";
-    }
     public Square() {
     }
 

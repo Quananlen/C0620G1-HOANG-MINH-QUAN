@@ -14,13 +14,13 @@ public class Main {
         for (Shape shape : array) {
             System.out.println(shape);
             double percent = Math.random();
-            if (shape.getLabel().equals("Circle")) {
+            if (shape instanceof ResizeableCircle) {
                 ((ResizeableCircle) shape).resize(percent);
             }
-            if (shape.getLabel().equals("Square")) {
+            if (shape instanceof ResizeableSquare) {
                 ((ResizeableSquare) shape).resize(percent);
             }
-            if (shape.getLabel().equals("Rectangle"))
+            if (shape instanceof ResizeableRectangle)
                 ((ResizeableRectangle) shape).resize(percent);
             System.out.println(shape);
         }

@@ -1,8 +1,12 @@
 package thuc_hanh.Comparator;
 
-public class Square {
+public class Square extends Shape {
     private double side = 0;
 
+    @Override
+    public String getLabel() {
+        return "Square";
+    }
     public Square() {
     }
 
@@ -24,9 +28,8 @@ public class Square {
 
     @Override
     public String toString() {
-        return "A Square with side="
-                + getSide()
-                + ", which is a subclass of "
-                + super.toString();
+        return "Square{" +
+                "side=" + side +
+                '}';
     }
 }

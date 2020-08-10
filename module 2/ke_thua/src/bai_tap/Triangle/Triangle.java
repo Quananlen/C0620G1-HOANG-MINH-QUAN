@@ -50,7 +50,7 @@ public class Triangle extends Shape {
 
     public double getArea() {
         double p = 0.5 * getPerimeter();
-        return Math.pow(p*(p-this.side1)*(p-this.side2)*(p-this.side3),0.5);
+        return Math.sqrt(p*(p-this.side1)*(p-this.side2)*(p-this.side3));
     }
 
     @Override

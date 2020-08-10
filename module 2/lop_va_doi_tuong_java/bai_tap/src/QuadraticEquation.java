@@ -47,10 +47,10 @@ public class QuadraticEquation {
     }
 
     double getRoot1() {
-        return (-this.b + Math.pow(this.getDiscriminant(), 0.5)) / (this.a * 2);
+        return (-this.b + Math.sqrt(this.getDiscriminant())) / (this.a * 2);
     }
 
     double getRoot2() {
-        return (-this.b - Math.pow(this.getDiscriminant(), 0.5)) / (this.a * 2);
+        return (-this.b - Math.sqrt(this.getDiscriminant())) / (this.a * 2);
     }
 }

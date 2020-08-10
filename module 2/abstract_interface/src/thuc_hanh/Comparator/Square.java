@@ -28,4 +28,5 @@ public class Square extends Shape {
                 "side=" + side +
                 '}';
     }
+
 }

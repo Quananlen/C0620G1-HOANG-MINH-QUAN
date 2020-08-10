@@ -1,16 +1,10 @@
 package bai_tap;
 
-import thuc_hanh.Comparator.Rectangle;
-import thuc_hanh.Comparator.Shape;
-
-public class ResizeableRectangle extends Rectangle implements Resizeable{
+public class Rectangle extends Shape {
     private double width = 1.0;
     private double length = 1.0;
 
-    public ResizeableRectangle() {
-    }
-
-    public ResizeableRectangle(double width, double length) {
+    public Rectangle(double width, double length) {
         this.width = width;
         this.length = length;
     }

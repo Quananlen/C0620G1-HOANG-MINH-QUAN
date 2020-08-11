@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80855abe-8ec0-4dda-a94c-2dee06ed4763" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/bai_tap/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/bai_tap/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/bai_tap/ResizeableSquare.class" beforeDir="false" afterPath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/bai_tap/ResizeableSquare.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/bai_tap/SquareTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/thuc_hanh/Comparator/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/thuc_hanh/Comparator/Circle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/thuc_hanh/Comparator/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/thuc_hanh/Comparator/Rectangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/thuc_hanh/Comparator/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/thuc_hanh/Comparator/Shape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/thuc_hanh/Comparator/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/../abstract_interface/out/production/abstract_interface/thuc_hanh/Comparator/Square.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/src/bai_tap/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../abstract_interface/src/bai_tap/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/src/bai_tap/ResizeableSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/../abstract_interface/src/bai_tap/ResizeableSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../abstract_interface/src/bai_tap/SquareTest.java" beforeDir="false" />
-    </list>
+    <list default="true" id="80855abe-8ec0-4dda-a94c-2dee06ed4763" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +34,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/FuramaResort" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -54,6 +44,7 @@
       <option name="presentableId" value="Default" />
       <updated>1597050959327</updated>
       <workItem from="1597050962227" duration="112000" />
+      <workItem from="1597053450400" duration="16000" />
     </task>
     <servers />
   </component>
@@ -61,10 +52,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="739" y="262" key="FileChooserDialogImpl" timestamp="1597051071501">
+    <state x="739" y="262" key="FileChooserDialogImpl" timestamp="1597053464945">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="739" y="262" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1597051071501" />
+    <state x="739" y="262" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1597053464945" />
     <state x="342" y="141" key="new project wizard" timestamp="1597051072425">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

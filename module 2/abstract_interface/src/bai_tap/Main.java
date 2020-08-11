@@ -15,5 +15,6 @@ public class Main {
             if (shape instanceof Square) ((Square) shape).howToColor();
             System.out.println(shape);
         }
+
     }
 }

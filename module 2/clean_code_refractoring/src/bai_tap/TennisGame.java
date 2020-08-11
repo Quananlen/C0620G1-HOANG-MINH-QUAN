@@ -32,9 +32,10 @@ public class TennisGame {
     }
 
     public static String getAdvantageScore(int player1Score, int player2Score) {
-        boolean player1Advantage = player1Score > player2Score;
-        boolean player2Advantage = player1Score < player2Score;
-        boolean player1Win = (player1Score - player2Score) >= 2;
+        int minusResult = player1Score - player2Score;
+        boolean player1Advantage = minusResult == 1;
+        boolean player2Advantage = minusResult == -1;
+        boolean player1Win = minusResult >= 2;
         if (player1Advantage) return "Advantage player1";
         if (player2Advantage) return "Advantage player2";
         if (player1Win) return "Win for player1";

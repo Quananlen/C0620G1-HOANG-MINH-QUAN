@@ -2,6 +2,8 @@ package bai_tap;
 
 public class TennisGame {
 
+    public static final String DASH = "-";
+
     public static String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
         boolean isEqual = player1Score == player2Score;
         boolean isGreaterThan4 = player1Score >= 4 || player2Score >= 4;
@@ -38,7 +40,7 @@ public class TennisGame {
 
     public static String getDifferentScore(int player1Score, int player2Score) {
         String score = getScoreLabel(player1Score);
-        score += "-";
+        score += DASH;
         score += getScoreLabel(player2Score);
         return score;
     }

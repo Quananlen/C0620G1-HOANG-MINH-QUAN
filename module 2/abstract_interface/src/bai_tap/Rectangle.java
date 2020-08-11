@@ -25,6 +25,7 @@ public class Rectangle extends Shape {
         this.length = length;
     }
 
+    @Override
     public double getArea() {
         return width * this.length;
     }
@@ -46,4 +47,5 @@ public class Rectangle extends Shape {
         setLength(getLength()*(1+percent));
         setWidth(getWidth()*(1+percent));
     }
+
 }

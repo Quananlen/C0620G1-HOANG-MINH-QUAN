@@ -10,10 +10,12 @@ public class Main {
 
         for (Shape shape : array) {
             System.out.println(shape);
+            System.out.println(shape.getArea());
             double percent = Math.random();
             shape.resize(percent);
             if (shape instanceof Square) ((Square) shape).howToColor();
             System.out.println(shape);
+            System.out.println(shape.getArea());
         }
 
     }

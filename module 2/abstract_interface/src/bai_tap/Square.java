@@ -34,4 +34,9 @@ public class Square extends Shape implements Colorable{
     public void resize(double percent) {
         setSide(getSide()*(1+percent));
     }
+
+    @Override
+    public double getArea() {
+        return side*side;
+    }
 }

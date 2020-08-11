@@ -3,6 +3,10 @@ package bai_tap;
 public class TennisGame {
 
     public static final String DASH = "-";
+    public static final int ZERO = 0;
+    public static final int FIFTEEN = 1;
+    public static final int THIRTY = 2;
+    public static final int FORTY = 3;
 
     public static String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
         boolean isEqual = player1Score == player2Score;
@@ -14,13 +18,13 @@ public class TennisGame {
 
     public static String getEqualScore(int playerScore) {
         switch (playerScore) {
-            case 0:
+            case ZERO:
                 return "Love-All";
-            case 1:
+            case FIFTEEN:
                 return "Fifteen-All";
-            case 2:
+            case THIRTY:
                 return "Thirty-All";
-            case 3:
+            case FORTY:
                 return "Forty-All";
             default:
                 return "Deuce";
@@ -49,11 +53,11 @@ public class TennisGame {
         switch (playerScore) {
             default:
                 return "Love";
-            case 1:
+            case FIFTEEN:
                 return "Fifteen";
-            case 2:
+            case THIRTY:
                 return "Thirty";
-            case 3:
+            case FORTY:
                 return "Forty";
         }
     }

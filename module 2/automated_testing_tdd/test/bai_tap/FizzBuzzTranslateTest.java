@@ -6,9 +6,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FizzBuzzTranslateTest {
     @Test
+    void case1() {
+        int num = 1;
+        String expected = "One";
+
+        String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
+        assertEquals(expected, result);
+    }
+
+    @Test
     void case5() {
         int num = 5;
-        String expected = "One Two Fizz Four Buzz ";
+        String expected = "Buzz";
 
         String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
         assertEquals(expected, result);
@@ -16,7 +25,15 @@ class FizzBuzzTranslateTest {
     @Test
     void case15() {
         int num = 15;
-        String expected = "One Two Fizz Four Buzz Fizz Seven Eight Fizz Buzz OneOne Fizz OneThree OneFour FizzBuzz ";
+        String expected = "FizzBuzz";
+
+        String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
+        assertEquals(expected, result);
+    }
+    @Test
+    void case26() {
+        int num = 26;
+        String expected = "TwoSix";
 
         String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
         assertEquals(expected, result);
@@ -24,7 +41,55 @@ class FizzBuzzTranslateTest {
     @Test
     void case30() {
         int num = 30;
-        String expected = "One Two Fizz Four Buzz Fizz Seven Eight Fizz Buzz OneOne Fizz OneThree OneFour FizzBuzz OneSix OneSeven Fizz OneNine Buzz Fizz TwoTwo TwoThree Fizz Buzz TwoSix Fizz TwoEight TwoNine FizzBuzz ";
+        String expected = "FizzBuzz";
+
+        String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
+        assertEquals(expected, result);
+    }
+    @Test
+    void case31() {
+        int num = 31;
+        String expected = "Fizz";
+
+        String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
+        assertEquals(expected, result);
+    }
+    @Test
+    void case35() {
+        int num = 35;
+        String expected = "Buzz";
+
+        String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
+        assertEquals(expected, result);
+    }
+    @Test
+    void case43() {
+        int num = 43;
+        String expected = "Fizz";
+
+        String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
+        assertEquals(expected, result);
+    }
+    @Test
+    void case53() {
+        int num = 58;
+        String expected = "Buzz";
+
+        String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
+        assertEquals(expected, result);
+    }
+    @Test
+    void case58() {
+        int num = 58;
+        String expected = "Buzz";
+
+        String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
+        assertEquals(expected, result);
+    }
+    @Test
+    void case99() {
+        int num = 99;
+        String expected = "Fizz";
 
         String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
         assertEquals(expected, result);

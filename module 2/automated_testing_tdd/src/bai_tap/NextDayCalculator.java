@@ -17,12 +17,8 @@ public class NextDayCalculator {
             if (isLastMonth) {
                 month = 1;
                 year++;
-            } else {
-                month++;
-            }
-        } else {
-            day++;
-        }
+            } else month++;
+        } else day++;
         String dayStr = String.valueOf(day);
         String monthStr = String.valueOf(month);
         String yearStr = String.valueOf(year);

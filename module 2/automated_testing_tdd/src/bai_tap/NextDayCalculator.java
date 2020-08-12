@@ -9,27 +9,23 @@ public class NextDayCalculator {
     public static final int NOV = 11;
 
     public static String NextDayCalculator(int day, int month, int year) {
-        String result = "";
         int lastDay = getLastDay(month, year);
-        int newDay;
-        int newMonth = month;
-        int newYear = year;
         boolean isLastMonth = month == 12;
         boolean isLastDay = day == lastDay;
         if (isLastDay) {
-            newDay = 1;
+            day = 1;
             if (isLastMonth) {
-                newMonth = 1;
-                newYear = year + 1;
+                month = 1;
+                year++;
             } else {
-                newMonth = month + 1;
+                month++;
             }
         } else {
-            newDay = day + 1;
+            day++;
         }
-        String dayStr = String.valueOf(newDay);
-        String monthStr = String.valueOf(newMonth);
-        String yearStr = String.valueOf(newYear);
+        String dayStr = String.valueOf(day);
+        String monthStr = String.valueOf(month);
+        String yearStr = String.valueOf(year);
         return dayStr + '.' + monthStr + '.' + yearStr;
     }
 
@@ -37,16 +33,14 @@ public class NextDayCalculator {
         boolean isDividedBy400 = year % 400 == 0;
         boolean isDividedBy100 = year % 100 == 0;
         boolean isDividedBy4 = year % 4 == 0;
-        if (isDividedBy400) return true;
-        return isDividedBy4 && !isDividedBy100;
+        return isDividedBy400 || isDividedBy4 && !isDividedBy100;
     }
 
     public static int getLastDay(int month, int year) {
         boolean isLeapYear = isLeapYear(year);
         switch (month) {
             case FEB:
-                if (isLeapYear) return 29;
-                else return 28;
+                return isLeapYear ? 29 : 28;
             case APR:
             case JUN:
             case SEP:

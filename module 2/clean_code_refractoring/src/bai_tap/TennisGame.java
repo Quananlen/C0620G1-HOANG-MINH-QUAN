@@ -10,9 +10,9 @@ public class TennisGame {
 
     public static String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
         boolean isEqual = player1Score == player2Score;
-        boolean isGreaterThan4 = player1Score >= 4 || player2Score >= 4;
+        boolean eitherGreaterThan4 = player1Score >= 4 || player2Score >= 4;
         if (isEqual) return getEqualScore(player1Score);
-        if (isGreaterThan4) return getAdvantageScore(player1Score, player2Score);
+        if (eitherGreaterThan4) return getAdvantageScore(player1Score, player2Score);
         return getDifferentScore(player1Score, player2Score);
     }
 

@@ -29,9 +29,9 @@ public class MyList<E> {
     }
 
     public E remove (int index) {
-//        if (index < 0 || index >= size) {
-//            throw new IndexOutOfBoundsException();
-//        }
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
         for (int i = index; i < size; i++) {
             elements[i] = elements[i+1];
         }

@@ -18,6 +18,7 @@ public class MyListTest {
         myList2.ensureCapacity(8);
         System.out.println(myList2);
         System.out.println(myList2.get(1));
+        System.out.println(myList2.get(7));
         myList.clear();
         System.out.println(myList);
     }

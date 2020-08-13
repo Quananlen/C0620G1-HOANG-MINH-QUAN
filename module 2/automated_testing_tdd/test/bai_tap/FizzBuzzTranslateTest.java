@@ -13,7 +13,6 @@ class FizzBuzzTranslateTest {
         String result = FizzBuzzTranslate.FizzBuzzTranslate(num);
         assertEquals(expected, result);
     }
-
     @Test
     void case5() {
         int num = 5;

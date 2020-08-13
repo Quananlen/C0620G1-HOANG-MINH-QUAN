@@ -24,7 +24,8 @@ public class FizzBuzzTranslate {
     public static String readNum(int num) {
         int ten = num / 10;
         int one = num % 10;
-        if (num < 10) return getLabel(one);
+        boolean isSmallerThan10 = num < 10;
+        if (isSmallerThan10) return getLabel(one);
         return getLabel(ten) + getLabel(one);
     }
 

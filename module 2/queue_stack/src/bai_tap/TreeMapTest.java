@@ -12,12 +12,8 @@ public class TreeMapTest {
             char c = str.charAt(i);
             if (!treeMap.containsKey(c)) treeMap.put(c, 1);
             else {
-                for (Map.Entry<Character, Integer> entry : treeMap.entrySet()) {
-                    if (entry.getKey().equals(c)) {
-                        int value = entry.getValue();
-                        treeMap.put(c, ++value);
-                    }
-                }
+                int value = treeMap.get(c);
+                treeMap.put(c, ++value);
             }
         }
         System.out.println(treeMap);

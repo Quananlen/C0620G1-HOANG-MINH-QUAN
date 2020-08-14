@@ -1,5 +1,9 @@
 package bai_tap;
 
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.LinkedList;
+
 public class MyLinkedList<E> {
     private Node head;
     private Node tail;
@@ -8,7 +12,6 @@ public class MyLinkedList<E> {
     static class Node {
         private Node next;
         private Object data;
-        private int index;
 
         public Node(Object data) {
             this.data = data;
@@ -20,47 +23,139 @@ public class MyLinkedList<E> {
 
         @Override
         public String toString() {
-            return "Node{" +
-                    "next=" + next +
-                    ", data=" + data +
-                    '}';
+            return data.toString();
         }
     }
 
     public MyLinkedList() {
     }
 
+    public Node get(int index) {
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+
     public void add(int index, E element) {
         numNode++;
-        Node newNode = new Node(element);
-        newNode.index = index;
-
+        Node temp = head;
+        Node holder;
+        for (int i = 0; i < index - 1 && temp != tail; i++) {
+            temp = temp.next;
+        }
+        holder = temp.next;
+        temp.next = new Node(element);
+        temp.next.next = holder;
     }
 
     public void addFirst(E e) {
         numNode++;
-        Node newNode = new Node(e);
-        newNode.index = 0;
-        Node firstNode = head;
-        head = newNode;
-        newNode.next = firstNode;
+        Node temp = head;
+        head = new Node(e);
+        head.next = temp;
         if (numNode == 1) tail = head;
     }
 
     public void addLast(E e) {
+        if (numNode == 1) tail = head;
         numNode++;
-        Node newNode = new Node(e);
-        newNode.next = null;
-        tail.next = newNode;
-        tail = newNode;
-        tail.index = numNode-1;
+        Node temp = new Node(e);
+        tail.next = temp;
+        tail = temp;
+    }
+
+    public void remove(int index) {
+        if (numNode == 1) tail = head;
+        if (index == 0) {
+            throw new UnsupportedOperationException("Use removeFirst()");
+        }
+        numNode--;
+        Node temp = head;
+        for (int i = 0; i < index - 1; i++) {
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+    }
+
+    public boolean remove(Object e) {
+        if (numNode == 1) tail = head;
+        Node temp;
+        temp = head;
+        for (int i = 0; i < numNode; i++) {
+            if (temp.next.equals(e)) {
+                temp.next = temp.next.next;
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+    }
+
+    public int size() {
+        return numNode;
+    }
+
+    public MyLinkedList<E> clone() {
+        MyLinkedList<E> newLinkedList = new MyLinkedList<>();
+        Node temp = head;
+        newLinkedList.addFirst((E) temp.getData());
+        temp = temp.next;
+        for (int i = 1; i < numNode; i++) {
+            newLinkedList.addLast((E) temp.getData());
+            temp = temp.next;
+        }
+        return newLinkedList;
+    }
+
+    public boolean contains(E o) {
+        Node temp = head;
+        for (int i = 0; i < numNode; i++) {
+            if (temp.getData() == o) return true;
+            temp = temp.next;
+        }
+        return false;
+    }
+
+    public int indexOf(E o) {
+        Node temp = head;
+        for (int i = 0; i < numNode; i++) {
+            if (temp.getData() == o) return i;
+            temp = temp.next;
+        }
+        return -1;
+    }
+
+    public E getFirst() {
+        return (E) head;
+    }
+
+    public E getLast() {
+        return (E) tail;
+    }
+
+    public void clear() {
+        head = null;
+        tail = null;
+        numNode = 0;
     }
 
     @Override
     public String toString() {
-        return "MyLinkedList{" +
-                "head=" + head +
-                ", numNode=" + numNode +
-                '}';
+        String str = "[";
+        Node temp = head;
+        for (int i = 0; i < numNode-1; i++) {
+            str += temp + ", ";
+            temp = temp.next;
+        }
+        str += tail + "]";
+        return str;
+
+//        return "MyLinkedList{" +
+//                "head=" + head +
+//                ", numNode=" + numNode +
+//                '}';
     }
 }

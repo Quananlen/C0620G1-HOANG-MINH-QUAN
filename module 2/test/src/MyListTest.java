@@ -13,8 +13,8 @@ public class MyListTest {
         System.out.println(integerMyList.get(3));
         System.out.println(integerMyList.get(4));
         // Test checkIndex
-//        integerMyList.add(6, 1000);
         System.out.println(integerMyList.get(5));
         System.out.println(integerMyList.get(6));
+        System.out.println(integerMyList.get(50));
     }
 }

@@ -10,8 +10,8 @@ public class CheckBracket {
     public static boolean checkBracket(String str) {
         Stack<Character> bStack = new Stack();
         for (int i = 0; i < str.length(); i++) {
-            boolean isOpenBracket = Character.compare(str.charAt(i), '(') == 0;
-            boolean isCloseBracket = Character.compare(str.charAt(i), ')') == 0;
+            boolean isOpenBracket = str.charAt(i) == '(';
+            boolean isCloseBracket = str.charAt(i) == ')';
             if (isOpenBracket) bStack.push('(');
             if (isCloseBracket) {
                 if (bStack.isEmpty()) {

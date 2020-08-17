@@ -4,6 +4,7 @@ import java.util.Stack;
 
 public class ReverseStack {
     public static void main(String[] args) {
+        //reverse int array
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < 10; i++) {
             stack.add(i);
@@ -15,6 +16,7 @@ public class ReverseStack {
         }
         System.out.println(stack2);
 
+        //reverse string
         String str = "This is a Stack";
         String newStr ="";
         Stack<Character> wStack = new Stack<>();

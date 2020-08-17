@@ -44,13 +44,14 @@ public class Demerging {
         arr.add(female2);
         System.out.println(arr);
 
-        Collections.sort(arr, Demerging.BirthdayComparator);
+        arr.sort(Demerging.BirthdayComparator);
         System.out.println(arr);
 
         Queue<Person> queueF = new LinkedList<>();
         Queue<Person> queueM = new LinkedList<>();
         for (Person person : arr) {
-            if (person.gender) queueM.offer((person));
+            boolean isMale = person.gender;
+            if (isMale) queueM.add((person));
             else queueF.add(person);
         }
 

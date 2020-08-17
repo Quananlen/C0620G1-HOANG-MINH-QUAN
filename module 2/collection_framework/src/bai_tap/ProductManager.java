@@ -2,7 +2,7 @@ package bai_tap;
 
 import java.util.*;
 
-public class ProductManager extends ArrayList<Product> {
+public class ProductManager {
     public static ArrayList<Product> arrProduct = new ArrayList<>();
     public static LinkedList<Product> linkedProduct = new LinkedList<>();
 

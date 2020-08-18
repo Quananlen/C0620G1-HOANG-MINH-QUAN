@@ -61,29 +61,12 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
     }
 
     //bai_tap
-    protected void postorder() {
-        postorder(root);
+
+    public boolean delete(E element){
+        return delete(root, element);
     }
 
-    protected void postorder(TreeNode<E> root) {
-        if (root == null) return;
-        inorder(root.left);
-        inorder(root.right);
-        System.out.println(root.element + " ");
-    }
-
-    protected void preorder() {
-        preorder(root);
-    }
-
-    protected void preorder(TreeNode<E> root) {
-        if (root == null) return;
-        System.out.println(root.element + " ");
-        inorder(root.left);
-        inorder(root.right);
-    }
-
-    protected boolean delete(E element) {
+    protected boolean delete(TreeNode node ,E element) {
         if (!search(element)) return false;
         size--;
         TreeNode<E> current = root;
@@ -125,14 +108,18 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
             rightmostParent = rightmost;
             rightmost = rightmost.right;
         }
-        current.element = (E) rightmost.element;
+        current.element = rightmost.element;
         rightmostParent.right = rightmost.left;
         return true;
     }
 
-
     protected boolean search(E element) {
+        return search(root, element);
+    }
+
+    protected boolean search(TreeNode<E> root, E element) {
         TreeNode<E> current = root;
+        if (current == null) return false;
         while (current != null) {
             if (current.element.equals(element)) {
                 return true;
@@ -146,5 +133,7 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
         }
         return false;
     }
+
+
 }
 

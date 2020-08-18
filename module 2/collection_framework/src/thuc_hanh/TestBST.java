@@ -14,11 +14,10 @@ public class TestBST {
         //traverse tree
         System.out.println("Inorder (sorted): ");
         tree.inorder();
-//        System.out.println("Preorder (sorted): " );
-//        tree.preorder();
         System.out.println("The number of nodes is: " + tree.getSize());
-        System.out.println(tree.search("Tom"));
+        System.out.println(tree.search("Giga"));
         tree.delete("Tom");
-        tree.preorder();
+        tree.inorder();
+
     }
 }

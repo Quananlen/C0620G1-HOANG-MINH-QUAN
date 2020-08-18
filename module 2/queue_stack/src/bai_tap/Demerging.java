@@ -24,13 +24,6 @@ public class Demerging {
         }
     }
 
-    public static Comparator<Person> BirthdayComparator = new Comparator<Person>() {
-        public int compare(Person p1, Person p2) {
-            String birthday1 = p1.birthday;
-            String birthday2 = p2.birthday;
-            return birthday1.compareTo(birthday2);
-        }
-    };
 
     public static void main(String[] args) {
         List<Person> arr = new ArrayList<>();
@@ -44,7 +37,7 @@ public class Demerging {
         arr.add(female2);
         System.out.println(arr);
 
-        arr.sort(Demerging.BirthdayComparator);
+        arr.sort(Comparator.comparing(p -> p.birthday));
         System.out.println(arr);
 
         Queue<Person> queueF = new LinkedList<>();

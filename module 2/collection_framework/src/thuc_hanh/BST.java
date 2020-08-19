@@ -66,11 +66,12 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
         return delete(root, element);
     }
 
-    protected boolean delete(TreeNode node ,E element) {
+    protected boolean delete(TreeNode<E> node ,E element) {
         if (!search(element)) return false;
         size--;
         TreeNode<E> current = root;
         TreeNode<E> parent = root;
+        current = search(root, element);
         while (current != null) {
             if (current.element.equals(element)) {
                 break;
@@ -114,24 +115,14 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
     }
 
     protected boolean search(E element) {
-        return search(root, element);
+        return search(root, element).element.equals(element);
     }
 
-    protected boolean search(TreeNode<E> root, E element) {
-        TreeNode<E> current = root;
-        if (current == null) return false;
-        while (current != null) {
-            if (current.element.equals(element)) {
-                return true;
-            } else if (((String) current.element).charAt(0) > ((String) element).charAt(0)) {
-                if (current.left == null) return false;
-                current = current.left;
-            } else if (((String) current.element).charAt(0) < ((String) element).charAt(0)) {
-                if (current.right == null) return false;
-                current = current.right;
-            }
-        }
-        return false;
+    protected TreeNode<E> search(TreeNode<E> root, E element) {
+        if (root == null) return createNewNode((E) "Wrong");
+        if (root.element.equals(element)) return root;
+        if (((String) root.element).charAt(0) > ((String) element).charAt(0)) return search(root.left, element);
+        else return search(root.right, element);
     }
 
 

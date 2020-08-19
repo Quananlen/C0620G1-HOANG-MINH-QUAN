@@ -16,7 +16,7 @@ public class TestBST {
         tree.inorder();
         System.out.println("The number of nodes is: " + tree.getSize());
         System.out.println(tree.search("Giga"));
-        tree.delete("Tom");
+        tree.delete("Michael");
         tree.inorder();
 
     }

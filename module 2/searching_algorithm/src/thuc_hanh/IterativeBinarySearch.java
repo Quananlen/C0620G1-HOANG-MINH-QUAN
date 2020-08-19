@@ -9,13 +9,13 @@ public class IterativeBinarySearch {
     }
 
     public static int binarySearch(int x, int[] arr) {
-        int low = 0;
-        int high = arr.length - 1;
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
+        int left = 0;
+        int right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
             if (x == arr[mid]) return mid;
-            if (x > arr[mid]) low = mid + 1;
-            else high = mid - 1;
+            if (x > arr[mid]) left = mid + 1;
+            else right = mid - 1;
         }
         return -1;
     }

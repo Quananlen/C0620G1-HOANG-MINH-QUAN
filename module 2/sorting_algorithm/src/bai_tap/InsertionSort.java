@@ -21,7 +21,6 @@ public class InsertionSort {
             Integer selectedNum = arr.get(i);
             System.out.println("key " + selectedNum);
             int currentMaxIndex = i - 1;
-            System.out.println("number to compare: " + arr.get(currentMaxIndex));
             while (currentMaxIndex > -1) {
                 int comparedNum = arr.get(currentMaxIndex);
                 if (selectedNum < comparedNum) {

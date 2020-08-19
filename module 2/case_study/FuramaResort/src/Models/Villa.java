@@ -1,14 +1,10 @@
 package Models;
 
 public class Villa extends Services{
-    @Override
-    void showInfo() {
-
-    }
-    double poolArea;
-    String roomStandard;
-    String otherExclusives;
-    int floors;
+    private double poolArea;
+    private String roomStandard;
+    private String otherExclusives;
+    private int floors;
 
     public Villa() {
     }
@@ -27,5 +23,20 @@ public class Villa extends Services{
         this.otherExclusives = otherExclusives;
         this.floors = floors;
     }
-    
+
+    @Override
+    public String showInfo() {
+        return "Villa{" +
+                "poolArea=" + poolArea +
+                ", roomStandard='" + roomStandard + '\'' +
+                ", otherExclusives='" + otherExclusives + '\'' +
+                ", floors=" + floors +
+                ", id='" + id + '\'' +
+                ", ServiceType='" + ServiceType + '\'' +
+                ", usageArea=" + usageArea +
+                ", rentCost=" + rentCost +
+                ", guestAmount=" + guestAmount +
+                ", rentType='" + rentType + '\'' +
+                '}';
+    }
 }

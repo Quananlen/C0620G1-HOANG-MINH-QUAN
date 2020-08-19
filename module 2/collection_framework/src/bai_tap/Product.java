@@ -1,6 +1,10 @@
 package bai_tap;
 
 public class Product {
+    private String name;
+    private int id;
+    private int price;
+
     public String getName() {
         return name;
     }
@@ -24,10 +28,6 @@ public class Product {
     public int getPrice() {
         return price;
     }
-
-    private String name;
-    private int id;
-    private int price;
 
     public Product() {
     }

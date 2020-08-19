@@ -1,13 +1,13 @@
 package Models;
 
 public abstract class Services {
-    private String id;
-    private String ServiceType;
-    private double usageArea;
-    private double rentCost;
-    private int guestAmount;
-    private String rentType;
-    abstract void showInfo();
+    protected String id;
+    protected String ServiceType;
+    protected double usageArea;
+    protected double rentCost;
+    protected int guestAmount;
+    protected String rentType;
+    abstract String showInfo();
 
     public Services(String id, String serviceType, double usageArea, double rentCost, int guestAmount, String rentType) {
         this.id = id;

@@ -73,12 +73,15 @@ public class BSTBT {
     public TreeNodeBT deleteNode(TreeNodeBT root, int e) {
         size--;
         if (root == null) return root;
+
         if (e < root.element) {
             root.left = deleteNode(root.left, e);
         } else if (e > root.element) root.right = deleteNode(root.right, e);
+
         else {
             if (root.left == null) return root.right;
             else if (root.right == null) return root.left;
+
             root.element = minValue(root.right);
             root.right = deleteNode(root.right, root.element);
         }

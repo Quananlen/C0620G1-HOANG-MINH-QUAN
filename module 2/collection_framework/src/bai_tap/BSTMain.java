@@ -14,7 +14,7 @@ public class BSTMain {
         tree.insert(6);
         tree.inOrder();
         System.out.println("---delete---");
-        tree.delete(5);
+        tree.delete(3);
         tree.inOrder();
         System.out.println(tree.search(9));
     }

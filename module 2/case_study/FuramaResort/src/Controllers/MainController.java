@@ -1,5 +1,7 @@
 package Controllers;
 
+import Models.Villa;
+
 import java.util.Scanner;
 
 public class MainController {
@@ -47,14 +49,40 @@ public class MainController {
             serviceChoice = scanner.nextInt();
             switch (serviceChoice) {
                 case 1:
-
+                    addVilla();
                     break;
                 case 2:
+
+                    break;
                 case 3:
                 case 4:
                 case 5:
                     return;
             }
         } while (serviceChoice < 1 || serviceChoice > 5);
+    }
+    public static void addVilla() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input ID");
+        String id = scanner.nextLine();
+        System.out.println("Input Service Type");
+        String serviceType = scanner.nextLine();
+        System.out.println("Input Usage Area");
+        double usageArea = scanner.nextDouble();
+        System.out.println("Input Rent Cost");
+        double rentCost = scanner.nextDouble();
+        System.out.println("Input guest amount");
+        int guestAmount = scanner.nextInt();
+        System.out.println("Input rent type");
+        String rentType = scanner.nextLine();
+        System.out.println("Input pool area");
+        double poolArea = scanner.nextDouble();
+        System.out.println("Input room standard");
+        String roomStandard = scanner.nextLine();
+        System.out.println("Input other exclusives");
+        String exclusives = scanner.nextLine();
+        System.out.println("Input floors");
+        int floors = scanner.nextInt();
+        Villa villa = new Villa(id, serviceType, usageArea, rentCost, guestAmount, rentType, poolArea, roomStandard, exclusives, floors);
     }
 }

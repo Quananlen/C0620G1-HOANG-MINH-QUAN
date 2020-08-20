@@ -12,7 +12,7 @@ public class IterativeBinarySearch {
         int left = 0;
         int right = arr.length - 1;
         while (left <= right) {
-            int mid = left + (right - left) / 2;
+            int mid = (left + right) / 2;
             if (x == arr[mid]) return mid;
             if (x > arr[mid]) left = mid + 1;
             else right = mid - 1;

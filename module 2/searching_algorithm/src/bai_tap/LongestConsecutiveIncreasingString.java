@@ -2,19 +2,19 @@ package bai_tap;
 
 import java.util.ArrayList;
 
-public class LongestIncreasingString {
-
+public class LongestConsecutiveIncreasingString {
     public static void main(String[] args) {
-        String str1 = "QRSTABCXYZ";
-        String str2 = "ABCHDEFGJ";
-        String str3 = "JKLABCDEX";
-        String str4 = "XYZQRSTUVA";
+        String str1 = "ABCABCDGABXY";
+        String str2 = "ABCEAFGHIABMNSXY";
+        String str3 = "ABCZBEFB";
+        String str4 = "XYZQRSTUV";
         String str5 = "Welcome";
         System.out.println(findLongest(str1));
         System.out.println(findLongest(str2));
         System.out.println(findLongest(str3));
         System.out.println(findLongest(str4));
         System.out.println(findLongest(str5));
+
     }
 
     public static String findLongest(String str) {
@@ -28,6 +28,7 @@ public class LongestIncreasingString {
                     count += str.charAt(j);
                     temp = str.charAt(j);
                 }
+                else break;
             }
             result.add(count);
             count = "";

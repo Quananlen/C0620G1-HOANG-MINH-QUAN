@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="80855abe-8ec0-4dda-a94c-2dee06ed4763" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FuramaResort/src/Models/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/FuramaResort/src/Models/House.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FuramaResort/src/Models/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/FuramaResort/src/Models/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../collection_framework/src/bai_tap/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../collection_framework/src/bai_tap/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../searching_algorithm/out/production/searching_algorithm/bai_tap/LongestIncreasingString.class" beforeDir="false" afterPath="$PROJECT_DIR$/../searching_algorithm/out/production/searching_algorithm/bai_tap/LongestIncreasingString.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../searching_algorithm/out/production/searching_algorithm/bai_tap/RecursiveBinarySearch.class" beforeDir="false" afterPath="$PROJECT_DIR$/../searching_algorithm/out/production/searching_algorithm/bai_tap/RecursiveBinarySearch.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../searching_algorithm/out/production/searching_algorithm/thuc_hanh/IterativeBinarySearch.class" beforeDir="false" afterPath="$PROJECT_DIR$/../searching_algorithm/out/production/searching_algorithm/thuc_hanh/IterativeBinarySearch.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +51,7 @@
       <workItem from="1597050962227" duration="112000" />
       <workItem from="1597053450400" duration="16000" />
       <workItem from="1597801227388" duration="232000" />
+      <workItem from="1598238050715" duration="23000" />
     </task>
     <servers />
   </component>
@@ -58,10 +59,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="739" y="262" key="FileChooserDialogImpl" timestamp="1597801458215">
+    <state x="739" y="262" key="FileChooserDialogImpl" timestamp="1598238072175">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="739" y="262" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1597801458215" />
+    <state x="739" y="262" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1598238072175" />
     <state x="342" y="141" key="new project wizard" timestamp="1597051072425">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

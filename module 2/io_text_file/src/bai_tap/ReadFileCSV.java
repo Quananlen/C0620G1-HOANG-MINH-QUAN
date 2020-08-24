@@ -20,7 +20,7 @@ public class ReadFileCSV {
         List<String> nationList = new ArrayList<>();
         FileReader fileReader = new FileReader(csvFile);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line = "";
+        String line;
         while ((line = bufferedReader.readLine()) != null) {
             String[] arrToken = line.split(",");
             nationList.add(arrToken[arrToken.length - 1]);

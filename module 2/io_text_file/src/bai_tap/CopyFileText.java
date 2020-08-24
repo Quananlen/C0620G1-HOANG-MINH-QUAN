@@ -9,8 +9,8 @@ public class CopyFileText {
         source.write("This is another line.");
         source.close();
 
-        File inFile = new File("SourceFile.txt");
-        FileReader fileReader = new FileReader(inFile);
+        File file = new File("SourceFile.txt");
+        FileReader fileReader = new FileReader(file);
         BufferedReader reader = new BufferedReader(fileReader);
 
         FileWriter target = new FileWriter("TargetFile.txt");

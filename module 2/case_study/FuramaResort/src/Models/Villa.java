@@ -1,6 +1,6 @@
 package Models;
 
-public class Villa extends Services{
+public class Villa extends Services {
     private double poolArea;
     private String roomStandard;
     private String otherExclusives;
@@ -26,8 +26,7 @@ public class Villa extends Services{
 
     @Override
     public String showInfo() {
-        return "Villa{" +
-                "poolArea=" + poolArea +
+        return "poolArea=" + poolArea +
                 ", roomStandard='" + roomStandard + '\'' +
                 ", otherExclusives='" + otherExclusives + '\'' +
                 ", floors=" + floors +
@@ -36,7 +35,6 @@ public class Villa extends Services{
                 ", usageArea=" + usageArea +
                 ", rentCost=" + rentCost +
                 ", guestAmount=" + guestAmount +
-                ", rentType='" + rentType + '\'' +
-                '}';
+                ", rentType='" + rentType + '\'';
     }
 }

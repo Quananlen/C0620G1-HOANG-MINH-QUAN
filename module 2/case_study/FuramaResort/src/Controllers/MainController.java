@@ -1,16 +1,28 @@
 package Controllers;
 
+import Models.House;
+import Models.Room;
 import Models.Villa;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainController {
-    public static void main(String[] args) {
-        displayMainMenu();
 
+    public static final String ROOM_CSV = "src/Data/Room.csv";
+    public static final String HOUSE_CSV = "src/Data/House.csv";
+    public static final String VILLA_CSV = "src/Data/Villa.csv";
+
+    public static void main(String[] args) {
+        try {
+            displayMainMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void displayMainMenu() {
+    public static void displayMainMenu() throws IOException {
         Scanner scanner = new Scanner(System.in);
         int menuChoice;
         do {
@@ -37,7 +49,7 @@ public class MainController {
         } while (menuChoice < 1 || menuChoice > 7);
     }
 
-    public static void addNewServices() {
+    public static void addNewServices() throws IOException {
         Scanner scanner = new Scanner(System.in);
         int serviceChoice;
         do {
@@ -52,16 +64,21 @@ public class MainController {
                     addVilla();
                     break;
                 case 2:
-
+                    addHouse();
                     break;
                 case 3:
+                    addRoom();
+                    break;
                 case 4:
+                    displayMainMenu();
+                    break;
                 case 5:
                     return;
             }
         } while (serviceChoice < 1 || serviceChoice > 5);
     }
-    public static void addVilla() {
+
+    public static void addVilla() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input ID");
         String id = scanner.nextLine();
@@ -74,15 +91,81 @@ public class MainController {
         System.out.println("Input guest amount");
         int guestAmount = scanner.nextInt();
         System.out.println("Input rent type");
-        String rentType = scanner.nextLine();
+        String rentType = scanner.next();
         System.out.println("Input pool area");
         double poolArea = scanner.nextDouble();
         System.out.println("Input room standard");
-        String roomStandard = scanner.nextLine();
+        String roomStandard = scanner.next();
         System.out.println("Input other exclusives");
-        String exclusives = scanner.nextLine();
+        String exclusives = scanner.next();
         System.out.println("Input floors");
         int floors = scanner.nextInt();
         Villa villa = new Villa(id, serviceType, usageArea, rentCost, guestAmount, rentType, poolArea, roomStandard, exclusives, floors);
+        String[] array = villa.showInfo().split(",");
+        try (FileWriter villaWriter = new FileWriter(VILLA_CSV, true)) {
+            for (int i = 0; i < array.length; i++) {
+                villaWriter.append(array[i]);
+                if (i != array.length - 1) villaWriter.append(",");
+                else villaWriter.append('\n');
+            }
+        }
+    }
+
+    public static void addHouse() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input ID");
+        String id = scanner.nextLine();
+        System.out.println("Input Service Type");
+        String serviceType = scanner.nextLine();
+        System.out.println("Input Usage Area");
+        double usageArea = scanner.nextDouble();
+        System.out.println("Input Rent Cost");
+        double rentCost = scanner.nextDouble();
+        System.out.println("Input guest amount");
+        int guestAmount = scanner.nextInt();
+        System.out.println("Input rent type");
+        String rentType = scanner.next();
+        System.out.println("Input room standard");
+        String roomStandard = scanner.next();
+        System.out.println("Input other exclusives");
+        String exclusives = scanner.next();
+        System.out.println("Input floors");
+        int floors = scanner.nextInt();
+        House house = new House(id, serviceType, usageArea, rentCost, guestAmount, rentType, roomStandard, exclusives, floors);
+        String[] array = house.showInfo().split(",");
+        try (FileWriter houseWriter = new FileWriter(HOUSE_CSV, true)) {
+            for (int i = 0; i < array.length; i++) {
+                houseWriter.append(array[i]);
+                if (i != array.length - 1) houseWriter.append(",");
+                else houseWriter.append('\n');
+            }
+        }
+    }
+
+    private static void addRoom() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input ID");
+        String id = scanner.nextLine();
+        System.out.println("Input Service Type");
+        String serviceType = scanner.nextLine();
+        System.out.println("Input Usage Area");
+        double usageArea = scanner.nextDouble();
+        System.out.println("Input Rent Cost");
+        double rentCost = scanner.nextDouble();
+        System.out.println("Input guest amount");
+        int guestAmount = scanner.nextInt();
+        System.out.println("Input rent type");
+        String rentType = scanner.next();
+        System.out.println("Input free service");
+        String freeService = scanner.next();
+        Room room = new Room(id, serviceType, usageArea, rentCost, guestAmount, rentType, freeService);
+        String[] array = room.showInfo().split(",");
+        try (FileWriter roomWriter = new FileWriter(ROOM_CSV, true)) {
+            for (int i = 0; i < array.length; i++) {
+                roomWriter.append(array[i]);
+                if (i != array.length - 1) roomWriter.append(",");
+                else roomWriter.append('\n');
+            }
+        }
     }
 }

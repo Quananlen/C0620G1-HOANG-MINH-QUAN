@@ -13,15 +13,13 @@ public class Room extends Services {
 
     @Override
     public String showInfo() {
-        return "Room{" +
-                "freeService='" + freeService + '\'' +
+        return "freeService='" + freeService + '\'' +
                 ", id='" + id + '\'' +
                 ", ServiceType='" + ServiceType + '\'' +
                 ", usageArea=" + usageArea +
                 ", rentCost=" + rentCost +
                 ", guestAmount=" + guestAmount +
-                ", rentType='" + rentType + '\'' +
-                '}';
+                ", rentType='" + rentType + '\'';
     }
 
 

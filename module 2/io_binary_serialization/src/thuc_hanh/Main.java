@@ -29,7 +29,6 @@ public class Main {
     }
     static void copyFileUsingJava7Files(File source, File dest) throws IOException {
         Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
     }
     static void copyFileUsingStream(File source, File dest) throws IOException {
         try (InputStream is = new FileInputStream(source); OutputStream os = new FileOutputStream(dest)) {
@@ -40,6 +39,4 @@ public class Main {
             }
         }
     }
-
-
 }

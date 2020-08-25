@@ -6,6 +6,8 @@ import Models.Villa;
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainController {
 
@@ -36,6 +38,7 @@ public class MainController {
             switch (menuChoice) {
                 case 1:
                     addNewServices();
+                    displayMainMenu();
                     break;
                 case 2:
                     showServices();
@@ -80,27 +83,17 @@ public class MainController {
     }
 
     public static void addVilla() throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input ID");
-        String id = scanner.nextLine();
-        System.out.println("Input Service Type");
-        String serviceType = scanner.nextLine();
-        System.out.println("Input Usage Area");
-        double usageArea = scanner.nextDouble();
-        System.out.println("Input Rent Cost");
-        double rentCost = scanner.nextDouble();
-        System.out.println("Input guest amount");
-        int guestAmount = scanner.nextInt();
-        System.out.println("Input rent type");
-        String rentType = scanner.next();
-        System.out.println("Input pool area");
-        double poolArea = scanner.nextDouble();
-        System.out.println("Input room standard");
-        String roomStandard = scanner.next();
-        System.out.println("Input other exclusives");
-        String exclusives = scanner.next();
-        System.out.println("Input floors");
-        int floors = scanner.nextInt();
+        String id = inputID("VL");
+        String serviceType = inputServiceType();
+        double usageArea = inputUsageArea();
+        double poolArea = inputPoolArea();
+        double rentCost = inputRentCost();
+        int  guestAmount = inputGuestAmount();
+        String rentType = inputRentType();
+        String roomStandard = inputRoomStandard();
+        int floors = inputFloors();
+        String exclusives = inputExclusives();
+
         Villa villa = new Villa(id, serviceType, usageArea, rentCost, guestAmount, rentType, poolArea, roomStandard, exclusives, floors);
         String[] array = villa.showInfo().split(",");
         try (FileWriter villaWriter = new FileWriter(VILLA_CSV, true)) {
@@ -113,25 +106,16 @@ public class MainController {
     }
 
     public static void addHouse() throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input ID");
-        String id = scanner.nextLine();
-        System.out.println("Input Service Type");
-        String serviceType = scanner.nextLine();
-        System.out.println("Input Usage Area");
-        double usageArea = scanner.nextDouble();
-        System.out.println("Input Rent Cost");
-        double rentCost = scanner.nextDouble();
-        System.out.println("Input guest amount");
-        int guestAmount = scanner.nextInt();
-        System.out.println("Input rent type");
-        String rentType = scanner.next();
-        System.out.println("Input room standard");
-        String roomStandard = scanner.next();
-        System.out.println("Input other exclusives");
-        String exclusives = scanner.next();
-        System.out.println("Input floors");
-        int floors = scanner.nextInt();
+        String id = inputID("HO");
+        String serviceType = inputServiceType();
+        double usageArea = inputUsageArea();
+        double rentCost = inputRentCost();
+        int guestAmount = inputGuestAmount();
+        String rentType = inputRentType();
+        String roomStandard = inputRoomStandard();
+        String exclusives = inputExclusives();
+        int floors = inputFloors();
+
         House house = new House(id, serviceType, usageArea, rentCost, guestAmount, rentType, roomStandard, exclusives, floors);
         String[] array = house.showInfo().split(",");
         try (FileWriter houseWriter = new FileWriter(HOUSE_CSV, true)) {
@@ -144,21 +128,14 @@ public class MainController {
     }
 
     private static void addRoom() throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input ID");
-        String id = scanner.nextLine();
-        System.out.println("Input Service Type");
-        String serviceType = scanner.nextLine();
-        System.out.println("Input Usage Area");
-        double usageArea = scanner.nextDouble();
-        System.out.println("Input Rent Cost");
-        double rentCost = scanner.nextDouble();
-        System.out.println("Input guest amount");
-        int guestAmount = scanner.nextInt();
-        System.out.println("Input rent type");
-        String rentType = scanner.next();
-        System.out.println("Input free service");
-        String freeService = scanner.next();
+        String id = inputID("RO");
+        String serviceType = inputServiceType();
+        double usageArea = inputUsageArea();
+        double rentCost = inputRentCost();
+        int guestAmount = inputGuestAmount();
+        String rentType = inputRentType();
+        String freeService = inputFreeService();
+
         Room room = new Room(id, serviceType, usageArea, rentCost, guestAmount, rentType, freeService);
         String[] array = room.showInfo().split(",");
         try (FileWriter roomWriter = new FileWriter(ROOM_CSV, true)) {
@@ -168,6 +145,129 @@ public class MainController {
                 else roomWriter.append('\n');
             }
         }
+    }
+
+    private static String inputID(String type) {
+        Scanner scanner = new Scanner(System.in);
+        final String ID_REGEX = "^SV" + type + "-\\d{4}$";
+        String id;
+        Matcher matcher;
+        do {
+            Pattern pattern = Pattern.compile(ID_REGEX);
+            System.out.println("Input ID");
+            id = scanner.nextLine();
+            matcher = pattern.matcher(id);
+            if (!matcher.matches()) System.err.println("Invalid ID. Correct ID: SV" + type + "-XXXX with X is number from 0-9");
+        } while (!matcher.matches());
+        return id;
+    }
+
+    private static int inputFloors() {
+        Scanner scanner = new Scanner(System.in);
+        int floors;
+        do {
+            System.out.println("Input floors");
+            floors = scanner.nextInt();
+            if (floors < 1) System.err.println("Floor must be positive");
+        } while (floors < 1);
+        return floors;
+    }
+
+    private static String inputExclusives() {
+        Scanner scanner = new Scanner(System.in);
+        final String EXCLUSIVES_REGEX = "^massage$|^karaoke$|^food$|^drink$|^car$";
+        String exclusives;
+        Matcher matcher;
+        do {
+            Pattern pattern = Pattern.compile(EXCLUSIVES_REGEX);
+            System.out.println("Input other exclusives");
+            exclusives = scanner.next();
+            matcher = pattern.matcher(exclusives);
+            if (!matcher.matches()) System.err.println("Exclusives must be either massage, karaoke, food, drink or car");
+        } while (!matcher.matches());
+        return exclusives;
+    }
+
+    private static String inputRoomStandard() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input room standard");
+        String roomStandard = scanner.next();
+        roomStandard = roomStandard.toLowerCase();
+        roomStandard = Character.toUpperCase(roomStandard.charAt(0)) + roomStandard.substring(1);
+        return roomStandard;
+    }
+
+    private static double inputPoolArea() {
+        Scanner scanner = new Scanner(System.in);
+        double poolArea;
+        do {
+            System.out.println("Input pool area");
+            poolArea = scanner.nextDouble();
+            if (poolArea <= 30) System.err.println("Pool area must be larger than 30");
+        } while (poolArea <= 30);
+        return poolArea;
+    }
+
+    private static String inputRentType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input rent type");
+        String rentType = scanner.next();
+        rentType = rentType.toLowerCase();
+        rentType = Character.toUpperCase(rentType.charAt(0)) + rentType.substring(1);
+        return rentType;
+    }
+
+    private static int inputGuestAmount() {
+        Scanner scanner = new Scanner(System.in);
+        int guestAmount;
+        do {
+            System.out.println("Input guest amount");
+            guestAmount = scanner.nextInt();
+        } while (guestAmount < 1 || guestAmount > 19);
+        return guestAmount;
+    }
+
+    private static double inputRentCost() {
+        Scanner scanner = new Scanner(System.in);
+        double rentCost;
+        do {
+            System.out.println("Input Rent Cost");
+            rentCost = scanner.nextDouble();
+            if (rentCost <= 0) System.err.println("Rent cost must be positive");
+        } while (rentCost <= 0);
+        return rentCost;
+    }
+
+    private static double inputUsageArea() {
+        Scanner scanner = new Scanner(System.in);
+        double usageArea;
+        do {
+            System.out.println("Input Usage Area");
+            usageArea = scanner.nextDouble();
+            if (usageArea <= 30) System.err.println("Usage area must be larger than 30");
+        } while (usageArea <= 30);
+        return usageArea;
+    }
+
+    private static String inputServiceType() {
+        Scanner scanner = new Scanner(System.in);
+        final String SERVICE_TYPE_REGEX = "^[A-Z][a-z]+$";
+        String serviceType;
+        Matcher matcher;
+        do {
+            Pattern pattern = Pattern.compile(SERVICE_TYPE_REGEX);
+            System.out.println("Input Service Type");
+            serviceType = scanner.nextLine();
+            matcher = pattern.matcher(serviceType);
+            if (!matcher.matches()) System.err.println("Invalid format. First letter must be Upper Case");
+        } while (!matcher.matches());
+        return serviceType;
+    }
+
+    private static String inputFreeService() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input free service");
+        return scanner.next();
     }
 
     private static void showServices() throws IOException {
@@ -212,7 +312,7 @@ public class MainController {
         FileReader fileReader = new FileReader(VILLA_CSV);
         BufferedReader reader = new BufferedReader(fileReader);
         String line;
-        while ((line = reader.readLine())!=null){
+        while ((line = reader.readLine()) != null) {
             System.out.println(line);
         }
     }
@@ -221,7 +321,7 @@ public class MainController {
         FileReader fileReader = new FileReader(HOUSE_CSV);
         BufferedReader reader = new BufferedReader(fileReader);
         String line;
-        while ((line = reader.readLine())!=null){
+        while ((line = reader.readLine()) != null) {
             System.out.println(line);
         }
     }
@@ -230,7 +330,7 @@ public class MainController {
         FileReader fileReader = new FileReader(ROOM_CSV);
         BufferedReader reader = new BufferedReader(fileReader);
         String line;
-        while ((line = reader.readLine())!=null){
+        while ((line = reader.readLine()) != null) {
             System.out.println(line);
         }
     }

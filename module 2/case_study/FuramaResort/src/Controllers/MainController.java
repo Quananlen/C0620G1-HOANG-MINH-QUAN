@@ -4,8 +4,7 @@ import Models.House;
 import Models.Room;
 import Models.Villa;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class MainController {
@@ -39,6 +38,8 @@ public class MainController {
                     addNewServices();
                     break;
                 case 2:
+                    showServices();
+                    break;
                 case 3:
                 case 4:
                 case 5:
@@ -166,6 +167,71 @@ public class MainController {
                 if (i != array.length - 1) roomWriter.append(",");
                 else roomWriter.append('\n');
             }
+        }
+    }
+
+    private static void showServices() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("1. Show all Villa" + '\n' +
+                    "2. Show all House" + '\n' +
+                    "3. Show all Room" + '\n' +
+                    "4. Show all Name Villa not Duplicate" + '\n' +
+                    "5. Show all Name House not Duplicate" + '\n' +
+                    "6. Show all Name Room not Duplicate" + '\n' +
+                    "7. Back to menu" + '\n' +
+                    "8. Exit");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    showAllVilla();
+                    showServices();
+                    break;
+                case 2:
+                    showAllHouse();
+                    showServices();
+                    break;
+                case 3:
+                    showAllRoom();
+                    showServices();
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    displayMainMenu();
+                    break;
+                case 8:
+                    return;
+            }
+        } while (choice < 1 || choice > 8);
+    }
+
+    public static void showAllVilla() throws IOException {
+        FileReader fileReader = new FileReader(VILLA_CSV);
+        BufferedReader reader = new BufferedReader(fileReader);
+        String line;
+        while ((line = reader.readLine())!=null){
+            System.out.println(line);
+        }
+    }
+
+    public static void showAllHouse() throws IOException {
+        FileReader fileReader = new FileReader(HOUSE_CSV);
+        BufferedReader reader = new BufferedReader(fileReader);
+        String line;
+        while ((line = reader.readLine())!=null){
+            System.out.println(line);
+        }
+    }
+
+    public static void showAllRoom() throws IOException {
+        FileReader fileReader = new FileReader(ROOM_CSV);
+        BufferedReader reader = new BufferedReader(fileReader);
+        String line;
+        while ((line = reader.readLine())!=null){
+            System.out.println(line);
         }
     }
 }

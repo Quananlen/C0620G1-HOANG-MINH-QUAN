@@ -1,5 +1,7 @@
 package Controllers;
 
+import Libs.*;
+import Models.Customer;
 import Models.House;
 import Models.Room;
 import Models.Villa;
@@ -14,10 +16,15 @@ public class MainController {
     public static final String ROOM_CSV = "src/Data/Room.csv";
     public static final String HOUSE_CSV = "src/Data/House.csv";
     public static final String VILLA_CSV = "src/Data/Villa.csv";
+    public static final String CUSTOMER_CSV = "src/Data/Customer.csv";
+    public static final String COMMA = ",";
+    public static final char LINE_BREAKER = '\n';
 
     public static void main(String[] args) {
         try {
-            displayMainMenu();
+            String bd =  inputBirthday();
+            System.out.println(bd);
+            showInformationCustomers();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,21 +95,15 @@ public class MainController {
         double usageArea = inputUsageArea();
         double poolArea = inputPoolArea();
         double rentCost = inputRentCost();
-        int  guestAmount = inputGuestAmount();
+        int guestAmount = inputGuestAmount();
         String rentType = inputRentType();
         String roomStandard = inputRoomStandard();
         int floors = inputFloors();
         String exclusives = inputExclusives();
 
         Villa villa = new Villa(id, serviceType, usageArea, rentCost, guestAmount, rentType, poolArea, roomStandard, exclusives, floors);
-        String[] array = villa.showInfo().split(",");
-        try (FileWriter villaWriter = new FileWriter(VILLA_CSV, true)) {
-            for (int i = 0; i < array.length; i++) {
-                villaWriter.append(array[i]);
-                if (i != array.length - 1) villaWriter.append(",");
-                else villaWriter.append('\n');
-            }
-        }
+        String[] array = villa.showInfo().split(COMMA);
+        writeCSV(array, VILLA_CSV);
     }
 
     public static void addHouse() throws IOException {
@@ -117,14 +118,8 @@ public class MainController {
         int floors = inputFloors();
 
         House house = new House(id, serviceType, usageArea, rentCost, guestAmount, rentType, roomStandard, exclusives, floors);
-        String[] array = house.showInfo().split(",");
-        try (FileWriter houseWriter = new FileWriter(HOUSE_CSV, true)) {
-            for (int i = 0; i < array.length; i++) {
-                houseWriter.append(array[i]);
-                if (i != array.length - 1) houseWriter.append(",");
-                else houseWriter.append('\n');
-            }
-        }
+        String[] array = house.showInfo().split(COMMA);
+        writeCSV(array, HOUSE_CSV);
     }
 
     private static void addRoom() throws IOException {
@@ -137,14 +132,8 @@ public class MainController {
         String freeService = inputFreeService();
 
         Room room = new Room(id, serviceType, usageArea, rentCost, guestAmount, rentType, freeService);
-        String[] array = room.showInfo().split(",");
-        try (FileWriter roomWriter = new FileWriter(ROOM_CSV, true)) {
-            for (int i = 0; i < array.length; i++) {
-                roomWriter.append(array[i]);
-                if (i != array.length - 1) roomWriter.append(",");
-                else roomWriter.append('\n');
-            }
-        }
+        String[] array = room.showInfo().split(COMMA);
+        writeCSV(array, ROOM_CSV);
     }
 
     private static String inputID(String type) {
@@ -157,7 +146,8 @@ public class MainController {
             System.out.println("Input ID");
             id = scanner.nextLine();
             matcher = pattern.matcher(id);
-            if (!matcher.matches()) System.err.println("Invalid ID. Correct ID: SV" + type + "-XXXX with X is number from 0-9");
+            if (!matcher.matches())
+                System.err.println("Invalid ID. Correct ID: SV" + type + "-XXXX with X is number from 0-9");
         } while (!matcher.matches());
         return id;
     }
@@ -183,7 +173,8 @@ public class MainController {
             System.out.println("Input other exclusives");
             exclusives = scanner.next();
             matcher = pattern.matcher(exclusives);
-            if (!matcher.matches()) System.err.println("Exclusives must be either massage, karaoke, food, drink or car");
+            if (!matcher.matches())
+                System.err.println("Exclusives must be either massage, karaoke, food, drink or car");
         } while (!matcher.matches());
         return exclusives;
     }
@@ -333,5 +324,131 @@ public class MainController {
         while ((line = reader.readLine()) != null) {
             System.out.println(line);
         }
+    }
+
+    public static void writeCSV(String[] array, String csv) throws IOException {
+        try (FileWriter writer = new FileWriter(csv, true)) {
+            for (int i = 0; i < array.length; i++) {
+                writer.append(array[i]);
+                if (i != array.length - 1) writer.append(COMMA);
+                else writer.append(LINE_BREAKER);
+            }
+        }
+    }
+
+    public static void addNewCustomer() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        String name = inputName();
+        String birthday = inputBirthday();
+        String gender = inputGender();
+        String idCard = inputIDCard();
+        System.out.println("Input phone number");
+        int phoneNum = scanner.nextInt();
+        String email = inputEmail();
+        System.out.println("Input address");
+        String address = scanner.next();
+
+        Customer customer = new Customer(name, birthday, gender, idCard, phoneNum, email, address);
+        String[] array = customer.showInfo().split(COMMA);
+        writeCSV(array, CUSTOMER_CSV);
+    }
+
+    public static void showInformationCustomers() throws IOException {
+        FileReader fileReader = new FileReader(CUSTOMER_CSV);
+        BufferedReader reader = new BufferedReader(fileReader);
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+
+    public static String inputName() {
+        Scanner scanner = new Scanner(System.in);
+        final String NAME_REGEX = "^[A-Z][a-z]+(\\s[A-Z][a-z]+)+$";
+        Pattern pattern = Pattern.compile(NAME_REGEX);
+        String name;
+        try {
+            System.out.println("Input name");
+            name = scanner.nextLine();
+            Matcher matcher = pattern.matcher(name);
+            if (!matcher.matches()) throw new NameException();
+        } catch (NameException e) {
+            System.err.println("Invalid name format");
+            return inputName();
+        }
+        return name;
+    }
+
+    public static String inputEmail() {
+        Scanner scanner = new Scanner(System.in);
+        final String EMAIL_REGEX = "^\\w+@\\w+.\\w+$";
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        String email;
+        try {
+            System.out.println("Input email");
+            email = scanner.nextLine();
+            Matcher matcher = pattern.matcher(email);
+            if (!matcher.matches()) throw new EmailException();
+        } catch (EmailException e) {
+            System.err.println("Email must follow format abc@abc.abc");
+            return inputEmail();
+        }
+        return email;
+    }
+
+    public static String inputGender() {
+        Scanner scanner = new Scanner(System.in);
+        String gender;
+        try {
+            System.out.println("Input gender");
+            gender = scanner.nextLine();
+            gender = gender.toLowerCase();
+            gender = Character.toUpperCase(gender.charAt(0)) + gender.substring(1);
+            boolean isCorrect = gender.equals("Male") || gender.equals("Female") || gender.equals("Unknown");
+            if (!isCorrect) throw new GenderException();
+        } catch (GenderException e) {
+            System.err.println("Gender must be either Male, Female or Unknown");
+            return inputGender();
+        }
+        return gender;
+    }
+
+    public static String inputIDCard() {
+        Scanner scanner = new Scanner(System.in);
+        final String ID_REGEX = "\\d{3}(\\s\\d{3}){2}";
+        Pattern pattern = Pattern.compile(ID_REGEX);
+        String idCard;
+        try {
+            System.out.println("Input ID card");
+            idCard = scanner.nextLine();
+            Matcher matcher = pattern.matcher(idCard);
+            if (!matcher.matches()) throw new IdCardException();
+        } catch (IdCardException e) {
+            System.err.println("ID Card must have 9 digits and follow format XXX XXX XXX");
+            return inputIDCard();
+        }
+         return idCard;
+    }
+
+    public static String inputBirthday() {
+        Scanner scanner = new Scanner(System.in);
+        final String BIRTHDAY_REGEX = "^(\\d{2}\\/){2}\\d{4}$";
+        Pattern pattern = Pattern.compile(BIRTHDAY_REGEX);
+        String birthday;
+        int year;
+        try {
+            System.out.println("Input birthday");
+            birthday = scanner.nextLine();
+            Matcher matcher = pattern.matcher(birthday);
+            if (!matcher.matches()) throw new BirthdayException();
+
+            year = Integer.parseInt(birthday.substring(6));
+            boolean isLegit = year > 1900 && year < 2002;
+            if (!isLegit) throw new BirthdayException();
+        } catch (BirthdayException e) {
+            System.err.println("Year must greater than 1900 and smaller than current year by 18 and must follow format dd/mm/yyyy");
+            return inputBirthday();
+        }
+        return birthday;
     }
 }

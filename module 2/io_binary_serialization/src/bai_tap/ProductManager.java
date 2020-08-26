@@ -53,10 +53,10 @@ public class ProductManager {
                 findProductBy("id");
                 break;
             case 2:
-               findProductBy("name");
+                findProductBy("name");
                 break;
             case 3:
-               findProductBy("manufacturer");
+                findProductBy("manufacturer");
                 break;
             case 4:
                 findProductBy("price");
@@ -66,9 +66,9 @@ public class ProductManager {
 
     private static void findProductBy(String str) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Input "+str);
+        System.out.println("Input " + str);
         String props = scanner.next();
-        if (printItem(props)!=null) System.out.println(printItem(props));
+        if (printItem(props) != null) System.out.println(printItem(props));
         else System.out.println("Cant find product by " + str + " " + props);
     }
 
@@ -110,12 +110,12 @@ public class ProductManager {
     private static void writeProduct(Product product) throws IOException {
         String[] array = product.toString().split(",");
         try (
-                FileWriter is = new FileWriter("product.csv", true);
+                FileWriter writer = new FileWriter("product.csv", true);
         ) {
             for (int i = 0; i < array.length; i++) {
-                is.append(array[i]);
-                if (i != array.length - 1) is.append(",");
-                else is.append("\n");
+                writer.append(array[i]);
+                if (i != array.length - 1) writer.append(",");
+                else writer.append("\n");
             }
         }
     }

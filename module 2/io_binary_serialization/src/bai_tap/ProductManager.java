@@ -50,30 +50,26 @@ public class ProductManager {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                System.out.println("input id");
-                String id = scanner.next();
-                if (printItem(id) != null) System.out.println(printItem(id));
-                else System.out.println("Cant find product by id " + id);
+                findProductBy("id");
                 break;
             case 2:
-                System.out.println("input name");
-                String name = scanner.next();
-                if (printItem(name) != null) System.out.println(printItem(name));
-                else System.out.println("Cant find product by name " + name);
+               findProductBy("name");
                 break;
             case 3:
-                System.out.println("input manufacturer");
-                String manufacturer = scanner.next();
-                if (printItem(manufacturer) != null) System.out.println(printItem(manufacturer));
-                else System.out.println("Cant find product by manufacturer " + manufacturer);
+               findProductBy("manufacturer");
                 break;
             case 4:
-                System.out.println("input price");
-                String price = scanner.next();
-                if (printItem(price) != null) System.out.println(printItem(price));
-                else System.out.println("Cant find product by price " + price);
+                findProductBy("price");
                 break;
         }
+    }
+
+    private static void findProductBy(String str) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input "+str);
+        String props = scanner.next();
+        if (printItem(props)!=null) System.out.println(printItem(props));
+        else System.out.println("Cant find product by " + str + " " + props);
     }
 
     private static String printItem(String item) throws IOException {

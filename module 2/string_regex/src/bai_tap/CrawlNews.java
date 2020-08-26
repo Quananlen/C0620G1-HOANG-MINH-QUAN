@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CrawlNews {
-    public static final String TITLE_REGEX = "title=\"(\\w.*?)\"";
+    public static final String TITLE_REGEX = "<h3 class=\"title-news\"><a href=\"(.*?)\" title=\"(\\w.*?)\"";
 
     public static void main(String[] args) throws IOException {
         URL url = new URL("https://vnexpress.net/");
@@ -21,9 +21,7 @@ public class CrawlNews {
         Pattern pattern = Pattern.compile(TITLE_REGEX);
         Matcher matcher = pattern.matcher(content);
         while (matcher.find()) {
-            System.out.println(matcher.group(1));
+            System.out.println(matcher.group(2));
         }
     }
-
-
 }

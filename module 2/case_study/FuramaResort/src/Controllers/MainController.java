@@ -22,9 +22,7 @@ public class MainController {
 
     public static void main(String[] args) {
         try {
-            String bd =  inputBirthday();
-            System.out.println(bd);
-            showInformationCustomers();
+            displayMainMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }

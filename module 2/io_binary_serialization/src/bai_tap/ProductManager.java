@@ -1,18 +1,22 @@
 package bai_tap;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager {
+    public static List<Product> arrProducts = new ArrayList<>();
+
     public static void main(String[] args) {
         try {
             displayMenu();
-        } catch (IOException e) {
-            System.err.println("Something wrong");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
-    public static void displayMenu() throws IOException {
+    public static void displayMenu() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         int choice;
         System.out.println("1. Add product" + "\n" +
@@ -26,7 +30,8 @@ public class ProductManager {
                 displayMenu();
                 break;
             case 2:
-                displayProduct();
+//                displayProduct();
+                displayArrProduct();
                 displayMenu();
                 break;
             case 3:
@@ -93,6 +98,13 @@ public class ProductManager {
         }
     }
 
+    public static void displayArrProduct() throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream("arrProduct.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        List<Product> list = (List<Product>) objectInputStream.readObject();
+        for (Product item : list) System.out.println(item);
+    }
+
     public static void addProduct() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input product id");
@@ -104,7 +116,17 @@ public class ProductManager {
         System.out.println("Input price");
         double price = scanner.nextDouble();
         Product product = new Product(id, name, manufacturer, price);
+        arrProducts.add(product);
         writeProduct(product);
+        writeArrProduct(arrProducts);
+    }
+
+    public static void writeArrProduct(List<Product> arr) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream("arrProduct.txt");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(arr);
+        objectOutputStream.flush();
+        objectOutputStream.close();
     }
 
     private static void writeProduct(Product product) throws IOException {

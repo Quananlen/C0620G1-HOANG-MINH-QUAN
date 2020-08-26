@@ -1,6 +1,11 @@
 package Models;
 
-public class Customer {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Customer implements Serializable {
+    public static ArrayList<Customer> arrCustomer = new ArrayList<>();
+
     private String name;
     private String birthday;
     private String gender;

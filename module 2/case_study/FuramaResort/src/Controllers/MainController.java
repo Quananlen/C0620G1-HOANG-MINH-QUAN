@@ -7,6 +7,8 @@ import Models.Room;
 import Models.Villa;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,11 +21,13 @@ public class MainController {
     public static final String CUSTOMER_CSV = "src/Data/Customer.csv";
     public static final String COMMA = ",";
     public static final char LINE_BREAKER = '\n';
+    public static final String ARR_CUSTOMER_TXT = "src/Data/arrCustomer.txt";
 
     public static void main(String[] args) {
         try {
-            displayMainMenu();
-        } catch (IOException e) {
+            addNewCustomer();
+            showInfoCustomerInOrder();
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -334,7 +338,7 @@ public class MainController {
         }
     }
 
-    public static void addNewCustomer() throws IOException {
+    public static void addNewCustomer() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         String name = inputName();
         String birthday = inputBirthday();
@@ -347,8 +351,36 @@ public class MainController {
         String address = scanner.next();
 
         Customer customer = new Customer(name, birthday, gender, idCard, phoneNum, email, address);
+
+        FileInputStream fileInputStream = new FileInputStream(ARR_CUSTOMER_TXT);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Customer.arrCustomer = (ArrayList<Customer>) objectInputStream.readObject();
+        Customer.arrCustomer.add(customer);
+
+        writeArrCustomer(Customer.arrCustomer);
+
         String[] array = customer.showInfo().split(COMMA);
         writeCSV(array, CUSTOMER_CSV);
+    }
+
+    public static void writeArrCustomer(ArrayList<Customer> arr) throws IOException, ClassNotFoundException {
+
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream(ARR_CUSTOMER_TXT);
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+            objectOutputStream.writeObject(arr);
+        }
+    }
+
+    public static void showInfoCustomerInOrder() throws IOException, ClassNotFoundException {
+        try (
+        FileInputStream fileInputStream = new FileInputStream(ARR_CUSTOMER_TXT);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+            ArrayList<Customer> list = (ArrayList<Customer>) objectInputStream.readObject();
+            list.sort(Comparator.comparing(Customer::getName));
+            for (Customer item : list) System.out.println(item.showInfo());
+        }
+
     }
 
     public static void showInformationCustomers() throws IOException {
@@ -425,7 +457,7 @@ public class MainController {
             System.err.println("ID Card must have 9 digits and follow format XXX XXX XXX");
             return inputIDCard();
         }
-         return idCard;
+        return idCard;
     }
 
     public static String inputBirthday() {

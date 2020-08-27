@@ -1,2 +1,5 @@
-poolArea=1.0,roomStandard='1',otherExclusives='1',floors=1,id='1',ServiceType='1',usageArea=1.0,rentCost=1.0,guestAmount=1,rentType='1'
-poolArea=2.0,roomStandard='2',otherExclusives='2',floors=2,id='2',ServiceType='2',usageArea=2.0,rentCost=2.0,guestAmount=2,rentType='2'
+poolArea=31.0, roomStandard='1', otherExclusives='car', floors=1, id='SVVL-1111', ServiceType='Villa', usageArea=31.0, rentCost=31.0, guestAmount=1, rentType='1'
+poolArea=31.0, roomStandard='1', otherExclusives='car', floors=1, id='SVVL-1111', ServiceType='Vil', usageArea=31.0, rentCost=31.0, guestAmount=1, rentType='1'
+poolArea=50.0, roomStandard='5', otherExclusives='car', floors=5, id='SVVL-1111', ServiceType='Vil', usageArea=50.0, rentCost=50.0, guestAmount=5, rentType='5'
+poolArea=33.0, roomStandard='1', otherExclusives='car', floors=1, id='SVVL-2222', ServiceType='Vil', usageArea=33.0, rentCost=33.0, guestAmount=1, rentType='1'
+poolArea=31.0, roomStandard='1', otherExclusives='car', floors=1, id='SVVL-1111', ServiceType='Vo', usageArea=31.0, rentCost=31.0, guestAmount=1, rentType='1'

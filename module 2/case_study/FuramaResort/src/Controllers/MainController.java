@@ -1,15 +1,13 @@
 package Controllers;
 
 import Libs.*;
-import Models.Customer;
-import Models.House;
-import Models.Room;
-import Models.Villa;
+import Models.*;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,20 +17,24 @@ public class MainController {
     public static final String HOUSE_CSV = "src/Data/House.csv";
     public static final String VILLA_CSV = "src/Data/Villa.csv";
     public static final String CUSTOMER_CSV = "src/Data/Customer.csv";
+    public static final String BOOKING_CSV = "src/Data/Booking.csv";
     public static final String COMMA = ",";
     public static final char LINE_BREAKER = '\n';
     public static final String ARR_CUSTOMER_TXT = "src/Data/arrCustomer.txt";
+    public static final String ARR_VILLA_TXT = "src/Data/arrVilla.txt";
+    public static final String ARR_HOUSE_TXT = "src/Data/arrHouse.txt";
+    public static final String ARR_ROOM_TXT = "src/Data/arrRoom.txt";
+    public static final String ARR_BOOKING_TXT = "src/Data/arrBooking.txt";
 
     public static void main(String[] args) {
         try {
-            addNewCustomer();
-            showInfoCustomerInOrder();
+            displayMainMenu();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public static void displayMainMenu() throws IOException {
+    public static void displayMainMenu() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         int menuChoice;
         do {
@@ -40,7 +42,7 @@ public class MainController {
                     "2. Show Services" + "\n" +
                     "3. Add New Customers" + "\n" +
                     "4. Show Information of Customer" + "\n" +
-                    "5. Add New Blocking" + "\n" +
+                    "5. Add New Booking" + "\n" +
                     "6. Show Information of Employee" + "\n" +
                     "7. Exit");
             menuChoice = scanner.nextInt();
@@ -53,8 +55,17 @@ public class MainController {
                     showServices();
                     break;
                 case 3:
+                    addNewCustomer();
+                    displayMainMenu();
+                    break;
                 case 4:
+                    showInfoCustomerInOrder();
+                    displayMainMenu();
+                    break;
                 case 5:
+                    addNewBooking();
+                    displayMainMenu();
+                    break;
                 case 6:
                 case 7:
                     return;
@@ -62,7 +73,7 @@ public class MainController {
         } while (menuChoice < 1 || menuChoice > 7);
     }
 
-    public static void addNewServices() throws IOException {
+    public static void addNewServices() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         int serviceChoice;
         do {
@@ -91,6 +102,50 @@ public class MainController {
         } while (serviceChoice < 1 || serviceChoice > 5);
     }
 
+    private static void showServices() throws IOException, ClassNotFoundException {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("1. Show all Villa" + '\n' +
+                    "2. Show all House" + '\n' +
+                    "3. Show all Room" + '\n' +
+                    "4. Show all Name Villa not Duplicate" + '\n' +
+                    "5. Show all Name House not Duplicate" + '\n' +
+                    "6. Show all Name Room not Duplicate" + '\n' +
+                    "7. Back to menu" + '\n' +
+                    "8. Exit");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    showAllVilla();
+                    showServices();
+                    break;
+                case 2:
+                    showAllHouse();
+                    showServices();
+                    break;
+                case 3:
+                    showAllRoom();
+                    showServices();
+                    break;
+                case 4:
+                    showAllUnique(ARR_VILLA_TXT);
+                    break;
+                case 5:
+                    showAllUnique(ARR_HOUSE_TXT);
+                    break;
+                case 6:
+                    showAllUnique(ARR_ROOM_TXT);
+                    break;
+                case 7:
+                    displayMainMenu();
+                    break;
+                case 8:
+                    return;
+            }
+        } while (choice < 1 || choice > 8);
+    }
+
     public static void addVilla() throws IOException {
         String id = inputID("VL");
         String serviceType = inputServiceType();
@@ -106,6 +161,11 @@ public class MainController {
         Villa villa = new Villa(id, serviceType, usageArea, rentCost, guestAmount, rentType, poolArea, roomStandard, exclusives, floors);
         String[] array = villa.showInfo().split(COMMA);
         writeCSV(array, VILLA_CSV);
+
+
+        Villa.arrVilla.add(villa);
+        writeArray(Villa.arrVilla, ARR_VILLA_TXT);
+
     }
 
     public static void addHouse() throws IOException {
@@ -122,6 +182,9 @@ public class MainController {
         House house = new House(id, serviceType, usageArea, rentCost, guestAmount, rentType, roomStandard, exclusives, floors);
         String[] array = house.showInfo().split(COMMA);
         writeCSV(array, HOUSE_CSV);
+
+        House.arrHouse.add(house);
+        writeArray(House.arrHouse, ARR_HOUSE_TXT);
     }
 
     private static void addRoom() throws IOException {
@@ -136,6 +199,9 @@ public class MainController {
         Room room = new Room(id, serviceType, usageArea, rentCost, guestAmount, rentType, freeService);
         String[] array = room.showInfo().split(COMMA);
         writeCSV(array, ROOM_CSV);
+
+        Room.arrRoom.add(room);
+        writeArray(Room.arrRoom, ARR_ROOM_TXT);
     }
 
     private static String inputID(String type) {
@@ -263,50 +329,14 @@ public class MainController {
         return scanner.next();
     }
 
-    private static void showServices() throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        int choice;
-        do {
-            System.out.println("1. Show all Villa" + '\n' +
-                    "2. Show all House" + '\n' +
-                    "3. Show all Room" + '\n' +
-                    "4. Show all Name Villa not Duplicate" + '\n' +
-                    "5. Show all Name House not Duplicate" + '\n' +
-                    "6. Show all Name Room not Duplicate" + '\n' +
-                    "7. Back to menu" + '\n' +
-                    "8. Exit");
-            choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    showAllVilla();
-                    showServices();
-                    break;
-                case 2:
-                    showAllHouse();
-                    showServices();
-                    break;
-                case 3:
-                    showAllRoom();
-                    showServices();
-                    break;
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                    displayMainMenu();
-                    break;
-                case 8:
-                    return;
-            }
-        } while (choice < 1 || choice > 8);
-    }
-
     public static void showAllVilla() throws IOException {
         FileReader fileReader = new FileReader(VILLA_CSV);
         BufferedReader reader = new BufferedReader(fileReader);
         String line;
+        int i = 1;
         while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+            System.out.println("Villa " + i + ": " + line);
+            i++;
         }
     }
 
@@ -314,8 +344,10 @@ public class MainController {
         FileReader fileReader = new FileReader(HOUSE_CSV);
         BufferedReader reader = new BufferedReader(fileReader);
         String line;
+        int i = 1;
         while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+            System.out.println("House " + i + ": " + line);
+            i++;
         }
     }
 
@@ -323,8 +355,10 @@ public class MainController {
         FileReader fileReader = new FileReader(ROOM_CSV);
         BufferedReader reader = new BufferedReader(fileReader);
         String line;
+        int i = 1;
         while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+            System.out.println("Room " + i + ": " + line);
+            i++;
         }
     }
 
@@ -352,21 +386,29 @@ public class MainController {
 
         Customer customer = new Customer(name, birthday, gender, idCard, phoneNum, email, address);
 
-        FileInputStream fileInputStream = new FileInputStream(ARR_CUSTOMER_TXT);
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        Customer.arrCustomer = (ArrayList<Customer>) objectInputStream.readObject();
+        if (readArray(ARR_CUSTOMER_TXT) != null) Customer.arrCustomer = readArray(ARR_CUSTOMER_TXT);
+        assert Customer.arrCustomer != null;
         Customer.arrCustomer.add(customer);
 
-        writeArrCustomer(Customer.arrCustomer);
+        writeArray(Customer.arrCustomer, ARR_CUSTOMER_TXT);
 
         String[] array = customer.showInfo().split(COMMA);
         writeCSV(array, CUSTOMER_CSV);
     }
 
-    public static void writeArrCustomer(ArrayList<Customer> arr) throws IOException, ClassNotFoundException {
+    public static ArrayList readArray(String source) throws IOException, ClassNotFoundException {
+        File file = new File(source);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ObjectInputStream objectInputStream;
+        if (file.length() != 0) {
+            objectInputStream = new ObjectInputStream(fileInputStream);
+            return (ArrayList) objectInputStream.readObject();
+        }
+        return null;
+    }
 
-
-        try (FileOutputStream fileOutputStream = new FileOutputStream(ARR_CUSTOMER_TXT);
+    public static void writeArray(ArrayList arr, String dest) throws IOException {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(dest);
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(arr);
         }
@@ -374,21 +416,27 @@ public class MainController {
 
     public static void showInfoCustomerInOrder() throws IOException, ClassNotFoundException {
         try (
-        FileInputStream fileInputStream = new FileInputStream(ARR_CUSTOMER_TXT);
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+                FileInputStream fileInputStream = new FileInputStream(ARR_CUSTOMER_TXT);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
+        ) {
             ArrayList<Customer> list = (ArrayList<Customer>) objectInputStream.readObject();
             list.sort(Comparator.comparing(Customer::getName));
-            for (Customer item : list) System.out.println(item.showInfo());
+            int i = 1;
+            for (Customer item : list) {
+                System.out.println("Customer " + i + ": " + item.showInfo());
+                i++;
+            }
         }
-
     }
 
     public static void showInformationCustomers() throws IOException {
         FileReader fileReader = new FileReader(CUSTOMER_CSV);
         BufferedReader reader = new BufferedReader(fileReader);
         String line;
+        int i = 1;
         while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+            System.out.println("Customer " + i + ": " + line);
+            i++;
         }
     }
 
@@ -411,7 +459,7 @@ public class MainController {
 
     public static String inputEmail() {
         Scanner scanner = new Scanner(System.in);
-        final String EMAIL_REGEX = "^\\w+@\\w+.\\w+$";
+        final String EMAIL_REGEX = "^\\w+@\\w+\\.\\w+$";
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         String email;
         try {
@@ -480,5 +528,58 @@ public class MainController {
             return inputBirthday();
         }
         return birthday;
+    }
+
+    public static void addNewBooking() throws IOException, ClassNotFoundException {
+        Scanner scanner = new Scanner(System.in);
+        showInfoCustomerInOrder();
+        System.out.println("Select customer to book");
+        int customerChoice = scanner.nextInt() - 1;
+        Customer.arrCustomer = readArray(ARR_CUSTOMER_TXT);
+        Customer customer = Customer.arrCustomer.get(customerChoice);
+        int choice;
+        do {
+            System.out.println("1. Booking Villa" + LINE_BREAKER +
+                    "2. Booking House" + LINE_BREAKER +
+                    "3. Booking Room");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    showAllVilla();
+                    bookService(ARR_VILLA_TXT, customer, "Villa");
+                    break;
+                case 2:
+                    showAllHouse();
+                    bookService(ARR_HOUSE_TXT, customer, "House");
+                    break;
+                case 3:
+                    showAllRoom();
+                    bookService(ARR_ROOM_TXT, customer, "Room");
+                    break;
+            }
+        } while (choice < 1 || choice > 3);
+    }
+
+    public static void bookService(String sourceText, Customer customer, String type) throws IOException, ClassNotFoundException {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList list = readArray(sourceText);
+        System.out.println("Select " + type + " to book");
+        int choice = scanner.nextInt() - 1;
+        Services service = (Services) list.get(choice);
+        customer.setService(service);
+        ArrayList<Customer> arrBooking = new ArrayList<>();
+        if (readArray(ARR_BOOKING_TXT) != null) arrBooking = readArray(ARR_BOOKING_TXT);
+        arrBooking.add(customer);
+        writeArray(arrBooking, ARR_BOOKING_TXT);
+        String[] array = arrBooking.get(arrBooking.size() - 1).showInfo().split(",");
+        writeCSV(array, BOOKING_CSV);
+    }
+
+    public static void showAllUnique(String source) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(source);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        ArrayList<Services> arr = (ArrayList<Services>) objectInputStream.readObject();
+        TreeSet<Services> tree = new TreeSet<>(arr);
+        for (Services element : tree) System.out.println(element.showInfo());
     }
 }

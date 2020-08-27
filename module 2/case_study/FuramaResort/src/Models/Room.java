@@ -1,6 +1,10 @@
 package Models;
 
+import java.util.ArrayList;
+
 public class Room extends Services {
+    public static ArrayList<Room> arrRoom = new ArrayList<>();
+
     private String freeService;
 
     public Room() {
@@ -22,5 +26,8 @@ public class Room extends Services {
                 ", rentType='" + rentType + '\'';
     }
 
-
+    @Override
+    public int compareTo(Services o) {
+        return this.getId().compareTo(o.getId());
+    }
 }

@@ -1,6 +1,10 @@
 package Models;
 
+import java.util.ArrayList;
+
 public class House extends Services {
+    public static ArrayList<House> arrHouse = new ArrayList<>();
+
     private String roomStandard;
     private String otherExclusives;
     private int floors;
@@ -30,5 +34,10 @@ public class House extends Services {
                 ", rentCost=" + rentCost +
                 ", guestAmount=" + guestAmount +
                 ", rentType='" + rentType + '\'';
+    }
+
+    @Override
+    public int compareTo(Services o) {
+        return this.getId().compareTo(o.getId());
     }
 }

@@ -1,13 +1,16 @@
 package Models;
 
-public abstract class Services {
+import java.io.Serializable;
+import java.util.Comparator;
+
+public abstract class Services implements Serializable, Comparable<Services> {
     protected String id;
     protected String ServiceType;
     protected double usageArea;
     protected double rentCost;
     protected int guestAmount;
     protected String rentType;
-    abstract String showInfo();
+    public abstract String showInfo();
 
     public Services(String id, String serviceType, double usageArea, double rentCost, int guestAmount, String rentType) {
         this.id = id;

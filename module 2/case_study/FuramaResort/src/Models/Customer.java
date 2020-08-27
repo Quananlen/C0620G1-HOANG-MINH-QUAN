@@ -84,14 +84,31 @@ public class Customer implements Serializable {
         this.address = address;
     }
 
+    public Services getService() {
+        return service;
+    }
+
+    public void setService(Services service) {
+        this.service = service;
+    }
+
     public String showInfo() {
-        return "name='" + name + '\'' +
+        if (service == null) return "name='" + name + '\'' +
                 ", birthday='" + birthday + '\'' +
                 ", gender='" + gender + '\'' +
                 ", id=" + id +
                 ", phoneNum=" + phoneNum +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'';
+
+        return "name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", id=" + id +
+                ", phoneNum=" + phoneNum +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", service={" + service.showInfo() + '}';
     }
 
 

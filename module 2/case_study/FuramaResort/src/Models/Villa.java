@@ -28,8 +28,6 @@ public class Villa extends Services {
         this.floors = floors;
     }
 
-
-
     @Override
     public String showInfo() {
         return "poolArea=" + poolArea +

@@ -4,10 +4,7 @@ import Libs.*;
 import Models.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +15,7 @@ public class MainController {
     public static final String VILLA_CSV = "src/Data/Villa.csv";
     public static final String CUSTOMER_CSV = "src/Data/Customer.csv";
     public static final String BOOKING_CSV = "src/Data/Booking.csv";
+    public static final String EMPLOYEE_CSV = "src/Data/Employee.csv";
     public static final String COMMA = ",";
     public static final char LINE_BREAKER = '\n';
     public static final String ARR_CUSTOMER_TXT = "src/Data/arrCustomer.txt";
@@ -25,6 +23,8 @@ public class MainController {
     public static final String ARR_HOUSE_TXT = "src/Data/arrHouse.txt";
     public static final String ARR_ROOM_TXT = "src/Data/arrRoom.txt";
     public static final String ARR_BOOKING_TXT = "src/Data/arrBooking.txt";
+    public static final String TREE_EMPLOYEE_TXT = "src/Data/treeEmployee.txt";
+    public static final String TICKET_TXT = "src/Data/Ticket.txt";
 
     public static void main(String[] args) {
         try {
@@ -44,7 +44,9 @@ public class MainController {
                     "4. Show Information of Customer" + "\n" +
                     "5. Add New Booking" + "\n" +
                     "6. Show Information of Employee" + "\n" +
-                    "7. Exit");
+                    "7. Buy ticket" + "\n" +
+                    "8. Find Employee" + "\n" +
+                    "9. Exit");
             menuChoice = scanner.nextInt();
             switch (menuChoice) {
                 case 1:
@@ -67,7 +69,15 @@ public class MainController {
                     displayMainMenu();
                     break;
                 case 6:
+                    showEmployees();
+                    displayMainMenu();
                 case 7:
+                    buyTicket();
+                    displayMainMenu();
+                case 8:
+                    findEmployee();
+                    displayMainMenu();
+                case 9:
                     return;
             }
         } while (menuChoice < 1 || menuChoice > 7);
@@ -581,5 +591,130 @@ public class MainController {
         ArrayList<Services> arr = (ArrayList<Services>) objectInputStream.readObject();
         TreeSet<Services> tree = new TreeSet<>(arr);
         for (Services element : tree) System.out.println(element.showInfo());
+    }
+
+    public static void showEmployees() throws IOException {
+        try (FileReader fileReader = new FileReader(EMPLOYEE_CSV);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String line;
+            String[] array;
+            while ((line = bufferedReader.readLine()) != null) {
+                array = line.split(",");
+                Employee employee = new Employee(array[0], array[1], Integer.parseInt(array[2]), array[3]);
+                Employee.treeEmployee.put(array[0], employee);
+            }
+            for (Map.Entry<String, Employee> employee : Employee.treeEmployee.entrySet()) {
+                StringBuilder str = new StringBuilder();
+                str.append("ID ").append(employee.getKey()).append(": ").append(employee.getValue());
+                System.out.println(str);
+            }
+        }
+    }
+
+    public static void buyTicket() throws IOException, ClassNotFoundException {
+        Scanner scanner = new Scanner(System.in);
+        showInfoCustomerInOrder();
+        Customer.arrCustomer = readArray(ARR_CUSTOMER_TXT);
+        System.out.println("Select customer to buy ticket");
+        int choice = scanner.nextInt() - 1;
+        ObjectInputStream objectInputStream;
+        File file = new File(TICKET_TXT);
+        if (file.length() != 0) {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            objectInputStream = new ObjectInputStream(fileInputStream);
+            Cinema.queue = (Queue<Customer>) objectInputStream.readObject();
+        }
+
+        if (Cinema.queue.size() < 2) {
+            Cinema.queue.offer(Customer.arrCustomer.get(choice));
+            FileOutputStream fileOutputStream = new FileOutputStream(TICKET_TXT);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(Cinema.queue);
+        } else {
+            System.out.println("All tickets sold. List of customers:");
+            for (Customer customer : Cinema.queue) {
+                System.out.println(customer.showInfo());
+            }
+        }
+    }
+
+    public static void findEmployee() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        boolean isFounded = false;
+        System.out.println("Find employee by:\n" +
+                "1. id\n" +
+                "2. name\n" +
+                "3. age\n" +
+                "4. address\n");
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                System.out.println("input id");
+                scanner.skip("\\R");
+                String id = scanner.nextLine();
+                isFounded = findEmployeeBy("id", id);
+                break;
+            case 2:
+                System.out.println("input name");
+                scanner.skip("\\R");
+                String name = scanner.nextLine();
+                isFounded = findEmployeeBy("name", name);
+                break;
+            case 3:
+                System.out.println("input age");
+                scanner.skip("\\R");
+                String age = scanner.nextLine();
+                isFounded =  findEmployeeBy("age", age);
+                break;
+            case 4:
+                System.out.println("input address");
+                scanner.skip("\\R");
+                String address = scanner.nextLine();
+                isFounded = findEmployeeBy("address", address);
+                break;
+        }
+        if (!isFounded) System.out.println("Can't find employee");
+    }
+
+    public static boolean findEmployeeBy(String property, String value) throws IOException {
+        FileReader fileReader = new FileReader((EMPLOYEE_CSV));
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        Cabinet.stack.clear();
+        boolean isFounded = false;
+        String line;
+        String[] array;
+        while ((line = bufferedReader.readLine()) != null) {
+            array = line.split(",");
+            Employee employee = new Employee(array[0], array[1], Integer.parseInt(array[2]), array[3]);
+            Cabinet.stack.add(employee);
+        }
+        for (Employee employee : Cabinet.stack) {
+            switch (property) {
+                case "id":
+                    if (employee.getId().equals(value)) {
+                        isFounded = true;
+                        System.out.println(employee);
+                    }
+                    break;
+                case "name":
+                    if (employee.getName().equals(value)) {
+                        isFounded = true;
+                        System.out.println(employee);
+                    }
+                    break;
+                case "age":
+                    if (String.valueOf(employee.getAge()).equals(value)) {
+                        isFounded = true;
+                        System.out.println(employee);
+                    }
+                    break;
+                case "address":
+                    if (employee.getAddress().equals(value))
+                        isFounded = true;
+                    System.out.println(employee);
+                    break;
+            }
+        }
+        return isFounded;
     }
 }

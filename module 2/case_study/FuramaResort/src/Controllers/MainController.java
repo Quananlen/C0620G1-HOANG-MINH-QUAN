@@ -1,6 +1,8 @@
 package Controllers;
 
 import Commons.*;
+import Views.Find;
+import Views.Show;
 
 import java.io.*;
 import java.util.*;

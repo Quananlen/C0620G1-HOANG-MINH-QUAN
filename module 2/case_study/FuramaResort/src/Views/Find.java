@@ -1,5 +1,6 @@
-package Commons;
+package Views;
 
+import Commons.SourcePath;
 import Models.Cabinet;
 import Models.Employee;
 

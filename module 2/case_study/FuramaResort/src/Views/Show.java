@@ -1,5 +1,6 @@
-package Commons;
+package Views;
 
+import Commons.SourcePath;
 import Controllers.MainController;
 import Models.Customer;
 import Models.Employee;

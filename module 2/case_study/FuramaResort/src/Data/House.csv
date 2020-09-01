@@ -1,1 +1,1 @@
-roomStandard='1', otherExclusives='massage', floors=1, id='SVHO-1111', ServiceType='House', usageArea=31.0, rentCost=31.0, guestAmount=1, rentType='1'
+roomStandard='4', otherExclusives='food', floors=1, id='SVHO-1111', ServiceType='Hous', usageArea=50.0, rentCost=50.0, guestAmount=4, rentType='4'

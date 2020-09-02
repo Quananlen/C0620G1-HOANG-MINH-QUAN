@@ -13,19 +13,17 @@ public class MakeAction {
             }
         });
         listCommand.put("define", new Command() {
-                    @Override
-                    public String doService(String params, String keyword) throws IOException, ClassNotFoundException {
-                        return Service.getInstance().define(params, keyword);
-                    }
-                }
-        );
+            @Override
+            public String doService(String params, String keyword) throws IOException, ClassNotFoundException {
+                return Service.getInstance().define(params, keyword);
+            }
+        });
         listCommand.put("drop", new Command() {
-                    @Override
-                    public String doService(String params, String keyword) throws IOException, ClassNotFoundException {
-                        return Service.getInstance().drop(keyword);
-                    }
-                }
-        );
+            @Override
+            public String doService(String params, String keyword) throws IOException, ClassNotFoundException {
+                return Service.getInstance().drop(keyword);
+            }
+        });
         listCommand.put("export", new Command() {
             @Override
             public String doService(String params, String keyword) throws IOException, ClassNotFoundException {

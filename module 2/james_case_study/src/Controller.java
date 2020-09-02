@@ -3,10 +3,21 @@ import java.util.Scanner;
 
 public class Controller {
 
+    public static String handleRequest2() throws IOException, ClassNotFoundException {
+        Request request = makeRequest();
+        String action = request.getAction();
+        String params = request.getParams();
+        String keyword = request.getKeyword();
+        MakeAction makeAction = new MakeAction();
+        String result = makeAction.action(action, params, keyword);
+        System.out.println(result);
+        return handleRequest2();
+    }
+
     public static void handleRequest() throws IOException, ClassNotFoundException {
         Request request = makeRequest();
         String action = request.getAction();
-        String keyword = request.keyword;
+        String keyword = request.getKeyword();
 
         switch (action) {
             case "lookup":
@@ -14,7 +25,7 @@ public class Controller {
                 handleRequest();
                 break;
             case "define":
-                Service.getInstance().define(request.getParams(), request.getKeyword());
+                System.out.println(Service.getInstance().define(request.getParams(), request.getKeyword()));
                 handleRequest();
                 break;
             case "drop":
@@ -37,10 +48,16 @@ public class Controller {
             System.out.print("Action: ");
             action = scanner.nextLine();
             arr = action.split(" ");
-        } while (!arr[0].matches(ACTION));
+            if (arr[0].matches(ACTION)) break;
+            else System.out.println("Invalid Action!");
+        } while (true);
+
         if (arr[0].equals("define")) {
             if (arr[1].matches(DEFINE)) return new Request(arr[0], arr[1], arr[2]);
-            else return makeRequest();
+            else {
+                System.out.println("Invalid word class!");
+                return makeRequest();
+            }
         }
         return new Request(arr[0],arr[1]);
     }

@@ -10,7 +10,6 @@ public class Synonyms implements IEntities, Serializable {
         this.synonyms = synonyms;
         System.out.print("Input synonyms: ");
         this.meaning = scanner.nextLine();
-        System.out.println("Saved!");
     }
 
     @Override

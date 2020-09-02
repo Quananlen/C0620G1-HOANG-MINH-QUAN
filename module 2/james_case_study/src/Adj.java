@@ -10,7 +10,6 @@ public class Adj implements IEntities, Serializable {
         this.adj = adj;
         System.out.print("Adj definition: ");
         this.meaning = scanner.nextLine();
-        System.out.println("Saved!");
     }
 
     @Override

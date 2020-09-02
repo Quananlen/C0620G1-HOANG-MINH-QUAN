@@ -2,7 +2,13 @@
 Adjective: đẹp"
 "@car
 Noun: xe"
-"@dog
-Noun: chó"
+"@high
+Adjective: cao"
+"@mouse
+Noun: chuột"
+"@run
+Verb: chạy"
+"@sleep
+Verb: ngủ"
 "@swim
 Verb: bơi"

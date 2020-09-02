@@ -1,7 +1,9 @@
 import com.opencsv.CSVWriter;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class Service {
@@ -11,11 +13,11 @@ public class Service {
     private Service() {
     }
 
-    public static Service getInstance(){
+    public static Service getInstance() {
         return instance;
     }
 
-    public void define(String type, String word) throws IOException, ClassNotFoundException {
+    public String define(String type, String word) throws IOException, ClassNotFoundException {
         if (lookup(word).equals("not exist")) {
             System.out.println("@" + word + " is not existed in database, created new one!");
             EntitiesFactory factory = new EntitiesFactory();
@@ -23,8 +25,9 @@ public class Service {
             TreeMap<String, IEntities> list = readTXT();
             list.put(entities.getWord(), entities);
             writeTXT(list);
+            return "Saved!";
         } else {
-            System.out.println(word + " is already existed, cant define");
+            return "@" + word + " is already existed, cant define!";
         }
     }
 
@@ -45,6 +48,8 @@ public class Service {
 
     public String export(String path) throws IOException, ClassNotFoundException {
         TreeMap<String, IEntities> list = readTXT();
+        //remove key with null value
+        list.values().removeIf(Objects::isNull);
         File file = new File(path);
         FileWriter fileWriter = new FileWriter(file);
         CSVWriter writer = new CSVWriter(fileWriter);

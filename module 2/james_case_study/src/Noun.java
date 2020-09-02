@@ -10,7 +10,6 @@ public class Noun implements IEntities, Serializable {
         this.noun = noun;
         System.out.print("Noun definition: ");
         this.meaning = scanner.nextLine();
-        System.out.println("Saved!");
     }
 
     @Override

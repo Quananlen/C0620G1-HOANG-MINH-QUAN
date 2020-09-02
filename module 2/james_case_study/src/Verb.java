@@ -8,9 +8,8 @@ public class Verb implements IEntities, Serializable {
     public Verb(String verb) {
         Scanner scanner = new Scanner(System.in);
         this.verb = verb;
-        System.out.print("Noun definition: ");
+        System.out.print("Verb definition: ");
         this.meaning = scanner.nextLine();
-        System.out.println("Saved!");
     }
 
     @Override

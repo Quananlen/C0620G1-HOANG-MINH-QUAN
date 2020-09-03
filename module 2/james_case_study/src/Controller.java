@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Controller {
 
-    public static String handleRequest2() throws IOException, ClassNotFoundException {
+    public static void handleRequest2() throws IOException, ClassNotFoundException {
         Request request = makeRequest();
         String action = request.getAction();
         String params = request.getParams();
@@ -11,7 +11,7 @@ public class Controller {
         MakeAction makeAction = new MakeAction();
         String result = makeAction.action(action, params, keyword);
         System.out.println(result);
-        return handleRequest2();
+        handleRequest2();
     }
 
     public static void handleRequest() throws IOException, ClassNotFoundException {
@@ -22,20 +22,19 @@ public class Controller {
         switch (action) {
             case "lookup":
                 System.out.println(Service.getInstance().lookup(keyword));
-                handleRequest();
                 break;
             case "define":
                 System.out.println(Service.getInstance().define(request.getParams(), request.getKeyword()));
-                handleRequest();
                 break;
             case "drop":
                 System.out.println(Service.getInstance().drop(keyword));
-                handleRequest();
                 break;
             case "export":
                 System.out.println(Service.getInstance().export(keyword));
                 break;
         }
+
+        handleRequest();
     }
 
     public static Request makeRequest() {

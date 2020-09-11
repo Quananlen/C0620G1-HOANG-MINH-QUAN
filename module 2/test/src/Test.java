@@ -8,20 +8,16 @@ public class Test {
 
    }
 
-   public interface hehe {
-
+   public void hehe(void) {
+        return void;
    }
 
 
 
-    public static final void main(String[] args) {
-        Test t = new Test();
-        t.abc();
-        try {
+    public static  void main(String[] args) {
 
-        } finally {
 
-        }
+
     }
 
 

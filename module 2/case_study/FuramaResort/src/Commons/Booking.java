@@ -3,7 +3,6 @@ package Commons;
 import Models.Cinema;
 import Models.Customer;
 import Models.Services;
-import Views.Show;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,15 +18,18 @@ public class Booking {
         int choice = scanner.nextInt() - 1;
         Services service = (Services) list.get(choice);
         customer.setService(service);
+
         ArrayList<Customer> arrBooking = new ArrayList<>();
         if (File.readArray(SourcePath.ARR_BOOKING_TXT) != null) arrBooking = File.readArray(SourcePath.ARR_BOOKING_TXT);
         arrBooking.add(customer);
+
         File.writeArray(arrBooking, SourcePath.ARR_BOOKING_TXT);
         String[] array = arrBooking.get(arrBooking.size() - 1).showInfo().split(",");
         File.writeCSV(array, SourcePath.BOOKING_CSV);
     }
 
     public static void buyTicket() throws IOException, ClassNotFoundException {
+        final int MAX_SEATS = 3;
         Scanner scanner = new Scanner(System.in);
         Show.showInfoCustomerInOrder();
         Customer.arrCustomer = File.readArray(SourcePath.ARR_CUSTOMER_TXT);
@@ -41,11 +43,12 @@ public class Booking {
             Cinema.queue = (Queue<Customer>) objectInputStream.readObject();
         }
 
-        if (Cinema.queue.size() < 2) {
+        if (Cinema.queue.size() < MAX_SEATS) {
             Cinema.queue.offer(Customer.arrCustomer.get(choice));
-            FileOutputStream fileOutputStream = new FileOutputStream(SourcePath.TICKET_TXT);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(Cinema.queue);
+            try (FileOutputStream fileOutputStream = new FileOutputStream(SourcePath.TICKET_TXT);
+                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+                objectOutputStream.writeObject(Cinema.queue);
+            }
         } else {
             System.out.println("All tickets sold. List of customers:");
             for (Customer customer : Cinema.queue) {

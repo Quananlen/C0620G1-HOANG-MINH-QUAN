@@ -5,7 +5,6 @@ import Models.Customer;
 import Models.House;
 import Models.Room;
 import Models.Villa;
-import Views.Show;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -41,16 +40,16 @@ public class Add {
     }
 
     public static void addVilla() throws IOException {
-        String id = Input.inputID("VL");
-        String serviceType = Input.inputServiceType();
-        double usageArea = Input.inputUsageArea();
-        double poolArea = Input.inputPoolArea();
-        double rentCost = Input.inputRentCost();
-        int guestAmount = Input.inputGuestAmount();
-        String rentType = Input.inputRentType();
-        String roomStandard = Input.inputRoomStandard();
-        int floors = Input.inputFloors();
-        String exclusives = Input.inputExclusives();
+        String id = Validate.inputID("VL");
+        String serviceType = Validate.inputServiceType();
+        double usageArea = Validate.inputUsageArea();
+        double poolArea = Validate.inputPoolArea();
+        double rentCost = Validate.inputRentCost();
+        int guestAmount = Validate.inputGuestAmount();
+        String rentType = Validate.inputRentType();
+        String roomStandard = Validate.inputRoomStandard();
+        int floors = Validate.inputFloors();
+        String exclusives = Validate.inputExclusives();
 
         Villa villa = new Villa(id, serviceType, usageArea, rentCost, guestAmount, rentType, poolArea, roomStandard, exclusives, floors);
         String[] array = villa.showInfo().split(SourcePath.COMMA);
@@ -63,15 +62,15 @@ public class Add {
     }
 
     public static void addHouse() throws IOException {
-        String id = Input.inputID("HO");
-        String serviceType = Input.inputServiceType();
-        double usageArea = Input.inputUsageArea();
-        double rentCost = Input.inputRentCost();
-        int guestAmount = Input.inputGuestAmount();
-        String rentType = Input.inputRentType();
-        String roomStandard = Input.inputRoomStandard();
-        String exclusives = Input.inputExclusives();
-        int floors = Input.inputFloors();
+        String id = Validate.inputID("HO");
+        String serviceType = Validate.inputServiceType();
+        double usageArea = Validate.inputUsageArea();
+        double rentCost = Validate.inputRentCost();
+        int guestAmount = Validate.inputGuestAmount();
+        String rentType = Validate.inputRentType();
+        String roomStandard = Validate.inputRoomStandard();
+        String exclusives = Validate.inputExclusives();
+        int floors = Validate.inputFloors();
 
         House house = new House(id, serviceType, usageArea, rentCost, guestAmount, rentType, roomStandard, exclusives, floors);
         String[] array = house.showInfo().split(SourcePath.COMMA);
@@ -82,13 +81,13 @@ public class Add {
     }
 
     public static void addRoom() throws IOException {
-        String id = Input.inputID("RO");
-        String serviceType = Input.inputServiceType();
-        double usageArea = Input.inputUsageArea();
-        double rentCost = Input.inputRentCost();
-        int guestAmount = Input.inputGuestAmount();
-        String rentType = Input.inputRentType();
-        String freeService = Input.inputFreeService();
+        String id = Validate.inputID("RO");
+        String serviceType = Validate.inputServiceType();
+        double usageArea = Validate.inputUsageArea();
+        double rentCost = Validate.inputRentCost();
+        int guestAmount = Validate.inputGuestAmount();
+        String rentType = Validate.inputRentType();
+        String freeService = Validate.inputFreeService();
 
         Room room = new Room(id, serviceType, usageArea, rentCost, guestAmount, rentType, freeService);
         String[] array = room.showInfo().split(SourcePath.COMMA);
@@ -100,13 +99,13 @@ public class Add {
 
     public static void addNewCustomer() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
-        String name = Input.inputName();
-        String birthday = Input.inputBirthday();
-        String gender = Input.inputGender();
-        String idCard = Input.inputIDCard();
+        String name = Validate.inputName();
+        String birthday = Validate.inputBirthday();
+        String gender = Validate.inputGender();
+        String idCard = Validate.inputIDCard();
         System.out.println("Input phone number");
         int phoneNum = scanner.nextInt();
-        String email = Input.inputEmail();
+        String email = Validate.inputEmail();
         System.out.println("Input address");
         String address = scanner.next();
 

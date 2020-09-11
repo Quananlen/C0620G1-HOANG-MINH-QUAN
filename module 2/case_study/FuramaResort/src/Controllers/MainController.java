@@ -1,21 +1,13 @@
 package Controllers;
 
 import Commons.*;
-import Views.Find;
-import Views.Show;
+import Commons.Find;
+import Commons.Show;
 
 import java.io.*;
 import java.util.*;
 
 public class MainController {
-
-    public static void main(String[] args) {
-        try {
-            displayMainMenu();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void displayMainMenu() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
@@ -63,7 +55,7 @@ public class MainController {
                 case 9:
                     return;
             }
-        } while (menuChoice < 1 || menuChoice > 7);
+        } while (menuChoice < 1 || menuChoice > 9);
     }
 
 }

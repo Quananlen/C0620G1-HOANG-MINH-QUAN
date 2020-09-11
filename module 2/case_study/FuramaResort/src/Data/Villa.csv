@@ -1,0 +1,4 @@
+poolArea=31.0, roomStandard='Aaa', otherExclusives='car', floors=1, id='SVVL-0001', ServiceType='Villa', usageArea=31.0, rentCost=20.0, guestAmount=19, rentType='Aaa'
+poolArea=50.0, roomStandard='Asds', otherExclusives='food', floors=3, id='SVVL-2222', ServiceType='Villa', usageArea=50.0, rentCost=50.0, guestAmount=15, rentType='Asd'
+poolArea=31.0, roomStandard='Aaa', otherExclusives='car', floors=1, id='SVVL-0001', ServiceType='Villa', usageArea=31.0, rentCost=20.0, guestAmount=19, rentType='Aaa'
+poolArea=50.0, roomStandard='Asds', otherExclusives='food', floors=3, id='SVVL-2222', ServiceType='Villa', usageArea=50.0, rentCost=50.0, guestAmount=15, rentType='Asd'

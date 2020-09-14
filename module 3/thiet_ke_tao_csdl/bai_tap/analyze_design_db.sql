@@ -1,102 +1,104 @@
-drop database if exists analyze_design_db;
-create database analyze_design_db;
-use analyze_design_db;
+DROP DATABASE IF EXISTS analyze_design_db;
+CREATE DATABASE analyze_design_db;
+USE analyze_design_db;
 
-create table customers (
-	customerNumber int primary key,
-    customerName varchar(50) not null,
-    contactLastName varchar(50) not null,
-    contactFirstName varchar(50) not null,
-    phone varchar(50) not null,
-    addressLine1 varchar(50) not null,
-    addressLine2 varchar(50),
-    city varchar(50) not null,
-    state varchar(50) not null,
-    postalCode varchar(15) not null,
-    country varchar(50) not null,
-    creditLimit int
+CREATE TABLE customers (
+    customerNumber INT PRIMARY KEY,
+    customerName VARCHAR(50) NOT NULL,
+    contactLastName VARCHAR(50) NOT NULL,
+    contactFirstName VARCHAR(50) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    addressLine1 VARCHAR(50) NOT NULL,
+    addressLine2 VARCHAR(50),
+    city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    postalCode VARCHAR(15) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    creditLimit INT
 );
 
-create table orders (
-	orderNumber int primary key,
-	orderDate date not null,
-    requiredDate date not null,
-    shippedDate date,
-    `status` varchar(15) not null,
-    comments text,
-    quantityOrdered int not null,
-    priceEach int not null,
-    customerNumber int
+CREATE TABLE orders (
+    orderNumber INT PRIMARY KEY,
+    orderDate DATE NOT NULL,
+    requiredDate DATE NOT NULL,
+    shippedDate DATE,
+    `status` VARCHAR(15) NOT NULL,
+    comments TEXT,
+    quantityOrdered INT NOT NULL,
+    priceEach INT NOT NULL,
+    customerNumber INT
 );
 
-create table payments (
-	customerNumber int primary key,
-    checkNumber varchar(50) not null,
-    paymentDate date not null,
-    amount double not null
+CREATE TABLE payments (
+    customerNumber INT PRIMARY KEY,
+    checkNumber VARCHAR(50) NOT NULL,
+    paymentDate DATE NOT NULL,
+    amount DOUBLE NOT NULL
 );
 
-create table products (
-	productCode varchar(15) primary key,
-	productName varchar(70) not null,
-    productScale varchar(10) not null,
-    productVendor varchar(50) not null,
-    productDescription text not null,
-    quantityInStock int not null,
-    buyPrice double not null,
-    MSRP double not null
+CREATE TABLE products (
+    productCode VARCHAR(15) PRIMARY KEY,
+    productName VARCHAR(70) NOT NULL,
+    productScale VARCHAR(10) NOT NULL,
+    productVendor VARCHAR(50) NOT NULL,
+    productDescription TEXT NOT NULL,
+    quantityInStock INT NOT NULL,
+    buyPrice DOUBLE NOT NULL,
+    MSRP DOUBLE NOT NULL
 );
 
-create table productsLine (
-	productLine varchar(50) primary key,
-    textDescription text,
-    image varchar(255)
+CREATE TABLE productsLine (
+    productLine VARCHAR(50) PRIMARY KEY,
+    textDescription TEXT,
+    image VARCHAR(255)
 );
 
-create table employees (
-	employeeNumber int primary key,
-	lastName varchar(50) not null,
-    firstName varchar(50) not null,
-    email varchar(100) not null,
-    jobTitle varchar(50) not null
+CREATE TABLE employees (
+    employeeNumber INT PRIMARY KEY,
+    lastName VARCHAR(50) NOT NULL,
+    firstName VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    jobTitle VARCHAR(50) NOT NULL
 );
 
-create table offices (
-	officeCode varchar(10) primary key,
-    city varchar(50) not null,
-    phone varchar(50) not null,
-    addressLine1 varchar(50) not null,
-    addressLine2 varchar(50),
-    state varchar(50),
-    country varchar(50) not null,
-    postalCode varchar(15) not null
+CREATE TABLE offices (
+    officeCode VARCHAR(10) PRIMARY KEY,
+    city VARCHAR(50) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    addressLine1 VARCHAR(50) NOT NULL,
+    addressLine2 VARCHAR(50),
+    state VARCHAR(50),
+    country VARCHAR(50) NOT NULL,
+    postalCode VARCHAR(15) NOT NULL
 );
 
-create table order_details(
-	orderNumber int,
-    productCode varchar(15),
-    primary key(orderNumber, productCode),
-    foreign key (orderNumber) references orders(orderNumber),   
-    foreign key (productCode) references products(productCode)
+CREATE TABLE order_details (
+    orderNumber INT,
+    productCode VARCHAR(15),
+    PRIMARY KEY (orderNumber , productCode),
+    FOREIGN KEY (orderNumber)
+        REFERENCES orders (orderNumber),
+    FOREIGN KEY (productCode)
+        REFERENCES products (productCode)
 );
 
-alter table orders
-	add foreign key (customerNumber) references customers(customerNumber);
+ALTER TABLE orders
+	ADD FOREIGN KEY (customerNumber) REFERENCES customers(customerNumber);
     
-alter table payments
-	add foreign key (customerNumber) references customers(customerNumber);
+ALTER TABLE payments
+	ADD FOREIGN KEY (customerNumber) REFERENCES customers(customerNumber);
     
-alter table products
-	add productLine varchar(50),
-    add foreign key (productLine) references productsLine(productLine);
+ALTER TABLE products
+	ADD productLine VARCHAR(50),
+    ADD FOREIGN KEY (productLine) REFERENCES productsLine(productLine);
     
-alter table customers
-    add salesRepEmployeeNumber int,
-    add foreign key (salesRepEmployeeNumber) references employees(employeeNumber);
+ALTER TABLE customers
+    ADD salesRepEmployeeNumber INT,
+    ADD FOREIGN KEY (salesRepEmployeeNumber) REFERENCES employees(employeeNumber);
 
-alter table employees
-	add reportTo int,
-    add foreign key (reportTo) references employees(employeeNumber),
-    add officeCode varchar(10),
-    add foreign key (officeCode) references offices(officeCode);
+ALTER TABLE employees
+	ADD reportTo INT,
+    ADD FOREIGN KEY (reportTo) REFERENCES employees(employeeNumber),
+    ADD officeCode VARCHAR(10),
+    ADD FOREIGN KEY (officeCode) REFERENCES offices(officeCode);
 

@@ -1,112 +1,111 @@
-drop database if exists furama_resort;
-create database furama_resort;
-use furama_resort;
+DROP DATABASE IF EXISTS furama_resort;
+CREATE DATABASE furama_resort;
+USE furama_resort;
 
-create table `position`(
-	id int primary key,
-    position_name varchar(45)
+CREATE TABLE `position`(
+	id INT PRIMARY KEY,
+    position_name VARCHAR(45)
 );
 
-create table education(
-	id int primary key,
-    education_name varchar(45)
+CREATE TABLE education(
+	id INT PRIMARY KEY,
+    education_name VARCHAR(45)
 );
 
-create table department(
-	id int primary key,
-    department_name varchar(45)
+CREATE TABLE department(
+	id INT PRIMARY KEY,
+    department_name VARCHAR(45)
 );
 
-create table employee(
-	id int primary key,
-    `name` varchar(45),
-    position_id int,
-    education_id int,
-    department_id int,
-    date_of_birth date,
-    id_card_number varchar(45),
-    salary varchar(45),
-    phone varchar(45),
-    email varchar(45),
-    address varchar(45),
-    foreign key (position_id) references `position`(id),
-    foreign key (education_id) references education(id),
-    foreign key (department_id) references department(id)
+CREATE TABLE employee(
+	id INT PRIMARY KEY,
+    `name` VARCHAR(45),
+    position_id INT,
+    education_id INT,
+    department_id INT,
+    date_of_birth DATE,
+    id_card_number VARCHAR(45),
+    salary VARCHAR(45),
+    phone VARCHAR(45),
+    email VARCHAR(45),
+    address VARCHAR(45),
+    FOREIGN KEY (position_id) REFERENCES `position`(id),
+    FOREIGN KEY (education_id) REFERENCES education(id),
+    FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
-create table customer_type(
-	id int primary key,
-    customer_type_name varchar(45)
+CREATE TABLE customer_type(
+	id INT PRIMARY KEY,
+    customer_type_name VARCHAR(45)
 );
 
-create table customer(
-	id int primary key,
-    customer_type_id int,
-    `name` varchar(45),
-    date_of_birth date,
-	id_card_number varchar(45),
-    phone varchar(45),
-    email varchar(45),
-    address varchar(45),
-    foreign key (customer_type_id) references customer_type(id)
+CREATE TABLE customer(
+	id INT PRIMARY KEY,
+    customer_type_id INT,
+    `name` VARCHAR(45),
+    date_of_birth DATE,
+	id_card_number VARCHAR(45),
+    phone VARCHAR(45),
+    email VARCHAR(45),
+    address VARCHAR(45),
+    FOREIGN KEY (customer_type_id) REFERENCES customer_type(id)
 );
 
-create table rent_type(
-	id int primary key,
-    `name` varchar(45),
-    price int
+CREATE TABLE rent_type(
+	id INT PRIMARY KEY,
+    `name` VARCHAR(45),
+    price INT
 );
 
-create table service_type(
-	id int primary key,
-    `name` varchar(45)
+CREATE TABLE service_type(
+	id INT PRIMARY KEY,
+    `name` VARCHAR(45)
 );	
 
-create table service(
-	id int primary key,
-    `name` varchar(45),
-    area int,
-    floor int,
-    max_amount varchar(45),
-    rent_cost varchar(45),
-    service_type_id int,
-    rent_type_id int,
-    `status` varchar(45),
-    foreign key (rent_type_id) references rent_type(id),
-    foreign key (service_type_id) references service_type(id)    
+CREATE TABLE service(
+	id INT PRIMARY KEY,
+    `name` VARCHAR(45),
+    area INT,
+    floor INT,
+    max_amount VARCHAR(45),
+    rent_cost VARCHAR(45),
+    service_type_id INT,
+    rent_type_id INT,
+    `status` VARCHAR(45),
+    FOREIGN KEY (rent_type_id) REFERENCES rent_type(id),
+    FOREIGN KEY (service_type_id) REFERENCES service_type(id)    
 );
 
-create table extra_service(
-	id int primary key,
-    `name` varchar(45),
-    price int,
-    amount int,
-    `status` varchar(45)
+CREATE TABLE extra_service(
+	id INT PRIMARY KEY,
+    `name` VARCHAR(45),
+    price INT,
+    amount INT,
+    `status` VARCHAR(45)
 );
 
-create table detail_contract(
-	id int,
-    contract_id int,
-    extra_service_id int,
-    constraint id primary key (contract_id,extra_service_id),
-    amount int,
-    foreign key (extra_service_id) references extra_service(id)
+CREATE TABLE detail_contract(
+    contract_id INT,
+    extra_service_id INT,
+    CONSTRAINT id PRIMARY KEY (contract_id,extra_service_id),
+    amount INT,
+    FOREIGN KEY (extra_service_id) REFERENCES extra_service(id)
 );
 
-create table contract(
-	id int primary key,
-    employee_id int,
-    customer_id int,
-    service_id int,
-    begin_date date,
-    end_date date,
-    deposit int,
-    total int,
-    foreign key (employee_id) references employee(id),
-    foreign key (customer_id) references customer(id),
-    foreign key (service_id) references service(id)
+CREATE TABLE contract(
+	id INT PRIMARY KEY,
+    employee_id INT,
+    customer_id INT,
+    service_id INT,
+    begin_date DATE,
+    end_date DATE,
+    deposit INT,
+    total INT,
+    FOREIGN KEY (employee_id) REFERENCES employee(id),
+    FOREIGN KEY (customer_id) REFERENCES customer(id),
+    FOREIGN KEY (service_id) REFERENCES service(id)
 );
 
-alter table detail_contract
-	add foreign key (contract_id) references contract(id);
+ALTER TABLE detail_contract
+	ADD FOREIGN KEY (contract_id) REFERENCES contract(id);
     

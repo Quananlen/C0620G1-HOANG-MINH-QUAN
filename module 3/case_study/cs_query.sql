@@ -70,3 +70,4 @@ join extra_service es on dc.extra_service_id = es.id
 group by c.id;
 
 -- query 11
+

@@ -107,3 +107,58 @@ select contract, count(*) as count from view13 group by contract;
 select * from view13_1 where count = (select max(count) from view13_1);
 
 -- query 14
+create view view14 as
+select co.id, s.`name` as service, es.`name` as extra, count(es.id) as count
+from contract co
+join service s on co.service_id = s.id
+join detail_contract dc on dc.contract_id = co.id
+join extra_service es on dc.extra_service_id = es.id
+group by es.id;
+
+select * from view14 where count = 1;
+
+-- query 15
+drop view if exists view15;
+create view view15 as
+select e.id, e.`name`, edu.education_name as education, d.department_name as department, phone, email, begin_date, count(e.id) as count
+from employee e
+join contract co on co.employee_id = e.id
+join education edu on e.education_id = edu.id
+join department d on e.department_id = d.id
+where year(begin_date) = 2018 
+group by e.id
+having count <= 3;
+
+select * from view15;
+
+-- query 16
+drop view if exists view16;
+create view view16 as
+select e.`name` as employee
+from employee e
+join contract co on co.employee_id = e.id
+where year(begin_date) between 2017 and 2019
+group by employee;
+
+delete from employee
+where `name` not in (select * from view16);
+
+-- query 17
+drop view if exists view17;
+create view view17 as 
+select cu.`name` as customer_name, ct.id as id, ct.`name` as `type`, total 
+from customer cu
+join customer_type ct on cu.customer_type_id = ct.id
+join contract co on co.customer_id = cu.id
+where ct.`name` = 'Platinum' and year(begin_date) = 2019;
+
+drop view if exists view17_1;
+create view view17_1 as
+select *, sum(total) as sum from view17 
+group by `type`
+having sum > 10000000;
+
+update customer
+set customer_type_id = 1 where `name` in (select customer_name from view17_1);
+
+-- query 18

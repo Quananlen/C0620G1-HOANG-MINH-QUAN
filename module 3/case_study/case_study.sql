@@ -29,9 +29,9 @@ CREATE TABLE employee(
     phone VARCHAR(45),
     email VARCHAR(45),
     address VARCHAR(45),
-    FOREIGN KEY (position_id) REFERENCES `position`(id),
-    FOREIGN KEY (education_id) REFERENCES education(id),
-    FOREIGN KEY (department_id) REFERENCES department(id)
+    FOREIGN KEY (position_id) REFERENCES `position`(id) on delete cascade  ON UPDATE CASCADE,
+    FOREIGN KEY (education_id) REFERENCES education(id) on delete cascade ON UPDATE CASCADE,
+    FOREIGN KEY (department_id) REFERENCES department(id) on delete cascade ON UPDATE CASCADE
 );
 
 CREATE TABLE customer_type(
@@ -48,7 +48,7 @@ CREATE TABLE customer(
     phone VARCHAR(45),
     email VARCHAR(45),
     address VARCHAR(45),
-    FOREIGN KEY (customer_type_id) REFERENCES customer_type(id)
+    FOREIGN KEY (customer_type_id) REFERENCES customer_type(id) on delete cascade ON UPDATE CASCADE
 );
 
 CREATE TABLE rent_type(
@@ -72,8 +72,8 @@ CREATE TABLE service(
     service_type_id INT,
     rent_type_id INT,
     `status` VARCHAR(45),
-    FOREIGN KEY (rent_type_id) REFERENCES rent_type(id),
-    FOREIGN KEY (service_type_id) REFERENCES service_type(id)    
+    FOREIGN KEY (rent_type_id) REFERENCES rent_type(id) on delete cascade ON UPDATE CASCADE,
+    FOREIGN KEY (service_type_id) REFERENCES service_type(id) on delete cascade ON UPDATE CASCADE
 );
 
 CREATE TABLE extra_service(
@@ -89,7 +89,7 @@ CREATE TABLE detail_contract(
     extra_service_id INT,
     CONSTRAINT id PRIMARY KEY (contract_id,extra_service_id),
     amount INT,
-    FOREIGN KEY (extra_service_id) REFERENCES extra_service(id)
+    FOREIGN KEY (extra_service_id) REFERENCES extra_service(id) on delete cascade ON UPDATE CASCADE
 );
 
 CREATE TABLE contract(
@@ -101,13 +101,13 @@ CREATE TABLE contract(
     end_date DATE,
     deposit INT,
     total INT,
-    FOREIGN KEY (employee_id) REFERENCES employee(id),
-    FOREIGN KEY (customer_id) REFERENCES customer(id),
-    FOREIGN KEY (service_id) REFERENCES service(id)
+    FOREIGN KEY (employee_id) REFERENCES employee(id) on delete cascade ON UPDATE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES customer(id) on delete cascade ON UPDATE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES service(id) on delete cascade ON UPDATE CASCADE
 );
 
 ALTER TABLE detail_contract
-	ADD FOREIGN KEY (contract_id) REFERENCES contract(id);
+	ADD FOREIGN KEY (contract_id)  REFERENCES contract(id) on delete cascade ON UPDATE CASCADE;
     
 insert into `position`
 value (1,'director'),
@@ -127,7 +127,8 @@ value (1, 'high school'),
 insert into employee
 value (1,'Harley', 3, 3, 2, '1991-01-01', 12345, 5000, 111111, 'HQ@hq.com', 'HHHHH'),  
 (2,'Travis', 2, 1, 3, '1992-01-01', 12346, 6000, 111112, 'T@hq.com', 'TTTTT'),  
-(3,'Ken', 1, 2, 1, '1993-01-01', 12347, 7000, 111113, 'K@hq.com', 'KKKKK');
+(3,'Ken', 1, 2, 1, '1993-01-01', 12347, 7000, 111113, 'K@hq.com', 'KKKKK'),
+(4,'Ryu', 1, 2, 1, '1993-01-01', 12347, 7000, 111113, 'K@hq.com', 'KKKKK');
 
 insert into customer_type value(1,'diamond'),(2,'platinum'),(3,'gold'),(4,'silver'),(5,'normal');
 
@@ -165,7 +166,9 @@ value (1,1,2,2,'2019-02-28','2019-03-28',1000,2000),
 (6,1,1,2,'2018-02-20','2018-05-28',130,2000),
 (7,1,1,2,'2020-02-29','2020-05-28',130,2000),
 (8,2,4,1,'2018-05-10','2018-05-28',130,2000),
-(9,3,5,3,'2018-06-12','2018-06-28',130,2000);
+(9,3,5,3,'2018-06-12','2018-06-28',130,2000),
+(10,3,7,3,'2019-06-12','2019-06-28',130,5000000),
+(11,3,7,3,'2019-07-12','2019-07-28',130,6000000);
 
 insert into extra_service
 value (1,'karaoke',200,1,'ok'),
@@ -175,4 +178,4 @@ value (1,'karaoke',200,1,'ok'),
 (5,'karaoke',200,5,'ok');
 
 insert into detail_contract 
-value (2,3,4),(3,2,1),(4,1,2),(5,3,3),(1,2,5),(1,1,1);
+value (2,3,4),(3,2,1),(4,1,2),(5,3,3),(1,2,5),(1,3,1);

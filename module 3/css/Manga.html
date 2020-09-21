@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: #f5f0e4;
+        }
+
+        #search-bar-input {
+            width: 300px;
+        }
+
+        #search-bar {
+            padding: 10px;
+            text-align: center;
+            background-color: darkblue;
+        }
+
+        #menu {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            /*justify-content: center;*/
+            background-color: #e3e0d8;
+            padding-left: 100px;
+            height: 40px;
+            align-items: center;
+        }
+
+        .menu-box {
+            margin: 0 5px;
+            height: 26px;
+            padding: 10px 5px 5px;
+        }
+        .menu-box:hover {
+            background-color: white;
+        }
+
+        main {
+            margin: 0 100px;
+            text-align: center;
+            background-color: white;
+            height: 1000px;
+        }
+
+        #img-container {
+            display: flex;
+            flex-direction: row;
+            float: left;
+        }
+
+        .img-thumbnail {
+            width: 150px;
+            height: 225px;
+            margin: 5px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id="search-bar"><input id="search-bar-input" type="text">
+    <button>Tìm truyện</button>
+</div>
+<header id="menu">
+    <span class="menu-box">Trang chủ</span>
+    <span class="menu-box">Thể loại</span>
+    <span class="menu-box">Theo dõi</span>
+    <span class="menu-box">Xếp hạng</span>
+    <span class="menu-box">Lịch sử</span>
+</header>
+<main>
+    <div id="img-container">
+        <a href=""><img class="img-thumbnail" src="onepiece.jpg" alt="one-piece"></a>
+        <a href=""><img class="img-thumbnail" src="fairy-tail-100-year-quest.jpg" alt=""></a>
+        <a href=""><img class="img-thumbnail" src="yugioh.jpg" alt=""></a>
+        <a href=""><img class="img-thumbnail" src="shinai-naru-boku-e-satsui-wo-komete.jpg" alt=""></a>
+        <a href=""><img class="img-thumbnail" src="shuumatsu-no-valkyrie.jpg" alt=""></a>
+    </div>
+    <div>Mục lục
+        <li>
+            <ul><a href="">One Piece</a></ul>
+            <ul><a href="">Fairy tail</a></ul>
+            <ul><a href="">Yugi Oh</a></ul>
+            <ul><a href="">Shinai naru boku e satsui wo koete</a></ul>
+            <ul><a href="">Shuumatsu no valkyrie</a></ul>
+        </li>
+    </div>
+</main>
+</body>
+</html>

@@ -162,3 +162,62 @@ update customer
 set customer_type_id = 1 where `name` in (select customer_name from view17_1);
 
 -- query 18
+create view view18 as
+select cu.`name`, co.id, begin_date
+from customer cu
+join contract co on co.customer_id = cu.id
+where year(begin_date) < 2016;
+
+delete from customer
+where `name` in (select * from ( select `name` from view18) as t );
+
+-- query 19
+drop view if exists view19;
+create view view19 as
+select es.id as service_id, es.`name`, price, count(extra_service_id) as count
+from extra_service es
+join detail_contract dc on dc.extra_service_id = es.id
+group by es.id
+having count > 10;
+
+update extra_service
+set price = price * 2 where id in (select service_id from view19); 
+
+-- query 20
+select id, `name`, email, phone, date_of_birth, address, 'employee' as employee
+from employee as employee
+union 
+select id, `name`, email, phone, date_of_birth, address, 'customer' as customer
+from customer as customer;
+
+-- query 21
+create view v_nhanvien as
+select * 
+from employee e
+join contract co on co.employee_id = e.id
+where address = 'Hải Châu' and begin_date = '2019-12-12';
+
+-- query 22
+update v_nhanvien
+set address = 'Liên Chiểu';
+
+-- query 23
+delimiter //
+create procedure sp_1(id_var int)
+begin
+	delete from customer
+    where id = id_var;
+end //
+delimiter ;
+
+call sp_1(1);
+
+-- query 24
+delimiter //
+create procedure sp_2()
+begin
+
+end //
+delimiter ;
+
+-- query 27

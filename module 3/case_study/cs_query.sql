@@ -70,4 +70,40 @@ join extra_service es on dc.extra_service_id = es.id
 group by c.id;
 
 -- query 11
+create view view11 as
+select cu.`name`, ct.`name` as `type`, address, es.`name` as extra
+from customer cu
+join contract co on co.customer_id = cu.id
+join detail_contract dc on dc.contract_id = co.id
+join extra_service es on dc.extra_service_id = es.id
+join customer_type ct on cu.customer_type_id = ct.id;
+select * from view11 where `type` = 'Diamond' and address regexp ('.*Vinh|(Quảng Ngãi)');
 
+-- query 12
+create view view12 as
+select co.id, e.`name` as employee, cu.`name` as customer, cu.phone, s.`name` as service, es.amount, deposit, begin_date
+from contract co
+join customer cu on co.customer_id = cu.id
+join employee e on co.employee_id = e.id
+join service s on co.service_id = s.id
+join detail_contract dc on dc.contract_id = co.id
+join extra_service es on dc.extra_service_id = es.id;
+select * from view12 where begin_date >= '2019-10-01' and begin_date <= '2019-12-31' 
+and id not in (
+	select id from contract
+    where begin_date >= '2019-01-01' and begin_date <= '2019-06-30' 
+) ;
+
+-- query 13
+create view view13 as
+select co.id as contract, es.`name` as extra
+from contract co
+join detail_contract dc on dc.contract_id = co.id
+join extra_service es on dc.extra_service_id = es.id;
+
+create view view13_1 as
+select contract, count(*) as count from view13 group by contract;
+
+select * from view13_1 where count = (select max(count) from view13_1);
+
+-- query 14

@@ -1,0 +1,76 @@
+body {
+    margin: 0 auto;
+}
+
+nav {
+    background-color: #323833;
+    /*display: inline-block;*/
+    margin-top: 0;
+    margin-left: 0;
+    width: 100%;
+    height: 30px;
+    display: flex;
+}
+
+nav span {
+    color: white;
+    margin: 0 5px;
+    align-content: center;
+    padding: 5px;
+    height: auto;
+}
+
+#login {
+    margin-left: auto;
+}
+
+nav span:hover {
+    background-color: black;
+    float: left;
+}
+
+.aside-left {
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    width: 20%;
+    margin: 0;
+    background-color: #aab5ac;
+}
+
+.aside-right {
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    width: 20%;
+    float: left;
+    margin: 0;
+    background-color: #aab5ac;
+    right: 0;
+}
+
+aside div {
+    background-color: white;
+    margin: 10px;
+    height: 50px;
+}
+
+main {
+    position: absolute;
+    width: 60%;
+    float: left;
+    margin: 0;
+    left: 20%;
+}
+
+footer {
+    position: fixed;
+    background-color: #787a78;
+    width: 100%;
+    clear: both;
+    bottom: 0;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

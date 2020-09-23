@@ -27,6 +27,11 @@ nav {
 span {
     margin: 5px;
     color: white;
+    padding: 15px 10px;
+}
+
+nav span:hover {
+    background-color: #f2ac77;
 }
 
 .row::after {

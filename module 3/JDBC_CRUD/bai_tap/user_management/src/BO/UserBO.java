@@ -24,4 +24,19 @@ public class UserBO implements IUserBO {
     public void delete(String id) {
         userDAO.delete(id);
     }
+
+    @Override
+    public void edit(int id, User user) {
+        userDAO.edit(id, user);
+    }
+
+    @Override
+    public ArrayList<User> searchAddress(String address) {
+        return userDAO.searchAddress(address);
+    }
+
+    @Override
+    public ArrayList<User> sortByName() {
+        return userDAO.sortByName();
+    }
 }

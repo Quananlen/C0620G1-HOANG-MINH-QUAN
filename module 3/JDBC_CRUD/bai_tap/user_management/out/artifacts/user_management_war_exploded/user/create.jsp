@@ -22,41 +22,43 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<form action="/UserServlet">
-    <input type="hidden" name="action" value="create">
-    <div class="form-group">
-        <label for="id">ID</label>
-        <input type="text" class="form-control" id="id" name="id" placeholder="ID">
-    </div>
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="name">
-    </div>
-    <div class="form-group">
-        <label for="birthday">Birthday</label>
-        <input type="text" class="form-control" id="birthday" name="birthday" placeholder="birthday">
-    </div>
-    <div class="form-group">
-        <label for="gender">Gender</label>
-        <input type="text" class="form-control" id="gender" name="gender" placeholder="gender">
-    </div>
-    <div class="form-group">
-        <label for="gender">idCard</label>
-        <input type="text" class="form-control" id="idCard" name="idCard" placeholder="idCard">
-    </div>
-    <div class="form-group">
-        <label for="phone">phone</label>
-        <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
-    </div>
-    <div class="form-group">
-        <label for="email">email</label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="email">
-    </div>
-    <div class="form-group">
-        <label for="address">address</label>
-        <input type="text" class="form-control" id="address" name="address" placeholder="address">
-    </div>
-    <input type="submit" value="Submit">
-</form>
+<div class="col-4">
+    <form action="/UserServlet" method="post">
+        <input type="hidden" name="action" value="create">
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id" placeholder="ID">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="name">
+        </div>
+        <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input type="text" class="form-control" id="birthday" name="birthday" placeholder="birthday">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" class="form-control" id="gender" name="gender" placeholder="gender">
+        </div>
+        <div class="form-group">
+            <label for="gender">idCard</label>
+            <input type="text" class="form-control" id="idCard" name="idCard" placeholder="idCard">
+        </div>
+        <div class="form-group">
+            <label for="phone">phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
+        </div>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="email">
+        </div>
+        <div class="form-group">
+            <label for="address">address</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="address">
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 </body>
 </html>

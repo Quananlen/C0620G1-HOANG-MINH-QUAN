@@ -26,7 +26,7 @@
 <body>
 <table class="table">
     <thead>
-    <tr>
+    <tr class="bg-dark text-white">
         <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Birthday</th>
@@ -58,6 +58,20 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="user/create.jsp">Create User</a>
+<form action="">
+    <input type="hidden" name="action" value="create">
+    <button type="submit" value="create"><span class="material-icons">add</span></button>
+</form>
+<form action="">
+    <input type="hidden" name="action" value="search">
+    <label>Search by name
+        <input type="text" name="address">
+    </label>
+    <button type="submit" value="search"><span class="material-icons">search</span></button>
+</form>
+<form action="">
+    <input type="hidden" name="action" value="sort">
+    <button type="submit" value="sort"><span class="material-icons">sort_by_alpha</span></button>
+</form>
 </body>
 </html>

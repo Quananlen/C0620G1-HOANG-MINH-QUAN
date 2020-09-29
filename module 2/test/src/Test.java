@@ -8,10 +8,6 @@ public class Test {
 
    }
 
-   public void hehe(void) {
-        return void;
-   }
-
 
 
     public static  void main(String[] args) {

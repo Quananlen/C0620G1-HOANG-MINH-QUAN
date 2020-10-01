@@ -63,11 +63,18 @@
     <button type="submit" value="create"><span class="material-icons">add</span></button>
 </form>
 <form action="">
-    <input type="hidden" name="action" value="search">
+    <input type="hidden" name="action" value="searchByAddress">
     <label>Search by name
         <input type="text" name="address">
     </label>
-    <button type="submit" value="search"><span class="material-icons">search</span></button>
+    <button type="submit" value="searchByAddress"><span class="material-icons">search</span></button>
+</form>
+<form action="">
+    <input type="hidden" name="action" value="searchByID">
+    <label>Search by ID
+        <input type="text" name="id">
+    </label>
+    <button type="submit" value="searchByID"><span class="material-icons">search</span></button>
 </form>
 <form action="">
     <input type="hidden" name="action" value="sort">

@@ -220,4 +220,24 @@ begin
 end //
 delimiter ;
 
--- query 27
+-- query 27.a
+delimiter $$
+create function func_1()
+returns int
+deterministic
+begin
+	declare count int;
+
+	set count = ( select count(`name`) as count from (
+		select `name`, sum(rent_cost) as sum from service s
+		join contract co on co.service_id = s.id
+		group by s.id having sum > 2000000
+    ) as t );
+    
+    return count;
+end $$
+delimiter ;
+
+select func_1();
+
+-- query 27.b

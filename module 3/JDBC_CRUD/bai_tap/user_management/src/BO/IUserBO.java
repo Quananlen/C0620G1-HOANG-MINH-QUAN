@@ -12,4 +12,7 @@ public interface IUserBO {
     void edit(int id,User user);
     ArrayList<User> searchAddress(String address);
     ArrayList<User> sortByName();
+    ArrayList<User> searchID(String id);
+    void addUserPermission();
+    void insertUpdateWithoutTransaction();
 }

@@ -1,6 +1,5 @@
 package BO;
 
-import DAO.BaseDAO;
 import DAO.UserDAO;
 import model.User;
 
@@ -38,5 +37,22 @@ public class UserBO implements IUserBO {
     @Override
     public ArrayList<User> sortByName() {
         return userDAO.sortByName();
+    }
+
+    @Override
+    public ArrayList<User> searchID(String id) {
+        return userDAO.searchID(id);
+    }
+
+    @Override
+    public void addUserPermission() {
+        User user = new User("Nguyễn Văn Khánh", "1997-03-31", 1, "321454769", "2319183198", "qazz.iiz.1j@petruhino2.ru", "Da Nang");
+        int[] permission = {1, 2, 4};
+        userDAO.addUserTransaction(user, permission);
+    }
+
+    @Override
+    public void insertUpdateWithoutTransaction() {
+        userDAO.insertUpdateWithoutTransaction();
     }
 }

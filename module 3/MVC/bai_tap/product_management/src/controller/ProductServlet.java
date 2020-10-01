@@ -29,7 +29,6 @@ public class ProductServlet extends HttpServlet {
             default:
                 displayProduct(request, response);
         }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

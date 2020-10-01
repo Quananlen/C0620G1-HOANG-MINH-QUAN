@@ -44,15 +44,39 @@ public class UserServlet extends HttpServlet {
             case "delete":
                 deleteUser(request, response);
                 break;
-            case "search":
+            case "searchByAddress":
                 searchAddress(request, response);
+                break;
+            case "searchByID":
+                searchID(request, response);
                 break;
             case "sort":
                 sortByName(request, response);
                 break;
+            case "permission":
+                addUserPermission(request, response);
+                break;
+            case "test-without-tran":
+                testWithoutTran(request, response);
+                break;
             default:
                 displayList(request, response);
         }
+    }
+
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
+        userBO.insertUpdateWithoutTransaction();
+    }
+
+    private void addUserPermission(HttpServletRequest request, HttpServletResponse response) {
+        userBO.addUserPermission();
+    }
+
+    private void searchID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        List<User> userList = userBO.searchID(id);
+        request.setAttribute("userList", userList);
+        request.getRequestDispatcher("user/list.jsp").forward(request, response);
     }
 
     private void sortByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

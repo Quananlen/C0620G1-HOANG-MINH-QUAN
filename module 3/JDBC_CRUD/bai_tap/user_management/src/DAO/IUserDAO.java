@@ -11,4 +11,7 @@ public interface IUserDAO {
     void edit(int id, User user);
     ArrayList<User> searchAddress(String address);
     ArrayList<User> sortByName();
+    ArrayList<User> searchID(String id);
+    void addUserTransaction(User user, int[] permissions);
+    void insertUpdateWithoutTransaction();
 }

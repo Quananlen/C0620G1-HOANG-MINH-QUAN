@@ -130,7 +130,7 @@ value (1,'Harley', 3, 3, 2, '1991-01-01', 12345, 5000, 111111, 'HQ@hq.com', 'HHH
 (3,'Ken', 1, 2, 1, '1993-01-01', 12347, 7000, 111113, 'K@hq.com', 'KKKKK'),
 (4,'Ryu', 1, 2, 1, '1993-01-01', 12347, 7000, 111113, 'K@hq.com', 'KKKKK');
 
-insert into customer_type value(1,'diamond'),(2,'platinum'),(3,'gold'),(4,'silver'),(5,'normal');
+insert into customer_type value(1,'Diamond'),(2,'Platinum'),(3,'Gold'),(4,'Silver'),(5,'Normal');
 
 insert into customer 
 value(6,1,'customer A', '1981-01-01','11111','111111','a@a.a','11 Đà Nẵng'),

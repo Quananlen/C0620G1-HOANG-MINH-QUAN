@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "MainServlet", urlPatterns = {"","/CustomerServlet"})
@@ -82,8 +83,8 @@ public class MainServlet extends HttpServlet {
         List<CustomerType> customerTypeList = customerTypeBO.getAllCustomerType();
 //        String[] propertyList = {"id", "name", "birthday", "idCard", "phone", "email", "address"};
 //        String[] labelList = {"ID", "Name", "Birthday", "ID Card", "Phone", "Email", "Address"};
-        String[] propertyList =  propertyBO.getProperty("customer");
-        String[] labelList = StringMod.turnFieldToLabel(propertyBO.getProperty("customer"));
+        String[] propertyList =  propertyBO.getCustomerProperty();
+        String[] labelList = StringMod.turnFieldToLabel(propertyBO.getCustomerProperty());
         request.setAttribute("length", propertyList.length);
         request.setAttribute("propertyList", propertyList);
         request.setAttribute("labelList", labelList);
@@ -95,9 +96,9 @@ public class MainServlet extends HttpServlet {
         String id = request.getParameter("id");
         String customerType = request.getParameter("type");
         String name = request.getParameter("name");
-        String birthday = request.getParameter("birthday");
+        String birthday = request.getParameter("date_of_birth");
         String phone = request.getParameter("phone");
-        String idCard = request.getParameter("idCard");
+        String idCard = request.getParameter("id_card_number");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         customerBO.add(new Customer(id, customerType, name, birthday, idCard, phone, email, address));

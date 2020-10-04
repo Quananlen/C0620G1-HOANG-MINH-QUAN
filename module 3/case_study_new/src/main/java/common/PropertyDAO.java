@@ -19,7 +19,6 @@ public class PropertyDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("show columns from " + column);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getString("Field").equals("customer_type_id")) continue;
                 propertyList.add(resultSet.getString("Field"));
             }
             propertyStringList = propertyList.toArray(new String[0]);

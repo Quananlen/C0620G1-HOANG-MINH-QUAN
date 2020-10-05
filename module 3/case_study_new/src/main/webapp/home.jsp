@@ -91,18 +91,30 @@
                 <tbody>
                 <c:forEach var="customer" items="${customerList}">
                     <tr>
-                        <th scope="row">${customer.getId()}</th>
-                        <td>${customer.getName()}</td>
-                        <td>${customer.getBirthday()}</td>
-                        <td>${customer.getIdCard()}</td>
-                        <td>${customer.getCustomerType()}</td>
-                        <td>${customer.getPhone()}</td>
-                        <td>${customer.getEmail()}</td>
-                        <td>${customer.getAddress()}</td>
+                        <th scope="row" id="id-${customer.getId()}">${customer.getId()}</th>
+                        <td id="name-${customer.getId()}">${customer.getName()}</td>
+                        <td id="birthday-${customer.getId()}">${customer.getBirthday()}</td>
+                        <td id="idCard-${customer.getId()}">${customer.getIdCard()}</td>
+                        <td id="type-${customer.getId()}">${customer.getCustomerType()}</td>
+                        <td id="phone-${customer.getId()}">${customer.getPhone()}</td>
+                        <td id="email-${customer.getId()}">${customer.getEmail()}</td>
+                        <td id="address-${customer.getId()}">${customer.getAddress()}</td>
                         <td><a href="/CustomerServlet?action=edit&id=${customer.id}"><i
                                 class="material-icons">&#xE254;</i></a></td>
-                        <td><a href="/CustomerServlet?action=delete&id=${customer.id}" data-toggle="modal"
-                               data-target="#deleteModal"><i class="material-icons">&#xE872;</i></a></td>
+                            <%--                        <td><a href="/CustomerServlet?action=delete&id=${customer.id}" data-toggle="modal"--%>
+                        <td><a href="" data-toggle="modal" data-target="#deleteModal"
+                               onclick="
+                                       setInnerText('id-${customer.getId()}', 'des-id');
+                                       setInnerText('name-${customer.getId()}','des-name');
+                                       setInnerText('birthday-${customer.getId()}','des-birthday');
+                                       setInnerText('idCard-${customer.getId()}','des-idCard');
+                                       setInnerText('type-${customer.getId()}','des-type');
+                                       setInnerText('phone-${customer.getId()}','des-phone');
+                                       setInnerText('email-${customer.getId()}','des-email');
+                                       setInnerText('address-${customer.getId()}','des-address');
+                                       setValue('id-${customer.getId()}','id');
+                                       ">
+                            <i class="material-icons">&#xE872;</i></a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -110,22 +122,34 @@
             <form action="">
 
             </form>
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="deleteModalLabel">Customer information</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        <form action="/CustomerServlet">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="id" id="id">
+                            <div class="modal-body">
+                                <p>ID: <span id="des-id"></span></p>
+                                <p>Name: <span id="des-name"></span></p>
+                                <p>Birthday: <span id="des-birthday"></span></p>
+                                <p>ID Card: <span id="des-idCard"></span></p>
+                                <p>Type: <span id="des-type"></span></p>
+                                <p>Phone: <span id="des-phone"></span></p>
+                                <p>Email: <span id="des-email"></span></p>
+                                <p>Address: <span id="des-address"></span></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Delete</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -139,5 +163,14 @@
         <div class="col-md-12 bg-primary">Footer</div>
     </div>
 </div>
+<script>
+    function setInnerText(idStart, idDest) {
+        document.getElementById(idDest).innerText = document.getElementById(idStart).innerText;
+    }
+
+    function setValue(idStart, idDest) {
+        document.getElementById(idDest).value = document.getElementById(idStart).innerText;
+    }
+</script>
 </body>
 </html>

@@ -26,17 +26,19 @@
 <div class="col-4">
     <form action="/CustomerServlet" method="post">
         <input type="hidden" name="action" value="create">
-        <c:forEach var="i" begin="0" end="${length-1}">
+       <%-- <c:forEach var="i" begin="0" end="${length-1}">
             <div class="form-group">
                 <label for="${propertyList[i]}">${labelList[i]}</label>
                 <input type="text" class="form-control" id="${propertyList[i]}" name="${propertyList[i]}"
                        placeholder="${labelList[i]}">
-            </div>
-        </c:forEach>
 
-        <%--  <div class="form-group">
+            </div>
+        </c:forEach>--%>
+
+          <div class="form-group">
               <label for="id">ID</label>
-              <input type="text" class="form-control" id="id" name="id" placeholder="ID">
+              <input type="text" class="form-control" id="id" name="id" placeholder="ID" value="${id}">
+              <div style="color: red">${messageId}</div>
           </div>
           <div class="form-group">
               <label for="name">Name</label>
@@ -45,7 +47,7 @@
           <div class="form-group">
               <label for="birthday">Birthday</label>
               <input type="text" class="form-control" id="birthday" name="birthday" placeholder="birthday">
-          </div> --%>
+          </div>
 
         <div class="form-group">
             <label for="type">Type</label><br>
@@ -58,22 +60,23 @@
             </c:forEach>
         </div>
 
-        <%--        <div class="form-group">
-                    <label for="idCard">ID Card</label>
-                    <input type="text" class="form-control" id="idCard" name="idCard" placeholder="idCard">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="email">
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="address">
-                </div>--%>
+        <div class="form-group">
+            <label for="idCard">ID Card</label>
+            <input type="text" class="form-control" id="idCard" name="idCard" placeholder="idCard">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
+            <div style="color: red">${messagePhone}</div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="email">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="address">
+        </div>
 
         <input type="submit" value="Create">
     </form>

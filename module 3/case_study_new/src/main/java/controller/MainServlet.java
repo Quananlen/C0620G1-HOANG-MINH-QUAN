@@ -4,10 +4,13 @@ import BO.customer.CustomerBO;
 import BO.customer.CustomerTypeBO;
 import BO.customer.ICustomerBO;
 import BO.customer.ICustomerTypeBO;
+import BO.employee.EmployeeBO;
 import common.PropertyBO;
 import common.StringMod;
+import common.Validate;
 import model.Customer;
 import model.CustomerType;
+import model.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "MainServlet", urlPatterns = {"","/CustomerServlet"})
@@ -23,6 +25,7 @@ public class MainServlet extends HttpServlet {
     ICustomerBO customerBO = new CustomerBO();
     ICustomerTypeBO customerTypeBO = new CustomerTypeBO();
     PropertyBO propertyBO = new PropertyBO();
+    EmployeeBO employeeBO = new EmployeeBO();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -81,10 +84,10 @@ public class MainServlet extends HttpServlet {
 
     private void createCustomerForm(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<CustomerType> customerTypeList = customerTypeBO.getAllCustomerType();
-//        String[] propertyList = {"id", "name", "birthday", "idCard", "phone", "email", "address"};
-//        String[] labelList = {"ID", "Name", "Birthday", "ID Card", "Phone", "Email", "Address"};
-        String[] propertyList =  propertyBO.getCustomerProperty();
-        String[] labelList = StringMod.turnFieldToLabel(propertyBO.getCustomerProperty());
+        String[] propertyList = {"id", "name", "birthday", "idCard", "phone", "email", "address"};
+        String[] labelList = {"ID", "Name", "Birthday", "ID Card", "Phone", "Email", "Address"};
+//        String[] propertyList =  propertyBO.getCustomerProperty();
+//        String[] labelList = StringMod.turnFieldToLabel(propertyBO.getCustomerProperty());
         request.setAttribute("length", propertyList.length);
         request.setAttribute("propertyList", propertyList);
         request.setAttribute("labelList", labelList);
@@ -92,15 +95,34 @@ public class MainServlet extends HttpServlet {
         request.getRequestDispatcher("create.jsp").forward(request, response);
     }
 
-    private void createCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void createCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        List<CustomerType> customerTypeList = customerTypeBO.getAllCustomerType();
+        request.setAttribute("customerTypeList", customerTypeList);
+
         String id = request.getParameter("id");
+        String messageId = Validate.ValidateCustomerID(id);
+        request.setAttribute("messageId", messageId);
+        request.setAttribute("id", id);
+        if (!messageId.equals("OK")) {
+            request.getRequestDispatcher("create.jsp").forward(request, response);
+        }
+
         String customerType = request.getParameter("type");
         String name = request.getParameter("name");
-        String birthday = request.getParameter("date_of_birth");
+        String birthday = request.getParameter("birthday");
+
         String phone = request.getParameter("phone");
-        String idCard = request.getParameter("id_card_number");
+        String messagePhone = Validate.ValidatePhone(phone);
+        request.setAttribute("messagePhone", messagePhone);
+        request.setAttribute("phone", phone);
+        if (!messagePhone.equals("OK")) {
+            request.getRequestDispatcher("create.jsp").forward(request, response);
+        }
+
+        String idCard = request.getParameter("idCard");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
+
         customerBO.add(new Customer(id, customerType, name, birthday, idCard, phone, email, address));
         response.sendRedirect("/CustomerServlet");
     }
@@ -114,6 +136,10 @@ public class MainServlet extends HttpServlet {
     private void displayCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Customer> customerList = customerBO.displayAll();
         request.setAttribute("customerList", customerList);
+
+        List<Employee> employeeList = employeeBO.displayAll();
+        request.setAttribute("employeeList",employeeList);
+
         request.getRequestDispatcher("home.jsp").forward(request,response);
     }
 

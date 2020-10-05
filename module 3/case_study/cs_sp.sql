@@ -15,7 +15,7 @@ end //
 delimiter ;
 
 delimiter //
-create procedure addCustomer(input_id int,
+create procedure addCustomer(input_id varchar(45),
                              input_type_id int,
                              input_name varchar(50),
                              input_birthday varchar(50),
@@ -61,4 +61,3 @@ begin
 end //
 delimiter ;
 
-show columns from customer;

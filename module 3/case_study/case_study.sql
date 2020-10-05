@@ -40,7 +40,7 @@ CREATE TABLE customer_type(
 );
 
 CREATE TABLE customer(
-	id INT PRIMARY KEY,
+	id varchar(45) PRIMARY KEY,
     customer_type_id INT,
     `name` VARCHAR(45),
     date_of_birth DATE,
@@ -63,7 +63,7 @@ CREATE TABLE service_type(
 );	
 
 CREATE TABLE service(
-	id INT PRIMARY KEY,
+	id varchar(45) PRIMARY KEY,
     `name` VARCHAR(45),
     area INT,
     floor INT,
@@ -95,8 +95,8 @@ CREATE TABLE detail_contract(
 CREATE TABLE contract(
 	id INT PRIMARY KEY,
     employee_id INT,
-    customer_id INT,
-    service_id INT,
+    customer_id varchar(45),
+    service_id varchar(45),
     begin_date DATE,
     end_date DATE,
     deposit INT,

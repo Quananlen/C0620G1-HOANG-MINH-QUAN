@@ -30,6 +30,10 @@
         $(document).ready(function () {
             $('#customers').DataTable();
         });
+        $(document).ready(function () {
+            $('#employees').DataTable();
+        });
+
     </script>
 </head>
 <body>
@@ -49,19 +53,38 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/CustomerServlet">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <%--  <li class="nav-item">
+                      <a class="nav-link" href="/EmployeeServlet?action=create">Employee</a>
+                  </li>--%>
+
+                <li class="nav-item dropdown nav-link">
+                        <span class="dropdown-toggle" id="dropdownMenuButtonEmployee"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Employee
+                        </span>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonEmployee">
+                        <a class="dropdown-item" onclick="showAndHide('employees')">List Employee</a>
+                        <a class="dropdown-item" href="/EmployeeServlet?action=create">Create Employee</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown nav-link">
+                        <span class="dropdown-toggle" id="dropdownMenuButton"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Customer
+                        </span>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" onclick="showAndHide('customers')">List Customer</a>
+                        <a class="dropdown-item" href="/CustomerServlet?action=create">Create Customer</a>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Employee</a>
+                    <a class="nav-link" href="/ServiceServlet?action=create">Service</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Customer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contract</a>
+                    <a class="nav-link" href="/ContractServlet?action=create">Contract</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -73,7 +96,7 @@
     <div class="row">
         <div class="col-md-2 bg-dark">Aside</div>
         <div class="col-md-10">
-            <table class="table table-striped table-sm" id="customers">
+            <table class="table table-striped table-sm" id="customers" style="display: none">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -119,9 +142,6 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <form action="">
-
-            </form>
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -153,11 +173,58 @@
                     </div>
                 </div>
             </div>
-            <form action="">
-                <input type="hidden" name="action" value="create">
-                <button type="submit" value="create"><span class="material-icons">add</span></button>
-            </form>
+            <%-- <form action="">
+                 <input type="hidden" name="action" value="create">
+                 <button type="submit" value="create"><span class="material-icons">add</span></button>
+             </form>--%>
+            <table class="table table-striped table-sm" id="employees" style="display: none">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Education</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Birthday</th>
+                    <th scope="col">ID Card</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="employee" items="${employeeList}">
+                    <tr>
+                        <th scope="row">${employee.getId()}</th>
+                        <td>${employee.getName()}</td>
+                        <td>${employee.getPositionId()}</td>
+                        <td>${employee.getEducationId()}</td>
+                        <td>${employee.getDepartmentId()}</td>
+                        <td>${employee.getBirthday()}</td>
+                        <td>${employee.getIdCard()}</td>
+                        <td>${employee.getSalary()}</td>
+                        <td>${employee.getPhone()}</td>
+                        <td>${employee.getEmail()}</td>
+                        <td>${employee.getAddress()}</td>
+                        <td><a href="/EmployeeServlet?action=edit&id=${employee.id}">
+                            <i class="material-icons">&#xE254;</i></a></td>
+                        <td><a href="/EmployeeServlet?action=delete&id=${employee.id}">
+                            <i class="material-icons">&#xE872;</i></a></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
+
+
+            <%-- <form action="">
+                 <input type="hidden" name="action" value="create">
+                 <button type="submit" value="create"><span class="material-icons">add</span></button>
+             </form>--%>
+
     </div>
     <div class="=row">
         <div class="col-md-12 bg-primary">Footer</div>
@@ -170,6 +237,15 @@
 
     function setValue(idStart, idDest) {
         document.getElementById(idDest).value = document.getElementById(idStart).innerText;
+    }
+
+    function showAndHide(divID) {
+        let x = document.getElementById(divID);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
     }
 </script>
 </body>

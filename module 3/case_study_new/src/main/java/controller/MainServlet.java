@@ -6,7 +6,6 @@ import BO.customer.ICustomerBO;
 import BO.customer.ICustomerTypeBO;
 import BO.employee.EmployeeBO;
 import common.PropertyBO;
-import common.StringMod;
 import common.Validate;
 import model.Customer;
 import model.CustomerType;
@@ -100,28 +99,41 @@ public class MainServlet extends HttpServlet {
         request.setAttribute("customerTypeList", customerTypeList);
 
         String id = request.getParameter("id");
-        String messageId = Validate.ValidateCustomerID(id);
+        String messageId = Validate.validateCustomerID(id);
         request.setAttribute("messageId", messageId);
         request.setAttribute("id", id);
-        if (!messageId.equals("OK")) {
-            request.getRequestDispatcher("create.jsp").forward(request, response);
-        }
 
         String customerType = request.getParameter("type");
-        String name = request.getParameter("name");
-        String birthday = request.getParameter("birthday");
+        request.setAttribute("type", customerType);
 
-        String phone = request.getParameter("phone");
-        String messagePhone = Validate.ValidatePhone(phone);
-        request.setAttribute("messagePhone", messagePhone);
-        request.setAttribute("phone", phone);
-        if (!messagePhone.equals("OK")) {
-            request.getRequestDispatcher("create.jsp").forward(request, response);
-        }
+        String name = request.getParameter("name");
+        request.setAttribute("name", name);
+
+        String birthday = request.getParameter("birthday");
+        request.setAttribute("birthday", birthday);
 
         String idCard = request.getParameter("idCard");
+        String messageIdCard = Validate.validateIdCard(idCard);
+        request.setAttribute("idCard",idCard);
+        request.setAttribute("messageIdCard",messageIdCard);
+
+        String phone = request.getParameter("phone");
+        String messagePhone = Validate.validatePhone(phone);
+        request.setAttribute("messagePhone", messagePhone);
+        request.setAttribute("phone", phone);
+
         String email = request.getParameter("email");
+        String messageEmail = Validate.validateEmail(email);
+        request.setAttribute("email", email);
+        request.setAttribute("messageEmail", messageEmail);
+
         String address = request.getParameter("address");
+        request.setAttribute("address", address);
+
+        boolean isValidated = messageId.equals("OK") && messageIdCard.equals("OK") && messagePhone.equals("OK") && messageEmail.equals("OK");
+        if (!isValidated) {
+            request.getRequestDispatcher("create.jsp").forward(request, response);
+        }
 
         customerBO.add(new Customer(id, customerType, name, birthday, idCard, phone, email, address));
         response.sendRedirect("/CustomerServlet");

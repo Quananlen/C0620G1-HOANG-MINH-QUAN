@@ -3,12 +3,12 @@ delimiter //
 create procedure displayAll()
 begin
     select *, c.name as 'c.name', ct.name as 'ct.name' from customer c
-    join customer_type ct on c.customer_type_id = ct.id; 
+    left join customer_type ct on c.customer_type_id = ct.id; 
 end //
 delimiter ;
 
 delimiter //
-create procedure deleteCustomer(input_id int)
+create procedure deleteCustomer(input_id varchar(45))
 begin
     delete from customer where id = input_id;
 end //

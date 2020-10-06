@@ -42,11 +42,11 @@
           </div>
           <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="name">
+              <input type="text" class="form-control" id="name" name="name" placeholder="name" value="${name}">
           </div>
           <div class="form-group">
               <label for="birthday">Birthday</label>
-              <input type="text" class="form-control" id="birthday" name="birthday" placeholder="birthday">
+              <input type="date" class="form-control" id="birthday" name="birthday" placeholder="birthday" value="${birthday}">
           </div>
 
         <div class="form-group">
@@ -54,7 +54,7 @@
             <c:forEach var="customerType" items="${customerTypeList}">
                 <div class="form-check form-check-inline" id="type">
                     <input class="form-check-input" type="radio" name="type" id="${customerType.getName()}"
-                           value="${customerType.getId()}">
+                           value="${customerType.getId()}" ${customerType.getId()==type ? "checked" : ""}>
                     <label class="form-check-label" for="${customerType.getName()}">${customerType.getName()}</label>
                 </div>
             </c:forEach>
@@ -62,20 +62,23 @@
 
         <div class="form-group">
             <label for="idCard">ID Card</label>
-            <input type="text" class="form-control" id="idCard" name="idCard" placeholder="idCard">
+            <input type="text" class="form-control" id="idCard" name="idCard" placeholder="Id Card" value="${idCard}">
+            <div style="color: red">${messageIdCard}</div>
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" value="${phone}">
             <div style="color: red">${messagePhone}</div>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="email">
+            <input type="text" class="form-control" id="email" name="email" placeholder="email" value="${email}">
+            <div style="color: red">${messageEmail}</div>
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="address">
+            <input type="text" class="form-control" id="address" name="address" placeholder="address" value="${address}">
+            <div style="color: red">${messageAddress}</div>
         </div>
 
         <input type="submit" value="Create">

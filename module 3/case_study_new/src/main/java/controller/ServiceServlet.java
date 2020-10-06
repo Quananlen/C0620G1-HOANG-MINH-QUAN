@@ -43,7 +43,7 @@ public class ServiceServlet extends HttpServlet {
 
     private void createService(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("id");
-        String messageId = Validate.ValidateServiceID(id);
+        String messageId = Validate.validateServiceID(id);
         request.setAttribute("messageId", messageId);
         if (!messageId.equals("OK")) {
             request.setAttribute("id", id);

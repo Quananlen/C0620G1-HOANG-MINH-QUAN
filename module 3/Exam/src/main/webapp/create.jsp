@@ -23,19 +23,34 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <%--    data tables--%>
+    <style>
+        body {
+            background-image: url('images/resort-bg.jpg');
+            background-size: 100% 100%;
+        }
+        #form-container {
+            padding: 50px;
+            margin: 50px;
+            opacity: 0.9;
+        }
+        small {
+            color: red;
+        }
+    </style>
 
 </head>
 <body>
 <div class="container-fluid">
     <%--    Logo - name--%>
     <div class="row">
-        <div class="col-12 d-flex"><img src="images/Logo.JPG" alt="logo img">
+        <div class="col-12 d-flex"><img src="images/Logo.JPG" alt="logo img" class="rounded-circle">
             <div class="ml-auto align-middle">Hoàng Minh Quân</div>
         </div>
     </div>
+
     <%--        Nav bar--%>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Furama Resort</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light row">
+        <a class="navbar-brand" href="#">Product Management</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,30 +62,14 @@
                     <a class="nav-link" href="/MainServlet">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown nav-link">
-                        <span class="dropdown-toggle" id="dropdownMenuButtonEmployee"
-                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Employee
-                        </span>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonEmployee">
-                        <a class="dropdown-item" href="">List Employee</a>
-                        <a class="dropdown-item" href="/MainServlet?action=create">Create Employee</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown nav-link">
                         <span class="dropdown-toggle" id="dropdownMenuButton"
                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Customer
+                            Product
                         </span>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="">List</a>
                         <a class="dropdown-item" href="/MainServlet?action=create">Create</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Contract</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -79,16 +78,58 @@
             </form>
         </div>
     </nav>
+
     <%--    aside & body--%>
     <div class="row">
-        <div class="col-3">Aside</div>
-        <div class="col-9">
-
-        </div>
-    </div>
-    <div class="row">
         <div class="col-12">
-
+            <div id="form-container" class="bg-white">
+                <form action="/MainServlet?action=create" method="post">
+                    <div class="form-group">
+                        <h2>Creation form</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name"
+                               placeholder="Enter name" value="${name}">
+                        <small>${messageName}</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text" class="form-control" id="price" name="price" aria-describedby="price"
+                               placeholder="Enter Price" value="${price}">
+                        <small>${messagePrice}</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text" class="form-control" id="quantity" name="quantity" aria-describedby="quantity"
+                               placeholder="Enter Quantity" value="${quantity}">
+                        <small>${messageQuantity}</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color</label>
+<%--                        <input type="text" class="form-control" id="color" name="color" aria-describedby="color"--%>
+<%--                               placeholder="Enter Color">--%>
+                        <select name="color" id="color">
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="yellow">Yellow</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" name="description" aria-describedby="description"
+                               placeholder="Enter Description" value="${description}">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <input type="text" class="form-control" id="category" name="category" aria-describedby="category"
+                               placeholder="Enter Category" value="${category}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

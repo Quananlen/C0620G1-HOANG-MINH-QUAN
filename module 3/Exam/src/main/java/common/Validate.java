@@ -33,5 +33,26 @@ public class Validate {
         return message;
     }
 
+    public static String validateName(String name) {
+        String message = "OK";
+        String regex = "";
+        if (name.matches(regex)) {
+            message = "Not OK. Name can not be null";
+        }
+        return message;
+    }
+
+    public static String validatePrice(String price) {
+        String message = "OK";
+        if (!NumberUtils.isParsable(price)) {
+            return "Not OK. Input must be a number";
+        }
+        double number = Double.parseDouble(price);
+        if (number <= 10000000) {
+            return "Not OK. Number must larger than 10.000.000";
+        }
+        return message;
+    }
+
 
 }

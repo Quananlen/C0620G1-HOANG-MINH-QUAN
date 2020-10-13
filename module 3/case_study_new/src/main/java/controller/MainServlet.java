@@ -10,6 +10,7 @@ import common.Validate;
 import model.Customer;
 import model.CustomerType;
 import model.Employee;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -129,6 +130,7 @@ public class MainServlet extends HttpServlet {
 
         String address = request.getParameter("address");
         request.setAttribute("address", address);
+
 
         boolean isValidated = messageId.equals("OK") && messageIdCard.equals("OK") && messagePhone.equals("OK") && messageEmail.equals("OK");
         if (!isValidated) {

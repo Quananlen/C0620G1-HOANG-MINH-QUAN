@@ -23,19 +23,25 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <%--    data tables--%>
+    <style>
+        body {
+            background-image: url('images/resort-bg.jpg');
+            background-size: 100% 100%;
+        }
+    </style>
 
 </head>
 <body>
 <div class="container-fluid">
 <%--    Logo - name--%>
     <div class="row">
-        <div class="col-12 d-flex"><img src="images/Logo.JPG" alt="logo img">
+        <div class="col-12 d-flex"><img src="images/Logo.JPG" alt="logo img" class="rounded-circle">
             <div class="ml-auto align-middle">Hoàng Minh Quân</div>
         </div>
     </div>
 <%--        Nav bar--%>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Furama Resort</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light row">
+        <a class="navbar-brand" href="#">Product Management</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,30 +53,14 @@
                     <a class="nav-link" href="/MainServlet">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown nav-link">
-                        <span class="dropdown-toggle" id="dropdownMenuButtonEmployee"
-                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Employee
-                        </span>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonEmployee">
-                        <a class="dropdown-item" href="">List Employee</a>
-                        <a class="dropdown-item" href="/MainServlet?action=create">Create Employee</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown nav-link">
                         <span class="dropdown-toggle" id="dropdownMenuButton"
                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Customer
+                            Product
                         </span>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="">List</a>
+                        <a class="dropdown-item" href="/MainServlet?action=display">List</a>
                         <a class="dropdown-item" href="/MainServlet?action=create">Create</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Contract</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -79,16 +69,18 @@
             </form>
         </div>
     </nav>
+
+<%--    Nav bar search--%>
+
 <%--    aside & body--%>
     <div class="row">
-        <div class="col-3">Aside</div>
-        <div class="col-9">
+
+        <div class="col-12">
+
 
         </div>
     </div>
-    <div class="row">
-        <div class="col-12"></div>
-    </div>
+
 </div>
 </body>
 </html>

@@ -28,13 +28,22 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#customers').DataTable();
-        });
+        // $(document).ready(function () {
+        //     $('#customers').DataTable();
+        // });
+
         $(document).ready(function () {
             $('#employees').DataTable();
         });
+        // Phân trang
 
+        $(document).ready(function () {
+            $('#customers').dataTable({
+                "dom": 'lrtip',
+                "lengthChange": false,
+                "pageLength": 5
+            });
+        });
     </script>
 </head>
 <body>
@@ -143,6 +152,7 @@
                 </c:forEach>
                 </tbody>
             </table>
+<%--            modal customer--%>
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -227,9 +237,9 @@
              </form>--%>
 
     </div>
-    <div class="=row">
-        <div class="col-md-12 bg-primary">Footer</div>
-    </div>
+<%--    <div class="=row">--%>
+<%--        <div class="col-md-12 bg-primary">Footer</div>--%>
+<%--    </div>--%>
 </div>
 <script>
     function setInnerText(idStart, idDest) {

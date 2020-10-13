@@ -38,7 +38,7 @@
           <div class="form-group">
               <label for="id">ID</label>
               <input type="text" class="form-control" id="id" name="id" placeholder="ID" value="${id}">
-              <div style="color: red">${messageId}</div>
+              <small style="color: red">${messageId}</small>
           </div>
           <div class="form-group">
               <label for="name">Name</label>
@@ -63,22 +63,22 @@
         <div class="form-group">
             <label for="idCard">ID Card</label>
             <input type="text" class="form-control" id="idCard" name="idCard" placeholder="Id Card" value="${idCard}">
-            <div style="color: red">${messageIdCard}</div>
+            <small class="text-danger">${messageIdCard}</small>
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
             <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" value="${phone}">
-            <div style="color: red">${messagePhone}</div>
+            <small style="color: red">${messagePhone}</small>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="text" class="form-control" id="email" name="email" placeholder="email" value="${email}">
-            <div style="color: red">${messageEmail}</div>
+            <small style="color: red">${messageEmail}</small>
         </div>
         <div class="form-group">
             <label for="address">Address</label>
             <input type="text" class="form-control" id="address" name="address" placeholder="address" value="${address}">
-            <div style="color: red">${messageAddress}</div>
+            <small style="color: red">${messageAddress}</small>
         </div>
 
         <input type="submit" value="Create">

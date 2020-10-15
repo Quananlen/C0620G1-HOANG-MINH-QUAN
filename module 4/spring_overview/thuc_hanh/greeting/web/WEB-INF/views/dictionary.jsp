@@ -15,6 +15,7 @@
     <input type="text" name="word">
     <input type="submit" value="look up">
     <div>${result}</div>
+    <a href="greeting.jsp">Greeting</a>
 </form>
 </body>
 </html>

@@ -17,6 +17,7 @@
     <p>VND: <input type="text" name="vnd" value="${vndNew}"></p>
     <input type="submit" value="Convert">
     <input type="reset" value="Clear">
+    <a href="greeting.jsp">Greeting</a>
 </form>
 </body>
 </html>

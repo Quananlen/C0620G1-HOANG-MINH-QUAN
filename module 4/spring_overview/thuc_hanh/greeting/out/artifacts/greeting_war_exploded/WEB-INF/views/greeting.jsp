@@ -12,5 +12,7 @@
 </head>
 <body>
 Welcome to Spring!
+<a href="currency_conversion.jsp">Currency conversion</a>
+<a href="dictionary.jsp">Dictionary</a>
 </body>
 </html>

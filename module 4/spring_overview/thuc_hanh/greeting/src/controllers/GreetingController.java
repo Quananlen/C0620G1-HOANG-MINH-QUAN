@@ -16,7 +16,7 @@ public class GreetingController {
 
     @GetMapping()
     public String greeting() {
-        return "dictionary";
+        return "currency_conversion";
     }
 
     @GetMapping("/Convert")
@@ -32,11 +32,6 @@ public class GreetingController {
 
     @GetMapping("/Dictionary")
     public String lookUp(@RequestParam String word, Model model) {
-//        String[] dict = {"chó", "mèo", "chuột"};
-//        String[] dict2 = {"dog", "cat", "mouse"};
-//        for (int i = 0; i < dict2.length; i++) {
-//            if (word.equals(dict2[i])) model.addAttribute("result", dict[i]);
-//        }
         model.addAttribute("result", dict.lookUp(word));
         return "dictionary";
     }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{blog/index::head}"></head>
+<body>
+<nav th:replace="~{blog/index::nav-bar-blog}"></nav>
+<div class="row">
+    <div class="col-12">
+        <div id="index-container">
+            <form>
+                <input type="hidden" name="id" th:value="${entry.id}">
+                <h2 th:text="${entry.title}"></h2>
+                <small th:text="${entry.date}"></small>
+                <section th:text="${entry.content}"></section>
+                <br><br><br><br><br>
+                <small th:text="${entry.category.name}"></small><br>
+                <a th:href="@{/blog/delete(id=${entry.id})}"><button type="button" class="btn btn-primary">Delete</button></a>
+                <a th:href="@{/blog/update(id=${entry.id})}"><button type="button" class="btn btn-primary">Update</button></a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

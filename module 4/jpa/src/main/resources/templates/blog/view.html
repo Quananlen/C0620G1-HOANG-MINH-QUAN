@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{blog/index::head}"></head>
+<body>
+<nav th:replace="~{blog/index::nav-bar-blog}"></nav>
+<div class="row">
+    <div class="col-12">
+        <div id="index-container">
+            <h1>Blog Entries</h1><br>
+            <div th:each="entry : ${entryList}">
+                <a th:href="@{/blog/viewEntry(id=${entry.id})}"><p><span th:text="${entry.date}"></span> : <span
+                        th:text="${entry.title}"></span></p></a>
+            </div>
+            <a th:if="${entryList.hasPrevious()}" th:href="@{/blog/view(page=${entryList.number - 1}, keyword=${keyword})}"><span class="material-icons">skip_previous</span></a>
+            <span th:text="${entryList.getNumber() + 1}"></span>/<span th:text="${entryList.getTotalPages()}"></span>
+            <a th:if="${entryList.hasNext()}" th:href="@{/blog/view(page=${entryList.number + 1}, keyword=${keyword})}"><span class="material-icons">skip_next</span></a>
+            <form action="/blog/view">
+                <input type="text" name="keyword" th:value="${keyword}">
+                <input type="submit" value="search by title">
+            </form>
+            <form action="/blog/category">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.name}" th:selected="${categoryId} == ${category.id}" ></option>
+                </select>
+                <input type="submit" value="Get Entries">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

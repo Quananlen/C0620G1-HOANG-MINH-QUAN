@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{product/index::head}"></head>
+<body>
+<nav th:replace="product/index::nav-bar-product"></nav>
+<div class="row">
+    <div class="col-12">
+        <div id="table-container" class="bg-white">
+            <div style="color: #45a049" th:text="${success}"></div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${productList}">
+                    <th scope="row" th:text="${product.getId()}"></th>
+                    <td th:text="${product.getName()}"></td>
+                    <td th:text="${product.getPrice()}"></td>
+                    <td th:switch="${product.getCategory()}">
+                        <span th:case="1">Phone</span>
+                        <span th:case="2">Laptop</span>
+                        <span th:case="3">Watch</span>
+                        <span th:case="*">Unknown</span>
+                    </td>
+                    <td><a th:href="@{update/{id}(id=${product.getId()})}"><i class="material-icons">&#xE254;</i></a></td>
+                    <td><a th:href="@{delete(id=${product.getId()})}"><i class="material-icons">&#xE872;</i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{product/index::head}"></head>
+<body>
+<nav th:replace="product/index::nav-bar-product"></nav>
+<div id="form-container" class="bg-white">
+    <form th:href="@{product/update/{id}(id=${product.getId()})}" method="post" th:object="${product}">
+        <div class="form-group">
+            <label for="product-id">ID</label>
+            <input type="text" class="form-control" id="product-id" th:field="*{id}" th:value="${product.getId()}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}" th:value="${product.getName()}">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" aria-describedby="price" th:field="*{price}" th:value="${product.getPrice()}">
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category" aria-describedby="category" th:field="*{category}" th:value="${product.getCategory()}">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+</body>
+</html>

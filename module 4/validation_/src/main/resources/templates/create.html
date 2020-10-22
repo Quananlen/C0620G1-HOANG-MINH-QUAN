@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{index::head}"></head>
+<body>
+<nav th:replace="~{index::nav-bar-user}"></nav>
+<div id="form-container" class="bg-white">
+    <form th:action="@{/create}" method="post" th:object="${user}">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="First name" th:field="*{firstName}">
+                <small th:errors="*{firstName}"></small>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last name" th:field="*{lastName}">
+                <small th:errors="*{lastName}"></small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" id="age" placeholder="20, 30, 40" th:field="*{age}">
+            <small th:errors="*{age}"></small>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="number" class="form-control" id="phone" placeholder="0903 456 789" th:field="*{phone}"
+                   required>
+            <small th:errors="*{phone}"></small>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="giga.hoang@gmail.com" th:field="*{email}">
+            <small th:errors="*{email}"></small>
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" placeholder="Sai gon" th:field="*{city}">
+            <small th:errors="*{city}"></small>
+        </div>
+        <div class="form-group">
+            <label for="permission">Permission</label><br>
+            <div id="permission" class="pretty p-switch p-slim" th:each="permission : ${permissionList}">
+                <input type="checkbox" name="permission" th:value="${permission.id}"/>
+                <div class="state">
+                    <label th:text="${permission.name}"></label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+</div>
+</body>
+</html>

@@ -14,6 +14,8 @@
             <th scope="col">Age</th>
             <th scope="col">Email</th>
             <th scope="col">City</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -25,11 +27,12 @@
             <td th:text="${user.age}">
             <td th:text="${user.email}">
             <td th:text="${user.city}">
-                <!--                <td><a th:href="@{update/{id}(id=${product.getId()})}"><i class="material-icons">&#xE254;</i></a></td>-->
-                <!--                <td><a th:href="@{delete(id=${product.getId()})}"><i class="material-icons">&#xE872;</i></a></td>-->
+            <td><a th:href="@{/update(id=${user.id})}"><i class="material-icons">&#xE254;</i></a></td>
+            <td><a th:href="@{/delete(id=${user.id})}"><i class="material-icons">&#xE872;</i></a></td>
         </tr>
         </tbody>
     </table>
+
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item" th:classappend="${!userList.hasPrevious()} ? disabled">

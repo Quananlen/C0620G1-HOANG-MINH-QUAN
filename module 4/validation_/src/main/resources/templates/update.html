@@ -4,7 +4,8 @@
 <body>
 <nav th:replace="~{index::nav-bar-user}"></nav>
 <div id="form-container" class="bg-white">
-    <form th:action="@{/create}" method="post" th:object="${user}">
+    <form th:action="@{/update}" method="post" th:object="${user}">
+        <input type="hidden" th:field="*{id}">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="firstName">First name</label>
@@ -41,13 +42,13 @@
         <div class="form-group">
             <label for="permission">Permission</label><br>
             <div id="permission" class="pretty p-switch p-slim" th:each="permission : ${permissionList}">
-                <input type="checkbox" th:field="*{permissionSet}" th:value="${permission.id}"/>
+                <input type="checkbox" th:field="*{permissionSet}" th:value="${permission.id}" />
                 <div class="state">
                     <label th:text="${permission.name}"></label>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 </body>

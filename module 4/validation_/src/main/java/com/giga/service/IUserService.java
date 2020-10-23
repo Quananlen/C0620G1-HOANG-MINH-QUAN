@@ -12,4 +12,8 @@ public interface IUserService {
     void save(User user);
 
     Page<User> findAll(Pageable pageable);
+
+    User findById(Integer id) throws Exception;
+
+    void deleteById(Integer id);
 }

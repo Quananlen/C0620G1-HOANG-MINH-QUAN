@@ -11,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -47,13 +44,38 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String createUser(Model model, @Validated @ModelAttribute User user, BindingResult bindingResult, @RequestParam Set<Permission> permission) {
+    public String createUser(Model model, @Validated @ModelAttribute User user, BindingResult bindingResult) {
 
         if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("permissionList", permissionService.findAll());
             return "create";
         }
-        user.setPermissionSet(permission);
         userService.save(user);
         return "redirect:/view";
     }
+
+    @GetMapping("/update")
+    public String update(Model model, @RequestParam Integer id) throws Exception {
+        model.addAttribute("user", userService.findById(id));
+        model.addAttribute("permissionList", permissionService.findAll());
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute User user) {
+        userService.save(user);
+        return "redirect:/view";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam Integer id) {
+        userService.deleteById(id);
+        return "redirect:/view";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String error() {
+        return "error";
+    }
 }
+

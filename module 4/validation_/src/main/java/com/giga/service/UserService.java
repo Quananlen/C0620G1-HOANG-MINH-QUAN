@@ -29,4 +29,18 @@ public class UserService implements IUserService {
     public Page<User> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
+
+    @Override
+    public User findById(Integer id) throws Exception {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            throw new Exception("Cant find user with given ID: " + id);
+        }
+        return user;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        userRepository.deleteById(id);
+    }
 }

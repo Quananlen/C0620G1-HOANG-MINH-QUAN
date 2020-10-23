@@ -27,4 +27,9 @@ public class CodeService implements ICodeService {
     public List<Code> findAllCodeByBookId(Integer id) {
         return codeRepository.findCodeByBook_Id(id);
     }
+
+    @Override
+    public List<Code> findAvailableCodeByBookId(Integer id) {
+        return codeRepository.findCodeByBook_IdAndStatus_Id(id, 1);
+    }
 }

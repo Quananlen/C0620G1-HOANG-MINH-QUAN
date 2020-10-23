@@ -1,15 +1,13 @@
 package com.giga.controller;
 
 import com.giga.entity.Book;
+import com.giga.exception.NotAvailableException;
 import com.giga.service.IBookService;
 import com.giga.service.ICodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BookController {
@@ -44,16 +42,27 @@ public class BookController {
     }
 
     @GetMapping("/borrow")
-    public String borrow(Model model, @RequestParam Integer id) {
+    public String borrow(Model model, @RequestParam Integer id) throws NotAvailableException {
         Book book = bookService.findById(id);
         model.addAttribute("book", book);
+        model.addAttribute("availableCode", bookService.getNextAvailableCode(book));
         return "borrow";
     }
 
     @PostMapping("/borrow")
-    public String borrowBook(@ModelAttribute Book book) {
-        book.borrow();
-        bookService.borrow(book);
+    public String borrowBook(@ModelAttribute Book book, @RequestParam Integer usedCode) {
+        bookService.borrow(book, usedCode);
         return "redirect:/view";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam Integer id) {
+        bookService.delete(id);
+        return "redirect:/view";
+    }
+
+    @ExceptionHandler(NotAvailableException.class)
+    public String notAvailable() {
+        return "error";
     }
 }

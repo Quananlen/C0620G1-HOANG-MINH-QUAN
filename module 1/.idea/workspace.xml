@@ -34,7 +34,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/HTMLForm&amp;Table/BaiTap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -86,6 +86,7 @@
       <workItem from="1593164424410" duration="1270000" />
       <workItem from="1593501537396" duration="3958000" />
       <workItem from="1593566983798" duration="17743000" />
+      <workItem from="1601479514163" duration="789000" />
     </task>
     <servers />
   </component>

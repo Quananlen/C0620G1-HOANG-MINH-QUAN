@@ -8,4 +8,5 @@ public interface ICodeService{
     Code findById(Integer id);
     void save(Code code);
     List<Code> findAllCodeByBookId(Integer id);
+    List<Code> findAvailableCodeByBookId(Integer id);
 }

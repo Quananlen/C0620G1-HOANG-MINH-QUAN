@@ -31,8 +31,12 @@ public class Book {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @OneToMany(mappedBy = "book")
-    private Set<Code> codeSet;
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Code> codeSet = new LinkedHashSet<>();
+
+    public void generateCode(Code code) {
+        codeSet.add(code);
+    }
 
     public void borrow() {
         if (quantity > 0) quantity--;

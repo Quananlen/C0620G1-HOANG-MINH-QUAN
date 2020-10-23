@@ -13,6 +13,7 @@
             <th scope="col">Year</th>
             <th scope="col">Quantity</th>
             <th scope="col">Borrow</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +24,7 @@
             <td th:text="${book.year}">
             <td th:text="${book.quantity}">
             <td><a th:href="@{/borrow(id=${book.id})}"><i class="material-icons">read_more</i></a></td>
-<!--            <td><a th:href="@{/delete(id=${user.id})}"><i class="material-icons">&#xE872;</i></a></td>-->
+            <td><a th:href="@{/delete(id=${book.id})}"><i class="material-icons">&#xE872;</i></a></td>
         </tr>
         </tbody>
     </table>

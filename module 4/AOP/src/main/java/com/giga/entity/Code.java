@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -25,4 +26,18 @@ public class Code {
     @JoinColumn(name="book_id")
     private Book book;
 
+    @ManyToOne
+    @JoinColumn(name="status_id")
+    private Status status;
+
+    public Code(Integer code, Book book) {
+        this.code = code;
+        this.book = book;
+    }
+
+    public Code(Integer code, Book book, Status status) {
+        this.code = code;
+        this.book = book;
+        this.status = status;
+    }
 }

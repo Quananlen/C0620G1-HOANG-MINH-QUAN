@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class CodeService implements ICodeService {
+
     @Autowired
     ICodeRepository codeRepository;
 
@@ -31,5 +31,10 @@ public class CodeService implements ICodeService {
     @Override
     public List<Code> findAvailableCodeByBookId(Integer id) {
         return codeRepository.findCodeByBook_IdAndStatus_Id(id, 1);
+    }
+
+    @Override
+    public List<Code> findUsedCodeByBookId(Integer id) {
+        return codeRepository.findCodeByBook_IdAndStatus_Id(id, 2);
     }
 }

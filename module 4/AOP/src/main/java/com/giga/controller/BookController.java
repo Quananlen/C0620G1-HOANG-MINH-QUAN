@@ -2,12 +2,21 @@ package com.giga.controller;
 
 import com.giga.entity.Book;
 import com.giga.exception.NotAvailableException;
+import com.giga.exception.NotBorrowException;
+import com.giga.exception.WrongCodeException;
 import com.giga.service.IBookService;
 import com.giga.service.ICodeService;
+import com.giga.validation.ReturnCodeWrapper;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.ConstraintViolationException;
+import javax.validation.constraints.Min;
 
 @Controller
 public class BookController {
@@ -36,7 +45,11 @@ public class BookController {
     }
 
     @PostMapping("/create")
-    public String createBook(@ModelAttribute Book book) {
+    public String createBook(Model model, @Validated @ModelAttribute Book book, BindingResult bindingResult) {
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute(book);
+            return "create";
+        }
         bookService.save(book);
         return "redirect:/view";
     }
@@ -61,8 +74,38 @@ public class BookController {
         return "redirect:/view";
     }
 
+    @GetMapping("/return")
+    public String returnPage(Model model, @RequestParam Integer id, @ModelAttribute ReturnCodeWrapper returnCodeWrapper) {
+        model.addAttribute("returnCodeWrapper", returnCodeWrapper);
+        model.addAttribute("book", bookService.findById(id));
+        return "return";
+    }
+
+    @PostMapping("/return")
+    public String returnBook(Model model, @ModelAttribute Book book, @Validated @ModelAttribute ReturnCodeWrapper returnCodeWrapper, BindingResult result)
+            throws NotAvailableException, WrongCodeException, NotBorrowException {
+        if (result.hasFieldErrors()) {
+            model.addAttribute("returnCodeWrapper", returnCodeWrapper);
+            model.addAttribute("book", book);
+            return "return";
+        }
+        bookService.returnBook(book, returnCodeWrapper.getReturnCode());
+        return "redirect:/view";
+    }
+
     @ExceptionHandler(NotAvailableException.class)
     public String notAvailable() {
-        return "error";
+        return "error_not_available";
     }
+
+    @ExceptionHandler(WrongCodeException.class)
+    public String wrongCode() {
+        return "error_wrong_code";
+    }
+
+    @ExceptionHandler(NotBorrowException.class)
+    public String notBorrow() {
+        return "error_not_borrow";
+    }
+
 }

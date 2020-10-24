@@ -4,6 +4,8 @@ import com.giga.entity.Book;
 import com.giga.entity.Code;
 import com.giga.entity.Status;
 import com.giga.exception.NotAvailableException;
+import com.giga.exception.NotBorrowException;
+import com.giga.exception.WrongCodeException;
 import com.giga.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +50,7 @@ public class BookService implements IBookService {
         List<Code> codeList = codeService.findAllCodeByBookId(book.getId());
         for (Code code : codeList) {
             if (code.getCode().equals(usedCode)) {
-                code.setStatus(new Status(2, "in used"));
+                code.setStatus(new Status(2, "used"));
                 break;
             }
         }
@@ -70,5 +72,31 @@ public class BookService implements IBookService {
         return codeList.get(0);
     }
 
+    @Override
+    public void returnBook(Book book, Integer returnCode) throws NotAvailableException, WrongCodeException, NotBorrowException {
+        List<Code> codeList = codeService.findUsedCodeByBookId(book.getId());
+        List<Code> availableCodeList = codeService.findAvailableCodeByBookId(book.getId());
+        List<Code> allCodeList = codeService.findAllCodeByBookId(book.getId());
+        if (availableCodeList.size() == allCodeList.size()) {
+            throw new NotBorrowException();
+        }
+        if (codeList.size() == 0) {
+            throw new NotAvailableException();
+        }
+        boolean isCorrectCode = false;
+        for (Code code : codeList) {
+            if (code.getCode().equals(returnCode)) {
+                code.setStatus(new Status(1, "available"));
+                codeService.save(code);
+                book.returnBook();
+                bookRepository.save(book);
+                isCorrectCode = true;
+                break;
+            }
+        }
+        if (!isCorrectCode) {
+            throw new WrongCodeException();
+        }
+    }
 
 }

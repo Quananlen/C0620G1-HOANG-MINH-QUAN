@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 
@@ -20,6 +21,7 @@ public class Code {
     private Integer id;
 
     @Column(name = "code")
+    @Range(min = 10000, max = 99999)
     private Integer code;
 
     @ManyToOne

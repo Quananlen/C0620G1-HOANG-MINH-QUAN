@@ -73,13 +73,8 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void returnBook(Book book, Integer returnCode) throws NotAvailableException, WrongCodeException, NotBorrowException {
+    public void returnBook(Book book, Integer returnCode) throws NotAvailableException, WrongCodeException {
         List<Code> codeList = codeService.findUsedCodeByBookId(book.getId());
-        List<Code> availableCodeList = codeService.findAvailableCodeByBookId(book.getId());
-        List<Code> allCodeList = codeService.findAllCodeByBookId(book.getId());
-        if (availableCodeList.size() == allCodeList.size()) {
-            throw new NotBorrowException();
-        }
         if (codeList.size() == 0) {
             throw new NotAvailableException();
         }
@@ -99,4 +94,10 @@ public class BookService implements IBookService {
         }
     }
 
+    @Override
+    public boolean checkNoUsedCode(Book book) {
+        List<Code> availableCodeList = codeService.findAvailableCodeByBookId(book.getId());
+        List<Code> allCodeList = codeService.findAllCodeByBookId(book.getId());
+        return availableCodeList.size() == allCodeList.size();
+    }
 }

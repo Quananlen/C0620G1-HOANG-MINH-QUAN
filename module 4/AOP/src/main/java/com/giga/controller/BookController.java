@@ -6,6 +6,7 @@ import com.giga.exception.NotBorrowException;
 import com.giga.exception.WrongCodeException;
 import com.giga.service.IBookService;
 import com.giga.service.ICodeService;
+import com.giga.service.IStatusService;
 import com.giga.validation.ReturnCodeWrapper;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class BookController {
 
     @Autowired
     ICodeService codeService;
+
+    @Autowired
+    IStatusService statusService;
 
     @GetMapping()
     public String home() {
@@ -75,22 +79,32 @@ public class BookController {
     }
 
     @GetMapping("/return")
-    public String returnPage(Model model, @RequestParam Integer id, @ModelAttribute ReturnCodeWrapper returnCodeWrapper) {
+    public String returnPage(Model model, @RequestParam Integer id, @ModelAttribute ReturnCodeWrapper returnCodeWrapper) throws NotBorrowException {
+        Book book = bookService.findById(id);
+        if (bookService.checkNoUsedCode(book)) {
+            throw new NotBorrowException();
+        }
         model.addAttribute("returnCodeWrapper", returnCodeWrapper);
-        model.addAttribute("book", bookService.findById(id));
+        model.addAttribute("book", book);
         return "return";
     }
 
     @PostMapping("/return")
     public String returnBook(Model model, @ModelAttribute Book book, @Validated @ModelAttribute ReturnCodeWrapper returnCodeWrapper, BindingResult result)
-            throws NotAvailableException, WrongCodeException, NotBorrowException {
+            throws NotAvailableException, WrongCodeException {
         if (result.hasFieldErrors()) {
             model.addAttribute("returnCodeWrapper", returnCodeWrapper);
             model.addAttribute("book", book);
             return "return";
         }
-        bookService.returnBook(book, returnCodeWrapper.getReturnCode());
+        bookService.returnBook(book, Integer.parseInt(returnCodeWrapper.getReturnCode()));
         return "redirect:/view";
+    }
+
+    @GetMapping("/create_code_status")
+    public String createCodeStatus() {
+        statusService.createStatus();
+        return "index";
     }
 
     @ExceptionHandler(NotAvailableException.class)

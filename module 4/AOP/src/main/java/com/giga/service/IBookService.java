@@ -21,5 +21,7 @@ public interface IBookService {
 
     Code getNextAvailableCode(Book book) throws NotAvailableException;
 
-    void returnBook(Book book, Integer returnCode) throws NotAvailableException, WrongCodeException, NotBorrowException;
+    void returnBook(Book book, Integer returnCode) throws NotAvailableException, WrongCodeException;
+
+    public boolean checkNoUsedCode(Book book);
 }

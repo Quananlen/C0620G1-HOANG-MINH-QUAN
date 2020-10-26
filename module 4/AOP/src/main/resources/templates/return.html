@@ -33,7 +33,7 @@
         <div class="form-group">
             <label for="code">Borrow code</label><br>
             <th:block th:object="${returnCodeWrapper}">
-            <input id="code" type="number" th:field="*{returnCode}">
+            <input class="form-control" id="code" type="number" th:field="*{returnCode}">
                 <small th:errors="*{returnCode}"></small>
             </th:block>
         </div>

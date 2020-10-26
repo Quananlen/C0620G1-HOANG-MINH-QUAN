@@ -2,14 +2,14 @@ package com.giga.validation;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
 public class ReturnCodeWrapper {
     @NotNull
-    @Range(min = 10000, max = 99999, message = "Code must have 5 digits")
-    private Integer returnCode;
+    @Size(min = 5, max = 5, message = "Code must have 5 digits")
+    private String returnCode;
 }

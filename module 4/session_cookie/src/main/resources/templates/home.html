@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Welcome <span th:text="${user.username}"></span></p>
+<a href="/shop/viewCart">View Cart</a>
+<form action="/shop/addToCart">
+    <th:block th:each="product : ${productList}">
+        <input type="checkbox" th:field="*{user.productCart}" th:value="${product.name}">
+        <label th:text="${product.getName()}"></label>
+    </th:block>
+    <input type="submit" value="Add to Cart">
+</form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Cart of <span th:text="${user.username}"></span></p>
+<a href="/shop/viewCart">View Cart</a>
+<th:block th:each="product : ${user.productCart}">
+    <span th:text="product"></span>
+</th:block>
+</body>
+</html>

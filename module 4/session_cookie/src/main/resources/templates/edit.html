@@ -5,16 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<!--<p>Welcome <span th:text="${user.username}"></span>-->
 <a href="/shop/viewCart">View Cart</a>
 <a href="/shop/createCart">Drop Cart</a>
-<a href="/shop/editCart">Edit Cart</a>
 <th:block th:each="productL : ${productList}">
-    <form action="/shop/addToCart" th:object="${cart}">
+    <form action="/shop/editCart" method="post" th:object="${cart}">
         <input type="hidden" name="id" th:value="${productL.id}">
         <span th:text="${productL.name}"></span>
         <input type="number" th:field="*{quantity}">
-        <input type="submit" value="Add to cart">
+        <input type="submit" value="Delete from cart"><br>
     </form>
 </th:block>
 </body>

@@ -26,4 +26,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private Set<Product> productCart;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

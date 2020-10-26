@@ -5,10 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<p>Cart of <span th:text="${user.username}"></span></p>
-<a href="/shop/viewCart">View Cart</a>
-<th:block th:each="product : ${user.productCart}">
-    <span th:text="product"></span>
+<!--<p>Cart of <span th:text="${user.username}"></span></p>-->
+<a href="/shop">Back</a>
+<th:block th:each="cart : ${cartList}">
+    <p th:text="${cart.product.name}"></p>
+    <p>quantity: <span th:text="${cart.quantity}"></span></p>
 </th:block>
 </body>
 </html>

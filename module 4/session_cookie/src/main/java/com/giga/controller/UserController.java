@@ -30,19 +30,27 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(Model model, @ModelAttribute User user, @RequestParam Optional<String> remember , HttpServletResponse response) {
+        Cookie cookieUsername;
+        Cookie cookiePassword;
+        Cookie cookieRemember;
+
         if (remember.isPresent()) {
-
-            Cookie cookieUsername = new Cookie("usernameC", user.getUsername());
-            Cookie cookiePassword = new Cookie("passwordC", user.getPassword());
-            Cookie cookieRemember = new Cookie("rememberC", remember.get());
-            cookieUsername.setMaxAge(3600);
-            cookiePassword.setMaxAge(3600);
-            cookieRemember.setMaxAge(3600);
-
-            response.addCookie(cookieUsername);
-            response.addCookie(cookiePassword);
-            response.addCookie(cookieRemember);
+             cookieUsername = new Cookie("usernameC", user.getUsername());
+             cookiePassword = new Cookie("passwordC", user.getPassword());
+             cookieRemember = new Cookie("rememberC", remember.get());
+        } else {
+             cookieUsername = new Cookie("usernameC", "");
+             cookiePassword = new Cookie("passwordC", "");
+             cookieRemember = new Cookie("rememberC", "");
         }
+
+        cookieUsername.setMaxAge(3600);
+        cookiePassword.setMaxAge(3600);
+        cookieRemember.setMaxAge(3600);
+
+        response.addCookie(cookieUsername);
+        response.addCookie(cookiePassword);
+        response.addCookie(cookieRemember);
 
         List<User> userList = userRepository.findAll();
         for (User userDB : userList) {
@@ -52,8 +60,6 @@ public class UserController {
             }
         }
         model.addAttribute("loginMessage", "Invalid username or password");
-
-
 
         return "login";
     }

@@ -26,6 +26,11 @@ public class BlogRestController {
         return new ResponseEntity<>(blogService.display(), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/small-list")
+    public ResponseEntity<Page<BlogEntry>> findPage(Pageable pageable) {
+        return new ResponseEntity<>(blogService.display(pageable), HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/findByCategory/{id}")
     public ResponseEntity<List<BlogEntry>> findByCategory(@PathVariable Integer id) {
         return new ResponseEntity<>(blogService.findByCategoryId(id), HttpStatus.ACCEPTED);
@@ -36,5 +41,6 @@ public class BlogRestController {
         blogService.create(blogEntry);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
 
 }

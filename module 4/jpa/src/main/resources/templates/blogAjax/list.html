@@ -71,6 +71,12 @@
                 }
             })
         });
+
+        let str = "";
+        let page = 0;
+        let list;
+        let counter = 0;
+
         $("#display").click(function () {
             $.ajax({
                 headers: {
@@ -78,36 +84,27 @@
                     'Content-Type': 'application/json'
                 },
                 type: "GET",
-                url: `http://localhost:8080/blog/api/list`,
+                url: `http://localhost:8080/blog/api/small-list?page=${page}&size=1`,
                 success: function (blogEntryList, statusText, header) {
                     list = blogEntryList;
-                    str = "";
-                    length = blogEntryList.length;
+                    str += blogEntryList[counter].date + "<br>" + blogEntryList[counter].title + "<br>" + blogEntryList[counter].content + "<hr>";
                     // for (let i = 0; i < length; i++) {
                     //     str += blogEntryList[i].date + "<br>" + blogEntryList[i].title + "<br>" + blogEntryList[i].content + "<hr>";
                     // }
                     $("#entryList").html(str);
                     console.log(statusText, header.status);
+                    page++;
                 },
                 error: function (content) {
                     console.log(content);
                 }
             })
         });
-        let str = "";
-        let length = 0;
-        let counter = 1;
-        let list = [];
-
-        // for (let i = 0; i < counter; i++) {
-        //     str += list[i].date + "<br>" + list[i].title + "<br>" + list[i].content + "<hr>";
-        // }
-        // $("#entryList").html(str);
 
         $("#viewMore").click(function () {
             str += list[counter].date + "<br>" + list[counter].title + "<br>" + list[counter].content + "<hr>";
             $("#entryList").html(str);
-            counter++;
+            page++;
         });
     });
 </script>

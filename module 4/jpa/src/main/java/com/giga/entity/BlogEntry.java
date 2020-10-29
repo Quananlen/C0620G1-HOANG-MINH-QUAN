@@ -1,5 +1,6 @@
 package com.giga.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,5 +24,6 @@ public class BlogEntry {
     @ManyToOne
     @JoinColumn (name = "category_id", referencedColumnName = "id")
     @JsonManagedReference
+    @JsonIgnore
     private Category category;
 }

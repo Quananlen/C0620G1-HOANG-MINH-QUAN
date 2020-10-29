@@ -37,7 +37,7 @@ public class BlogRestController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Void> create(@RequestBody BlogEntry blogEntry) {
+    public ResponseEntity<Void> createEntry(@RequestBody BlogEntry blogEntry) {
         blogService.create(blogEntry);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

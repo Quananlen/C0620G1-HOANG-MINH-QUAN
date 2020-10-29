@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface IBlogRepository extends JpaRepository<BlogEntry, Integer> {
     Page<BlogEntry> findByOrderByDateDesc(Pageable pageable);
+    Page<BlogEntry> findByOrderByIdDesc(Pageable pageable);
+
     List<BlogEntry> findByOrderByDateDesc();
 
     Page<BlogEntry> findByTitleContainingOrderByDateDesc(Pageable pageable, String keyword);

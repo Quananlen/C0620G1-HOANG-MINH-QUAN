@@ -17,7 +17,7 @@ public class BlogService implements IBlogService{
 
     @Override
     public Page<BlogEntry> display(Pageable pageable) {
-        return blogRepository.findByOrderByDateDesc(pageable);
+        return blogRepository.findByOrderByIdDesc(pageable);
     }
 
     @Override

@@ -1,3 +1,12 @@
+POST http://localhost:8080/blog/api/create
+Content-Type: application/json
+
+{
+  "title" :  "jQuery & AJAX",
+  "content" : ""
+}
+
+###
 ###
 GET http://localhost:8080/blog/api/findByCategory/3
 Accept: application/json

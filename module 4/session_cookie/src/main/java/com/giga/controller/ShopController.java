@@ -14,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/shop")
+
 @SessionAttributes({"user", "cartList"})
 public class ShopController {
 
@@ -69,7 +70,7 @@ public class ShopController {
             Cart productInCart = cartList.get(i);
             if (productInCart.getProduct().getName().equals(cart.getProduct().getName())) {
                 productInCart.setQuantity(productInCart.getQuantity() - cart.getQuantity());
-                if (productInCart.getQuantity() == 0) cartList.remove(productInCart);
+                if (productInCart.getQuantity() <= 0) cartList.remove(productInCart);
                 return "redirect:/shop";
             }
         }

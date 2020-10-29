@@ -79,7 +79,7 @@ public class UserController {
                 return "login";
             }
         }
-        userRepository.save(user);
+        if (user.getUsername() != null) userRepository.save(user);
         return "login";
     }
 }

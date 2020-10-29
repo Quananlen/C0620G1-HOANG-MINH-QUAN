@@ -1,0 +1,18 @@
+GET http://localhost:8080/api/find/1
+Accept: application/json
+
+###
+POST http://localhost:8080/api/save
+Content-Type: application/json
+
+{
+  "username": "z",
+  "password": "z",
+  "productCart": []
+}
+
+###
+GET http://localhost:8080/api/list
+Accept: application/json
+
+###

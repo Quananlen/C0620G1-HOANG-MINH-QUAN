@@ -7,14 +7,14 @@
     <div class="col-12">
         <div id="index-container">
             <form>
-                <input type="hidden" name="id" th:value="${entry.id}">
-                <h2 th:text="${entry.title}"></h2>
-                <small th:text="${entry.date}"></small>
-                <section th:text="${entry.content}"></section>
+                <input type="hidden" name="id" th:value="${blogEntry.id}">
+                <h2 th:text="${blogEntry.title}"></h2>
+                <small th:text="${blogEntry.date}"></small>
+                <section th:text="${blogEntry.content}"></section>
                 <br><br><br><br><br>
-                <small th:text="${entry.category.name}"></small><br>
-                <a th:href="@{/blog/delete(id=${entry.id})}"><button type="button" class="btn btn-primary">Delete</button></a>
-                <a th:href="@{/blog/update(id=${entry.id})}"><button type="button" class="btn btn-primary">Update</button></a>
+                <small th:text="${blogEntry.category.name}"></small><br>
+                <a th:href="@{/blog/delete(id=${blogEntry.id})}"><button type="button" class="btn btn-primary">Delete</button></a>
+                <a th:href="@{/blog/update(id=${blogEntry.id})}"><button type="button" class="btn btn-primary">Update</button></a>
             </form>
         </div>
     </div>

@@ -1,6 +1,6 @@
 package com.giga.controller;
 
-import com.giga.entity.Entry;
+import com.giga.entity.BlogEntry;
 import com.giga.service.IBlogService;
 import com.giga.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class BlogController {
 
     @GetMapping("/category")
     public String search(Model model, @PageableDefault(size = 2) Pageable pageable, @RequestParam Integer category) {
-        Page<Entry> entryList = blogService.display(pageable, category);
+        Page<BlogEntry> entryList = blogService.display(pageable, category);
         model.addAttribute("categoryId", category);
         model.addAttribute("categoryList", categoryService.findAll());
         model.addAttribute("entryList", entryList);
@@ -57,15 +57,14 @@ public class BlogController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("entry", new Entry());
+        model.addAttribute("entry", new BlogEntry());
         model.addAttribute("categoryList", categoryService.findAll());
         return "/blog/create";
     }
 
     @PostMapping("/create")
-    public String createEntry(@ModelAttribute Entry entry) {
-        entry.setDate(String.valueOf(java.time.LocalDate.now()));
-        blogService.create(entry);
+    public String createEntry(@ModelAttribute BlogEntry blogEntry) {
+        blogService.create(blogEntry);
         return "redirect:/blog/view";
     }
 
@@ -82,8 +81,8 @@ public class BlogController {
     }
 
     @PostMapping("/update")
-    public String updateEntry(@ModelAttribute Entry entry) {
-        blogService.update(entry);
+    public String updateEntry(@ModelAttribute BlogEntry blogEntry) {
+        blogService.update(blogEntry);
         return "redirect:/blog/view";
     }
 }

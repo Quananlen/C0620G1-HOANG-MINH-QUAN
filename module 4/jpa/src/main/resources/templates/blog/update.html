@@ -4,8 +4,8 @@
 <body>
 <nav th:replace="~{blog/index::nav-bar-blog}"></nav>
 <div id="form-container" class="bg-white">
-    <form th:href="@{blog/update}" method="post" th:object="${entry}">
-        <input type="hidden" th:field="${entry.date}">
+    <form th:href="@{blog/update}" method="post" th:object="${blogEntry}">
+        <input type="hidden" th:field="${blogEntry.date}">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" aria-describedby="title" th:field="*{title}">

@@ -1,15 +1,19 @@
 package com.giga.repository;
 
-import com.giga.entity.Entry;
+import com.giga.entity.BlogEntry;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IBlogRepository extends JpaRepository<Entry, Integer> {
-    Page<Entry> findByOrderByDateDesc(Pageable pageable);
+import java.util.List;
 
-    Page<Entry> findByTitleContainingOrderByDateDesc(Pageable pageable, String keyword);
+public interface IBlogRepository extends JpaRepository<BlogEntry, Integer> {
+    Page<BlogEntry> findByOrderByDateDesc(Pageable pageable);
+    List<BlogEntry> findByOrderByDateDesc();
 
-    Page<Entry> findByCategory_IdOrderByDateDesc(Pageable pageable, Integer category);
+    Page<BlogEntry> findByTitleContainingOrderByDateDesc(Pageable pageable, String keyword);
 
+    Page<BlogEntry> findByCategory_IdOrderByDateDesc(Pageable pageable, Integer category);
+
+    List<BlogEntry> findEntriesByCategory_Id(Integer id);
 }

@@ -1,0 +1,10 @@
+###
+GET http://localhost:8080/blog/api/findByCategory/3
+Accept: application/json
+
+###
+
+GET http://localhost:8080/blog/api/find
+Accept: application/json
+
+###

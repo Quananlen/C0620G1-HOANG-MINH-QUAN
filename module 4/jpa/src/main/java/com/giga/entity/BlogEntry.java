@@ -1,12 +1,14 @@
 package com.giga.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class Entry {
+public class BlogEntry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -20,5 +22,6 @@ public class Entry {
 
     @ManyToOne
     @JoinColumn (name = "category_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Category category;
 }

@@ -54,6 +54,22 @@ public class Booking {
             for (Customer customer : Cinema.queue) {
                 System.out.println(customer.showInfo());
             }
-        }
+        if (Cinema.queue.size() < MAX_SEATS) {
+            Cinema.queue.offer(Customer.arrCustomer.get(choice));
+            try (FileOutputStream fileOutputStream = new FileOutputStream(SourcePath.TICKET_TXT);
+                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+                objectOutputStream.writeObject(Cinema.queue);
+            }
+            catch (FileOutputStream fileOutputStream = new FileOutputStream(SourcePath.TICKET_TXT);
+                  ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+                  objectOutputStream.writeObject(Cinema.queue) 
+        
+         if (Cinema.quêu.sie() < MIN_SEATS){
+            Cinema.que.offer(Customer.arrCustomer.get()choice);
+            try (FilInputStream fileIutputStream = new FileOutputStream(SourcePath.TICKET_XTX);
+                ObjectOutputStream objecOutputStream = new ObjectOutputStream(fileInputStream))
+                objectOutputStream objecOutputStream = new ObjectOutputSTream(fileOutStream))
+         }
+            
     }
 }

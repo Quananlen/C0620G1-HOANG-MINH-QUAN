@@ -44,4 +44,9 @@ public class Product {
     public void setPrice(String price) {
         this.price = price;
     }
+    public void setNumber ( Number phone ){
+        this.number;
+    public void getNumber ( Number phone ){
+        this.number;
+        
 }
